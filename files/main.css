@@ -1,0 +1,126 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 40px;
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 40px;
+    background-color: #f5f5f5;
+border: 0px;
+}
+
+.navbar-brand {
+    font-size: 24px;
+}
+
+img {
+    max-width: 100%;
+}
+
+.container p {
+    margin: 10.5px;
+}
+
+.footer p {
+    margin-top: 8px;
+    font-size: 0.9em;
+}
+
+.navbar {
+    text-transform: uppercase;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    background-color: transparent!important;
+}
+
+.container {
+    font-family: 'Gentium Book Basic', serif;
+    font-size: 1.2em;
+    line-height: 1.6em;
+}
+
+h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6{ 
+    font-family: 'Gentium Book Basic', serif;
+}
+
+.project-thumbnail {
+    width: 120px;
+    height: 120px;
+}
+
+.project-listing .media {
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.blog-index {
+    font-family: 'Inconsolata';
+}
+
+.pager {
+    padding-top: 20px;
+}
+
+.article-title {
+    width: 100%;
+    text-align: center;
+    font-size: 1.8em;
+    font-style: italic;
+    padding-bottom: 30px;
+}
+
+.article {
+    font-size: 1.2em;
+    padding: 10px;
+    margin-bottom: 1.7em;
+    margin-top: 1.5em;
+    line-height: 1.7em;
+}
+
+.article blockquote {
+    font-size: 0.9em;
+    line-height: 1.2em;
+}
+
+.article p {
+    padding-bottom: 15px;
+}
+
+.thumb-caption {
+    background: rgba(50,50,50,0.75);
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    color: white;
+    font-family: sans-serif;
+    text-align: center;
+    font-size: 80%;
+    font-weight: bold;
+    line-height: 1.2em;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 100%;
+}
+
+.img-project {
+    border: 1px solid #dddddd;
+}
+
+.thumbnail img:hover {
+  -webkit-filter: brightness(1.1);
+  -moz-filter: brightness(1.1);
+  -o-filter: brightness(1.1);
+  -ms-filter: brightness(1.1);
+  filter: brightness(1.1);
+}
+
+div.thumbnail {
+    border: 0px solid white;
+}
