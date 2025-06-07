@@ -67,6 +67,9 @@
         .icon-link.apple-music:hover { background-color: #FC3C44; }
         .icon-link.spotify:hover { background-color: #1DB954; }
         .icon-link.epidemic-sound:hover { background-color: #000000; color: #66CC00; } /* Example color for Epidemic Sound */
+        .icon-link.instagram:hover { background-color: #E4405F; }
+        .icon-link.facebook:hover { background-color: #1877F2; }
+
 
         /* Styles for inline images in text (About section) */
         .inline-image {
@@ -141,9 +144,9 @@
             margin-bottom: 1rem;
         }
 
-        /* Styles for the independent video section scrollbar (now hidden) */
+        /* Styles for the independent video section scrollbar (now hidden again) */
         .video-scroll-container {
-            overflow-x: hidden; /* Hide the scrollbar */
+            overflow-x: hidden; /* Changed back to hidden */
             scroll-behavior: smooth; /* Enable smooth scrolling for buttons */
         }
         .video-scroll-container::-webkit-scrollbar {
@@ -155,6 +158,7 @@
         .video-scroll-container::-webkit-scrollbar-thumb {
             background: transparent;
         }
+
 
         /* Modal specific styles for full-screen video playback */
         .modal {
@@ -255,12 +259,13 @@
 <body class="antialiased leading-relaxed bg-gray-900 text-gray-100">
 
     <!-- Header and Navigation -->
-    <header id="mainHeader" class="bg-gray-800 text-white shadow-lg py-4 fixed w-full z-30">
+    <header id="mainHeader" class="bg-gray-900 text-white shadow-lg py-4 fixed w-full z-30">
         <nav class="container mx-auto flex flex-col md:flex-row justify-between items-center px-4">
             <a href="#" class="text-2xl font-bold mb-2 md:mb-0 text-amber-400">Tripti Sharma</a>
             <ul class="flex flex-wrap justify-center md:justify-end space-x-4 md:space-x-8 text-lg">
                 <li><a href="#home" class="nav-link text-white hover:text-amber-400">Home</a></li>
                 <li><a href="#music" class="nav-link text-white hover:text-amber-400">Music</a></li>
+                <li><a href="#other-media" class="nav-link text-white hover:text-amber-400">Other Media</a></li> <!-- New Nav Link -->
                 <li><a href="#about" class="nav-link text-white hover:text-amber-400">About</a></li>
                 <li><a href="#performances" class="nav-link text-white hover:text-amber-400">Performances</a></li>
                 <li><a href="#accolades" class="nav-link text-white hover:text-amber-400">Accolades</a></li>
@@ -289,11 +294,12 @@
                         <a href="#music" class="btn-primary inline-block font-semibold">Listen to me </a>
                         <a href="#contact" class="btn-primary inline-block font-semibold bg-white text-orange-600 hover:bg-gray-100">Contact me</a>
                     </div>
-                    <!-- Social media icons -->
+                    <!-- Social media icons in Hero section -->
                     <div class="flex justify-center md:justify-start space-x-4">
                         <a href="https://www.youtube.com/@triptisharma4034" class="icon-link youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                         <a href="https://music.apple.com/bh/artist/tripti-sharma/1631222411" class="icon-link apple-music" aria-label="Apple Music"><i class="fab fa-apple"></i></a>
                         <a href="https://open.spotify.com/artist/4I9AyBuHEprXXwgPLY8r2r" class="icon-link spotify" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
+                        <a href="https://www.epidemicsound.com/artists/tripti-sharma-2/" target="_blank" class="icon-link epidemic-sound text-xs font-bold px-1.5 py-2.5" aria-label="Epidemic Sound">ES</a>
                     </div>
                 </div>
             </div>
@@ -325,10 +331,10 @@
             </div>
         </section>
 
-    <!-- Music Section: Featured Videos, Other Media, and Discography -->
+    <!-- Music Section: Featured Videos and Discography -->
     <section id="music" class="py-16 bg-gray-800">
         <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center mb-10 text-gray-100 section-heading rounded-lg p-4 bg-gray-700 shadow-xl">My Music & Media</h2>
+            <h2 class="text-4xl font-bold text-center mb-10 text-gray-100 section-heading rounded-lg p-4 bg-gray-700 shadow-xl">My Music</h2>
 
             <!-- Featured Videos Carousel -->
             <h3 class="text-3xl font-bold text-center mb-6 text-gray-100">Featured Videos</h3>
@@ -341,10 +347,11 @@
                     <!-- Videos for the carousel. Duplicated to enable infinite scroll effect. -->
                     <!-- Original set of videos -->
                     <iframe class="flex-shrink-0 w-80 h-48 rounded-lg shadow-lg video-thumbnail" data-video-id="8O26bqiJ_40" src="https://www.youtube.com/embed/8O26bqiJ_40?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <iframe class="flex-shrink-0 w-80 h-48 rounded-lg shadow-lg video-thumbnail" data-video-id="vN_Oqt7XApg" src="https://www.youtube.com/embed/vN_Oqt7XApg?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="flex-shrink-0 w-80 h-48 rounded-lg shadow-lg video-thumbnail" data-video-id="vN_Oqt7XApg" src="https://www.youtube.com/embed/vN_Oqt7XApg?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-in; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     <iframe class="flex-shrink-0 w-80 h-48 rounded-lg shadow-lg video-thumbnail" data-video-id="De0sI5pNW1E" src="https://www.youtube.com/embed/De0sI5pNW1E?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     <iframe class="flex-shrink-0 w-80 h-48 rounded-lg shadow-lg video-thumbnail" data-video-id="zazjt9QXqt4" src="https://www.youtube.com/embed/zazjt9QXqt4?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     <iframe class="flex-shrink-0 w-80 h-48 rounded-lg shadow-lg video-thumbnail" data-video-id="tpSrCJ8YHUw" src="https://www.youtube.com/embed/tpSrCJ8YHUw?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 
                     <!-- Duplicated set for seamless backward scrolling from the "start" of the logical list -->
                     <iframe class="flex-shrink-0 w-80 h-48 rounded-lg shadow-lg video-thumbnail" data-video-id="8O26bqiJ_40" src="https://www.youtube.com/embed/8O26bqiJ_40?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -354,40 +361,40 @@
                     <iframe class="flex-shrink-0 w-80 h-48 rounded-lg shadow-lg video-thumbnail" data-video-id="tpSrCJ8YHUw" src="https://www.youtube.com/embed/tpSrCJ8YHUw?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
-            
+
             <!-- Discography Section -->
             <h3 class="text-3xl font-bold text-center mb-6 text-gray-100">Discography</h3>
             <div id="discography-content">
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
 
-                    <!-- Koyaliya Neeko No Lage -->
+                    <!-- NEW: Batiya -->
                     <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                        <img src="https://placehold.co/300x300/DDA0DD/FFFFFF?text=Koyaliya+Neeko" alt="Koyaliya Neeko No Lage album art" class="w-full h-48 object-cover">
+                        <img src="https://placehold.co/300x300/ADD8E6/FFFFFF?text=Batiya" alt="Batiya album art" class="w-full h-48 object-cover">
                         <div class="p-4">
-                            <h3 class="text-lg font-semibold text-white">Koyaliya Neeko No Lage</h3>
+                            <h3 class="text-lg font-semibold text-white">Batiya</h3>
                             <p class="text-gray-300 text-sm">2025 | Single</p>
                             <p class="text-gray-400 text-xs mb-2">Tripti Sharma, Palace on Wheels</p>
-                            <!-- Only audio links for this entry -->
                             <div class="flex space-x-2 text-2xl">
+                                <a href="https://www.youtube.com/watch?v=PLACEHOLDER_BATIYA_VIDEO_ID" target="_blank" class="icon-link youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                                 <a href="#" class="icon-link apple-music" aria-label="Apple Music"><i class="fab fa-apple"></i></a>
                                 <a href="#" class="icon-link spotify" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
-                                <a href="#" class="icon-link epidemic-sound text-xs font-bold px-1.5 py-2.5" aria-label="Epidemic Sound">ES</a>
+                                <a href="https://www.epidemicsound.com/track/P7u01zdQm2/" target="_blank" class="icon-link epidemic-sound text-xs font-bold px-1.5 py-2.5" aria-label="Epidemic Sound">ES</a>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Pardesiya -->
+                    <!-- UPDATED: Pardesiya (added YouTube link) -->
                     <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
                         <img src="https://placehold.co/300x300/FFB6C1/FFFFFF?text=Pardesiya" alt="Pardesiya album art" class="w-full h-48 object-cover">
                         <div class="p-4">
                             <h3 class="text-lg font-semibold text-white">Pardesiya</h3>
                             <p class="text-gray-300 text-sm">2025 | Album</p>
                             <p class="text-gray-400 text-xs mb-2">Tripti Sharma, Palace on Wheels</p>
-                            <!-- Only audio links for this entry -->
                             <div class="flex space-x-2 text-2xl">
+                                <a href="https://www.youtube.com/watch?v=PLACEHOLDER_PARDESIYA_VIDEO_ID" target="_blank" class="icon-link youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                                 <a href="#" class="icon-link apple-music" aria-label="Apple Music"><i class="fab fa-apple"></i></a>
                                 <a href="#" class="icon-link spotify" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
-                                <a href="#" class="icon-link epidemic-sound text-xs font-bold px-1.5 py-2.5" aria-label="Epidemic Sound">ES</a>
+                                <a href="https://www.epidemicsound.com/release/pardesiya/" target="_blank" class="icon-link epidemic-sound text-xs font-bold px-1.5 py-2.5" aria-label="Epidemic Sound">ES</a>
                             </div>
                         </div>
                     </div>
@@ -408,7 +415,7 @@
                         </div>
                     </div>
 
-                    <!-- Jhoom Jhoom -->
+                    <!-- UPDATED: Jhoom Jhoom (explicit YouTube link) -->
                     <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
                         <img src="https://placehold.co/300x300/FFD700/000?text=Jhoom+Jhoom" alt="Jhoom Jhoom single art" class="w-full h-48 object-cover">
                         <div class="p-4">
@@ -416,7 +423,7 @@
                             <p class="text-gray-300 text-sm">2024 | Single</p>
                             <p class="text-gray-400 text-xs mb-2">Tripti Sharma, Pravesh Mallick</p>
                             <div class="flex space-x-2 text-2xl">
-                                <a href="#" class="icon-link youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                                <a href="https://www.youtube.com/watch?v=86O_G9dTFOU" target="_blank" class="icon-link youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                                 <a href="#" class="icon-link apple-music" aria-label="Apple Music"><i class="fab fa-apple"></i></a>
                                 <a href="#" class="icon-link spotify" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
                             </div>
@@ -675,12 +682,12 @@
         <!-- Contact Section -->
         <section id="contact" class="py-16 bg-gray-800">
             <div class="container mx-auto px-4">
-                <h2 class="text-4xl font-bold text-center mb-10 text-gray-100 section-heading">Get in Touch</h2>
+                <h2 class="text-4xl font-bold text-center mb-10 text-gray-100 section-heading">Contact Me</h2>
                 <div class="max-w-xl mx-auto bg-gray-900 p-8 rounded-lg shadow-md">
                     <p class="text-center text-lg mb-6 text-gray-300">
                         For collaborations, performances, or workshops, please feel free to reach out.
                     </p>
-                    <form class="space-y-4">
+                    <form class="space-y-4 mb-8">
                         <div>
                             <label for="name" class="block text-gray-200 text-sm font-semibold mb-2">Name</label>
                             <input type="text" id="name" name="name" class="w-full p-3 rounded-md bg-gray-700 text-white border border-gray-600 focus:ring-amber-500 focus:border-amber-500" placeholder="Your Name" required>
@@ -699,12 +706,32 @@
                         </div>
                         <button type="submit" class="w-full btn-primary font-semibold">Send Message</button>
                     </form>
+
+                    <div class="text-center mb-6">
+                        <p class="text-gray-300 mb-4">Alternatively, connect with me:</p>
+                        <div class="flex flex-wrap justify-center space-x-4 space-y-2">
+                            <!-- Phone Contact -->
+                            <div class="flex items-center space-x-2 text-gray-300">
+                                <i class="fas fa-phone-alt text-lg text-amber-500"></i>
+                                <span>+46 0000000</span>
+                            </div>
+                            <!-- Email Contact -->
+                            <div class="flex items-center space-x-2 text-gray-300">
+                                <i class="fas fa-envelope text-lg text-amber-500"></i>
+                                <span>tripti.sharma@gmail.com</span>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="mt-8 text-center">
                         <p class="text-gray-300 mb-4">You can also find me on:</p>
-                        <div class="flex justify-center space-x-4">
-                            <a href="#" class="icon-link youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                            <a href="#" class="icon-link apple-music" aria-label="Apple Music"><i class="fab fa-apple"></i></a>
-                            <a href="#" class="icon-link spotify" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
+                        <div class="flex flex-wrap justify-center space-x-4">
+                            <a href="https://www.instagram.com/twinkle_tripz_0401/" target="_blank" class="icon-link instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.facebook.com/triptisharmaofficial/" target="_blank" class="icon-link facebook" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                            <a href="https://www.youtube.com/@triptisharma4034" target="_blank" class="icon-link youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                            <a href="https://music.apple.com/bh/artist/tripti-sharma/1631222411" target="_blank" class="icon-link apple-music" aria-label="Apple Music"><i class="fab fa-apple"></i></a>
+                            <a href="https://open.spotify.com/artist/4I9AyBuHEprXXwgPLY8r2r" target="_blank" class="icon-link spotify" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
+                            <a href="https://www.epidemicsound.com/artists/tripti-sharma-2/" target="_blank" class="icon-link epidemic-sound text-xs font-bold px-1.5 py-2.5" aria-label="Epidemic Sound">ES</a>
                         </div>
                     </div>
                 </div>
@@ -808,6 +835,7 @@
             });
 
             // --- Carousel Navigation for Featured Videos Section ---
+            const musicSection = document.getElementById('music');
             const featuredCarouselItems = Array.from(document.querySelectorAll('#featured-videos-carousel .video-thumbnail'));
             const carouselPrevBtn = document.getElementById('carouselPrevBtn');
             const carouselNextBtn = document.getElementById('carouselNextBtn');
@@ -850,19 +878,23 @@
 
                 // Ensure the index is valid for `scrollIntoView`
                 if (nextPhysicalIndex >= 0 && nextPhysicalIndex < featuredCarouselItems.length) {
-                    const targetElement = featuredCarouselItems[nextPhysicalIndex];
-                    const headerHeight = mainHeader.offsetHeight; // Get the dynamic height of the fixed header
-                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
+                    // This is the core line for horizontal scrolling within the container
+                    featuredCarouselItems[nextPhysicalIndex].scrollIntoView({ behavior: 'smooth', inline: 'start' });
                     currentCarouselPhysicalIndex = nextPhysicalIndex; // Update current physical index
                 } else {
                     // Fallback for unexpected index, though the logic above should prevent this
                     console.error("Invalid carousel index calculated:", nextPhysicalIndex);
                 }
+
+                // After horizontally scrolling the carousel, ensure the *entire #music section* is in view
+                const headerHeight = mainHeader.offsetHeight; // Get the dynamic height of the fixed header
+                const musicSectionTop = musicSection.getBoundingClientRect().top + window.pageYOffset;
+                const targetScrollPosition = musicSectionTop - headerHeight;
+
+                window.scrollTo({
+                    top: targetScrollPosition,
+                    behavior: 'smooth'
+                });
             }
 
             // Add event listeners for carousel navigation buttons
