@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tripti Sharma - Indian Classical and Semi-classical Vocalist</title>
+    <!-- Tailwind CSS CDN for modern and responsive styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Base styles for body and typography */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a1a1a; /* Dark background */
+            color: #e0e0e0; /* Light text color */
+            overflow-x: hidden; /* Prevent horizontal scroll on body */
+        }
+        /* Styling for section headings */
+        .section-heading {
+            border-bottom: 2px solid #555; /* Darker border for headings */
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+            color: #f8f8f8; /* Ensure heading text is visible */
+        }
+        /* Navigation link hover effect */
+        .nav-link {
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #f59e0b; /* Tailwind amber-500 */
+        }
+        /* Primary button styling */
+        .btn-primary {
+            background-color: #f59e0b; /* Tailwind amber-500 */
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #d97706; /* Tailwind orange-600 */
+        }
+        /* Accent text color */
+        .text-accent {
+            color: #f59e0b; /* Tailwind amber-500 */
+        }
+        /* Social media icon link styling */
+        .icon-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            background-color: #333; /* Darker background for icons */
+            color: #e0e0e0; /* Light icon color */
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .icon-link:hover {
+            background-color: #f59e0b;
+            color: white;
+        }
+        /* Specific hover colors for social media icons */
+        .icon-link.youtube:hover { background-color: #FF0000; }
+        .icon-link.apple-music:hover { background-color: #FC3C44; }
+        .icon-link.spotify:hover { background-color: #1DB954; }
+        .icon-link.epidemic-sound:hover { background-color: #000000; color: #66CC00; } /* Example color for Epidemic Sound */
+
+        /* Styles for inline images in text (About section) */
+        .inline-image {
+            float: right; /* Float image to the right */
+            margin-left: 1rem; /* Space to the left of the image */
+            margin-bottom: 0.5rem; /* Space below the image */
+            max-width: 150px; /* Limit image width for smaller inline display */
+            height: auto;
+        }
+        @media (max-width: 640px) { /* Adjust for small screens */
+            .inline-image {
+                float: none; /* Remove float on small screens */
+                display: block; /* Make it a block element */
+                margin-left: auto;
+                margin-right: auto;
+                margin-bottom: 1rem;
+            }
+        }
+        /* Custom styles for Accolades cards */
+        .accolade-card {
+            background-color: #2a2a2a; /* Slightly lighter dark background for cards */
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .accolade-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.5);
+        }
+        .accolade-icon {
+            font-size: 3rem;
+            color: #f59e0b; /* Accent color for icons */
+            margin-bottom: 1rem;
+        }
+        .accolade-year {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #f8f8f8;
+            margin-bottom: 0.5rem;
+        }
+        .accolade-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #e0e0e0;
+            margin-bottom: 0.25rem;
+        }
+        .accolade-org {
+            font-size: 0.9rem;
+            color: #b0b0b0;
+        }
+        /* Styles for media section (individual video items) */
+        .media-item {
+            background-color: #2a2a2a;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .media-item iframe {
+            width: 100%;
+            aspect-ratio: 16/9; /* Maintain aspect ratio for videos */
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Styles for the independent video section scrollbar (now hidden) */
+        .video-scroll-container {
+            overflow-x: hidden; /* Hide the scrollbar */
+            scroll-behavior: smooth; /* Enable smooth scrolling for buttons */
+        }
+        .video-scroll-container::-webkit-scrollbar {
+            height: 0px; /* Hide scrollbar for webkit browsers */
+        }
+        .video-scroll-container::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .video-scroll-container::-webkit-scrollbar-thumb {
+            background: transparent;
+        }
+
+        /* Modal specific styles for full-screen video playback */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 9999; /* High z-index to appear on top of everything */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9); /* Black w/ opacity */
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            position: relative;
+            width: 90%; /* Responsive width */
+            max-width: 1200px; /* Max width for larger screens */
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+            background-color: #1a202c; /* Tailwind gray-900 */
+            border-radius: 0.5rem;
+            overflow: hidden; /* Ensure video stays within bounds */
+        }
+        .modal-content iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        /* Styles for modal close and navigation buttons */
+        .close-button, .nav-button {
+            position: absolute;
+            color: white;
+            font-size: 2.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 0 1rem;
+            user-select: none;
+            z-index: 10001; /* Above modal content and main modal */
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 0.5rem;
+            transition: background-color 0.3s ease;
+        }
+        .close-button:hover, .nav-button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        .close-button {
+            top: 1rem;
+            right: 1rem;
+        }
+        .nav-button-left {
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .nav-button-right {
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* Styles for the main carousel navigation buttons */
+        .carousel-nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            font-size: 3rem;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            z-index: 100; /* Increased z-index significantly */
+            user-select: none;
+            transition: background-color 0.3s ease;
+        }
+        .carousel-nav-button:hover {
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+        .carousel-prev-button {
+            left: 0.5rem;
+        }
+        .carousel-next-button {
+            right: 0.5rem;
+        }
+
+        /* Adjust iframe sizes for the main section to make them clickable areas */
+        /* These are the video thumbnails, not meant to be directly played in carousel */
+        #featured-videos-carousel .video-thumbnail {
+            cursor: pointer; /* Indicate clickability */
+        }
+    </style>
+</head>
+<body class="antialiased leading-relaxed bg-gray-900 text-gray-100">
+
+    <!-- Header and Navigation -->
+    <header id="mainHeader" class="bg-gray-900 text-white shadow-lg py-4 fixed w-full z-30">
+        <nav class="container mx-auto flex flex-col md:flex-row justify-between items-center px-4">
+            <a href="#" class="text-2xl font-bold mb-2 md:mb-0 text-amber-400">Tripti Sharma</a>
+            <ul class="flex flex-wrap justify-center md:justify-end space-x-4 md:space-x-8 text-lg">
+                <li><a href="#home" class="nav-link text-white hover:text-amber-400">Home</a></li>
+                <li><a href="#music" class="nav-link text-white hover:text-amber-400">Music</a></li>
+                <li><a href="#about" class="nav-link text-white hover:text-amber-400">About</a></li>
+                <li><a href="#performances" class="nav-link text-white hover:text-amber-400">Performances</a></li>
+                <li><a href="#accolades" class="nav-link text-white hover:text-amber-400">Accolades</a></li>
+                <li><a href="#gallery" class="nav-link text-white hover:text-amber-400">Gallery</a></li>
+                <li><a href="#contact" class="nav-link text-white hover:text-amber-400">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="pt-20"> <!-- Padding top to account for fixed header -->
+
+        <!-- Hero Section -->
+        <section id="home" class="relative text-white overflow-hidden shadow-xl h-[80vh] md:h-[90vh] flex items-center">
+            <!-- Full-width background image. object-right ensures the right side of the image is more prominent. -->
+            <img src="https://placehold.co/1600x900/FFD700/000?text=Tripti+Sharma+Hero" alt="Tripti Sharma performing" class="absolute inset-0 w-full h-full object-cover object-right z-0">
+
+            <!-- The blur overlay, positioned absolutely on the left, takes up 1/3 width on md and up -->
+            <!-- On mobile (non-md), it defaults to w-full. The content inside will also be centered. -->
+            <div class="absolute top-0 left-0 h-full w-full md:w-1/3 bg-black bg-opacity-60 backdrop-blur-sm z-10">
+                <!-- Content inside the blur overlay, centered vertically and horizontally on small screens -->
+                <div class="h-full flex flex-col justify-center items-center text-center p-4 md:p-8 md:text-left">
+                    <h1 class="text-4xl md:text-4xl lg:text-5xl font-extrabold leading-tight mb-4 drop-shadow-lg">Tripti Sharma</h1>
+                    <p class="text-xl md:text-lg lg:text-xl font-light mb-6">Indian Classical and Semi-classical Vocalist</p>
+                    <p class="text-base md:text-sm lg:text-base mb-8">Deeply rooted in the rich traditions of the Banaras Gharana.</p>
+                    <div class="flex flex-col sm:flex-row justify-center md:justify-start space-x-0 sm:space-x-4 space-y-4 sm:space-y-0 mb-6">
+                        <a href="#music" class="btn-primary inline-block font-semibold">Listen to me </a>
+                        <a href="#contact" class="btn-primary inline-block font-semibold bg-white text-orange-600 hover:bg-gray-100">Contact me</a>
+                    </div>
+                    <!-- Social media icons -->
+                    <div class="flex justify-center md:justify-start space-x-4">
+                        <a href="#" class="icon-link youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="icon-link apple-music" aria-label="Apple Music"><i class="fab fa-apple"></i></a>
+                        <a href="#" class="icon-link spotify" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
+                    </div>
+                </div>
+            </div>
+            <!-- The right 2/3 of the image remains visible without any overlay or content. No additional div needed. -->
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about" class="py-16 bg-gray-800 text-gray-200"> <!-- Dark background -->
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold text-center mb-10 text-gray-100 section-heading">My Musical Journey</h2>
+                <div class="text-lg text-gray-300 space-y-6"> <!-- Removed grid for text and integrated images inline -->
+                    <p>Tripti Sharma is a promising Indian classical and semi-classical vocalist, deeply rooted in the rich traditions of the <span class="font-semibold text-accent">Banaras Gharana</span>. This ancient and distinguished gharana of Indian classical music is renowned for its technicalities and profound expressions. Tripti's diverse repertoire includes <span class="font-semibold">Khayal, Thumri, Tappa, Dadra, Kajri, Holi, Jhoola, Chaiti, and Bhajan</span>. As a performer, her compositions revolve around themes of spirituality, peace, love, and devotion.</p>
+
+                    <p>
+                        <img src="https://placehold.co/150x150/333/F0F0F0?text=Pandit+Vyas+Ji" alt="Pandit Brij Gopal Vyas Ji" class="rounded-lg shadow-md inline-image sm:float-right sm:ml-4 sm:mb-2 w-full max-w-[150px] md:max-w-[200px] lg:max-w-[250px] mx-auto sm:mx-0">
+                        Hailing from the beautiful brass city of Moradabad, Uttar Pradesh, Tripti's musical journey began at a very young age under the tutelage of <span class="font-semibold text-accent">Pandit Brij Gopal Vyas Ji</span>, who provided her foundational understanding of Indian classical music and bhajans.
+                    </p>
+
+                    <p>In pursuit of academic excellence, Tripti moved to Delhi, where she earned her <span class="font-semibold">Doctor of Philosophy in Indian Classical Music</span> from Delhi University. Her doctoral research explored the profound contributions of the legendary musician and Bharat Ratna awardee, <span class="font-semibold text-accent">Pandit Bhimsen Joshi Ji</span>. Tripti also holds the <span class="font-semibold">Sangeet Prabhakar</span> from Prayagraj, India, in Music Vocal, Instrument (Tabla), and Kathak Dance.</p>
+
+                    <p>
+                        <img src="https://placehold.co/150x150/333/F0F0F0?text=Ms.+Sharma+Ji" alt="Ms. Sunanda Sharma Ji" class="rounded-lg shadow-md inline-image sm:float-left sm:mr-4 sm:mb-2 w-full max-w-[150px] md:max-w-[200px] lg:max-w-[250px] mx-auto sm:mx-0">
+                        A significant turn in her musical journey came when she began delving into the intricate nuances of music with her esteemed guru, <span class="font-semibold text-accent">Ms. Sunanda Sharma Ji</span>, an illustrious representative of the Banaras Gharana. Embracing the age-old guru-shishya parampara, Tripti lived with her guru, accompanying her to countless performances across India and abroad, thereby imbibing the essence of this rich musical heritage.
+                    </p>
+
+                    <p>Tripti's unwavering commitment to music extends beyond the stage. As a <span class="font-semibold">Guest Assistant Professor at Kalindi College, Delhi University</span>, she shares her vast knowledge and experience with aspiring musicians. She is also a <span class="font-semibold">graded artist on All India Radio (AIR)</span>. Her musical prowess has garnered widespread appreciation and numerous accolades.</p>
+                    <p>With extensive traditional training, Tripti performs solo in India and internationally, mesmerizing audiences with her soulful renditions. Currently based in Stockholm, Sweden, she passionately promotes traditional Indian music through her engaging performances and workshops, leaving a lasting impression on listeners. Tripti, whose concert durations can be tailored from 60 to 120 minutes, feels blessed to have graced numerous prestigious stages worldwide, leaving an indelible mark with her musical brilliance.</p>
+                </div>
+            </div>
+        </section>
+
+    <!-- Music Section: Featured Videos, Other Media, and Discography -->
+    <section id="music" class="py-16 bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-10 text-gray-100 section-heading rounded-lg p-4 bg-gray-700 shadow-xl">My Music & Media</h2>
+
+            <!-- Featured Videos Carousel -->
+            <h3 class="text-3xl font-bold text-center mb-6 text-gray-100">Featured Videos</h3>
+            <div id="featured-videos-carousel" class="py-4 bg-gray-900 rounded-lg mb-8 shadow-md relative">
+                <!-- Carousel Navigation Buttons -->
+                <span id="carouselPrevBtn" class="carousel-nav-button carousel-prev-button">&lt;</span>
+                <span id="carouselNextBtn" class="carousel-nav-button carousel-next-button">&gt;</span>
+
+                <div class="flex whitespace-nowrap space-x-4 py-4 px-2 video-scroll-container">
+                    <!-- Videos for the carousel. Duplicated to enable infinite scroll effect. -->
+                    <!-- Original set of videos -->
+                    <iframe class="flex-shrink-0 w-80 h-48 rounded-lg shadow-lg video-thumbnail" data-video-id="dQw4w9WgXcQ" src="https://www.youtube.com/embed/dQw4w9WgXcQ?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="flex-shrink-0 w-80 h-48 rounded-lg shadow-lg video-thumbnail" data-video-id="o0k133_q-qU" src="https://www.youtube.com/embed/o0k133_q-qU?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-in; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="flex-shrink-0 w-80 h-48 rounded-lg shadow-lg video-thumbnail" data-video-id="LXb3EKWsInQ" src="https://www.youtube.com/embed/LXb3EKWsInQ?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="flex-shrink-0 w-80 h-48 rounded-lg shadow-lg video-thumbnail" data-video-id="gLgS7e3gB0Y" src="https://www.youtube.com/embed/gLgS7e3gB0Y?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="flex-shrink-0 w-80 h-48 rounded-lg shadow-lg video-thumbnail" data-video-id="jNQXAC9MUlE" src="https://www.youtube.com/embed/jNQXAC9MUlE?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+                    <!-- Duplicated set for seamless backward scrolling from the "start" of the logical list -->
+                    <iframe class="flex-shrink-0 w-80 h-48 rounded-lg shadow-lg video-thumbnail" data-video-id="dQw4w9WgXcQ" src="https://www.youtube.com/embed/dQw4w9WgXcQ?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="flex-shrink-0 w-80 h-48 rounded-lg shadow-lg video-thumbnail" data-video-id="o0k133_q-qU" src="https://www.youtube.com/embed/o0k133_q-qU?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="flex-shrink-0 w-80 h-48 rounded-lg shadow-lg video-thumbnail" data-video-id="LXb3EKWsInQ" src="https://www.youtube.com/embed/LXb3EKWsInQ?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="flex-shrink-0 w-80 h-48 rounded-lg shadow-lg video-thumbnail" data-video-id="gLgS7e3gB0Y" src="https://www.youtube.com/embed/gLgS7e3gB0Y?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="flex-shrink-0 w-80 h-48 rounded-lg shadow-lg video-thumbnail" data-video-id="jNQXAC9MUlE" src="https://www.youtube.com/embed/jNQXAC9MUlE?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <!-- Other Media & Collaborations (standalone videos) -->
+            <h3 class="text-3xl font-bold text-center mb-6 text-gray-100">Other Media & Collaborations</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <!-- YouTube Video 1 (originally from duplicate Media section) -->
+                <div class="media-item">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=abcdef" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <h3 class="text-xl font-semibold mb-2 text-white">Soulful Rendition of Raga Yaman</h3>
+                    <p class="text-gray-300 text-sm">Live performance from a recent concert.</p>
+                </div>
+                <!-- YouTube Video 2 (originally from duplicate Media section) -->
+                <div class="media-item">
+                    <iframe src="https://www.youtube.com/embed/another_video_id?si=abcdef" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <h3 class="text-xl font-semibold mb-2 text-white">Thumri: "Mohe Rang De"</h3>
+                    <p class="text-gray-300 text-sm">A beautiful semi-classical performance.</p>
+                </div>
+                <!-- Add more standalone media items here if needed -->
+            </div>
+
+
+            <!-- Discography Section -->
+            <h3 class="text-3xl font-bold text-center mb-6 text-gray-100">Discography</h3>
+            <div id="discography-content">
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+
+                    <!-- Koyaliya Neeko No Lage -->
+                    <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <img src="https://placehold.co/300x300/DDA0DD/FFFFFF?text=Koyaliya+Neeko" alt="Koyaliya Neeko No Lage album art" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-white">Koyaliya Neeko No Lage</h3>
+                            <p class="text-gray-300 text-sm">2025 | Single</p>
+                            <p class="text-gray-400 text-xs mb-2">Tripti Sharma, Palace on Wheels</p>
+                            <!-- Only audio links for this entry -->
+                            <div class="flex space-x-2 text-2xl">
+                                <a href="#" class="icon-link apple-music" aria-label="Apple Music"><i class="fab fa-apple"></i></a>
+                                <a href="#" class="icon-link spotify" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
+                                <a href="#" class="icon-link epidemic-sound text-xs font-bold px-1.5 py-2.5" aria-label="Epidemic Sound">ES</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pardesiya -->
+                    <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <img src="https://placehold.co/300x300/FFB6C1/FFFFFF?text=Pardesiya" alt="Pardesiya album art" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-white">Pardesiya</h3>
+                            <p class="text-gray-300 text-sm">2025 | Album</p>
+                            <p class="text-gray-400 text-xs mb-2">Tripti Sharma, Palace on Wheels</p>
+                            <!-- Only audio links for this entry -->
+                            <div class="flex space-x-2 text-2xl">
+                                <a href="#" class="icon-link apple-music" aria-label="Apple Music"><i class="fab fa-apple"></i></a>
+                                <a href="#" class="icon-link spotify" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
+                                <a href="#" class="icon-link epidemic-sound text-xs font-bold px-1.5 py-2.5" aria-label="Epidemic Sound">ES</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Kari Badariya -->
+                    <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <img src="https://placehold.co/300x300/B0E0E6/FFFFFF?text=Kari+Badariya" alt="Kari Badariya album art" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-white">Kari Badariya</h3>
+                            <p class="text-gray-300 text-sm">2025 | Album</p>
+                            <p class="text-gray-400 text-xs mb-2">Tripti Sharma, Palace on Wheels</p>
+                            <!-- Only audio links for this entry -->
+                            <div class="flex space-x-2 text-2xl">
+                                <a href="#" class="icon-link apple-music" aria-label="Apple Music"><i class="fab fa-apple"></i></a>
+                                <a href="#" class="icon-link spotify" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
+                                <a href="#" class="icon-link epidemic-sound text-xs font-bold px-1.5 py-2.5" aria-label="Epidemic Sound">ES</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Jhoom Jhoom -->
+                    <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <img src="https://placehold.co/300x300/FFD700/000?text=Jhoom+Jhoom" alt="Jhoom Jhoom single art" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-white">Jhoom Jhoom</h3>
+                            <p class="text-gray-300 text-sm">2024 | Single</p>
+                            <p class="text-gray-400 text-xs mb-2">Tripti Sharma, Pravesh Mallick</p>
+                            <div class="flex space-x-2 text-2xl">
+                                <a href="#" class="icon-link youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                                <a href="#" class="icon-link apple-music" aria-label="Apple Music"><i class="fab fa-apple"></i></a>
+                                <a href="#" class="icon-link spotify" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sawan Hai Sakhi -->
+                    <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <img src="https://placehold.co/300x300/DDA0DD/FFFFFF?text=Sawan+Hai+Sakhi" alt="Sawan Hai Sakhi single art" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-white">Sawan Hai Sakhi</h3>
+                            <p class="text-gray-300 text-sm">2023 | Single</p>
+                            <p class="text-gray-400 text-xs mb-2">Tripti Sharma, Pravesh Mallick</p>
+                            <div class="flex space-x-2 text-2xl">
+                                <a href="#" class="icon-link youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                                <a href="#" class="icon-link apple-music" aria-label="Apple Music"><i class="fab fa-apple"></i></a>
+                                <a href="#" class="icon-link spotify" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- Performances Section -->
+        <section id="performances" class="py-16 bg-gray-900"> <!-- Dark background -->
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold text-center mb-10 text-gray-100 section-heading">My Recent Notable Performances</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <!-- Stockholm Sangeet Sabha -->
+                    <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <img src="https://placehold.co/400x300/FFA07A/FFFFFF?text=STOCKHOLM+SANGEET+SABHA" alt="Stockholm Sangeet Sabha poster" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2 text-white">Stockholm Sangeet Sabha</h3>
+                            <p class="text-gray-300 mb-1">Concert & Open Stage - 9th Session</p>
+                            <p class="text-gray-300 mb-1">🗓️ December 6, 6 PM</p>
+                            <p class="text-gray-300 mb-1">📍 Restaurang Ellora, Hornsgatan 85</p>
+                            <p class="text-gray-300 mb-3">🎵 Suranjana Ghosh - Tripti Sharma</p>
+                            <a href="http://www.stockholmsangeet.se" target="_blank" class="text-orange-400 hover:underline">Visit Website</a>
+                        </div>
+                    </div>
+
+                    <!-- Nakts Råga -->
+                    <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <img src="https://placehold.co/400x300/ADD8E6/FFFFFF?text=NAKTS+RAGA+Latvia" alt="Nakts Råga poster" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2 text-white">Nakts Råga</h3>
+                            <p class="text-gray-300 mb-1">Indian Classical Music and Vocal Evening</p>
+                            <p class="text-gray-300 mb-1">🗓️ August 16, 21:00-22:30</p>
+                            <p class="text-gray-300 mb-1">📍 Tallinas Iela 10-K3</p>
+                            <p class="text-gray-300 mb-3">🎵 Tripti Sarma, Sebastians Drelles</p>
+                            <p class="text-300">🎟️ IEEJAS BILETE 10 EIRO</p>
+                            <p class="text-gray-300">📞 +371 26875571</p>
+                        </div>
+                    </div>
+
+                    <!-- SARANG - Festival of India in Republic of Korea -->
+                    <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <img src="https://placehold.co/400x300/98FB98/FFFFFF?text=SARANG+Korea" alt="SARANG Festival poster" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2 text-white">SARANG - The Festival of India in Republic of Korea</h3>
+                            <p class="text-gray-300 mb-1">Event: India, Dance and Music</p>
+                            <p class="text-gray-300 mb-1">🗓️ June 10, 3 PM</p>
+                            <p class="text-gray-300">📍 Cheongmyeong Hall Grand Auditorium</p>
+                        </div>
+                    </div>
+
+                    <!-- Pt. Kapildeo Singh Memorial Trust - Sangeet Samaroh 2022 -->
+                    <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <img src="https://placehold.co/400x300/DA70D6/FFFFFF?text=SANGEET+SAMAROH" alt="Sangeet Samaroh 2022 poster" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2 text-white">Pt. Kapildeo Singh Memorial Trust - Sangeet Samaroh 2022</h3>
+                            <p class="text-gray-300 mb-1">🗓️ Sunday, August 28, 2022, 10:00 AM</p>
+                            <p class="text-gray-300 mb-3">📍 Triveni Kala Sangam, New Delhi-110001</p>
+                            <p class="text-gray-300 font-medium">Performers include:</p>
+                            <ul class="list-disc list-inside text-sm text-gray-400">
+                                <li>Dr. Tripti Sharma (Vocal)</li>
+                                <li>Sh. Hiran Chata (Tabla)</li>
+                                <li>Sh. Ashiqus Kumar (Harmonium)</li>
+                                <li>Sh. Zargham Akram Khan (Tabla Solo)</li>
+                                <li>Sh. Rajendra Banerjee (Harmonium)</li>
+                                <li>Ms. Ruchi Balooni (Kathak)</li>
+                                <li>And many more...</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- INDIJAS STĀSTI -->
+                    <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <img src="https://placehold.co/400x300/F08080/FFFFFF?text=INDIJAS+STASTI+Latvia" alt="INDIJAS STĀSTI poster" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2 text-white">INDIJAS STĀSTI</h3>
+                            <p class="text-gray-300 mb-1">Indian Classical Music and Vocal Evening</p>
+                            <p class="text-gray-300 mb-1">🗓️ August 18, 18:00</p>
+                            <p class="text-gray-300 mb-3">📍 Angars. Tallinas Iela 10-K3</p>
+                            <p class="text-gray-300 font-medium">Artists:</p>
+                            <ul class="list-disc list-inside text-sm text-gray-400">
+                                <li>Natalja Garanina</li>
+                                <li>Tripti Sarma</li>
+                                <li>Ardzuns Santhoss</li>
+                                <li>Sebastians Dreijers</li>
+                                <li>Balradžs Singhs Sandhu</li>
+                            </ul>
+                            <p class="text-gray-300 mt-2">🎟️ IEEJAS BIĻETE: 20 EIRO</p>
+                        </div>
+                    </div>
+
+                    <!-- Vasantotsav 2022 (Kalindi College) -->
+                    <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <img src="https://placehold.co/400x300/DDA0DD/FFFFFF?text=VASANTOTSAV+Webinar" alt="Vasantotsav 2022 poster" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2 text-white">Vasantotsav 2022 (Kalindi College)</h3>
+                            <p class="text-gray-300 mb-1">An International Webinar - Hindustani Classical Vocal</p>
+                            <p class="text-gray-300 mb-1">🗓️ Monday, Feb 7, 2022, 5:00 PM (IST) / 12:30 PM (CET)</p>
+                            <p class="text-gray-300 mb-3">Platform: Google Meet App</p>
+                            <p class="text-gray-300 font-medium">By: Dr. Tripti Sharma</p>
+                            <p class="text-gray-300 text-sm">Hindustani Classical Vocalist (Stockholm, Sweden)</p>
+                        </div>
+                    </div>
+
+                    <!-- Sanskar Bharati (Live) -->
+                    <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <img src="https://placehold.co/400x300/FFDAB9/FFFFFF?text=SANSKAR+BHARATI" alt="Sanskar Bharati Live poster" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2 text-white">Sanskar Bharati (Live)</h3>
+                            <p class="text-gray-300 mb-1">Event: Sangeet Suman - 18</p>
+                            <p class="text-gray-300 mb-1">🗓️ Friday, May 7, 2020, 3 PM</p>
+                            <p class="text-300 mb-3">Artist: Dr. Tripti Sharma, Sweden</p>
+                            <a href="https://www.facebook.com/sanskarbhartimrtprant/" target="_blank" class="text-orange-400 hover:underline">Watch Live on Facebook</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Accolades Section -->
+        <section id="accolades" class="py-16 bg-gray-900">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold text-center mb-10 text-gray-100 section-heading">Selected Accolades</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Accolade Card 1 -->
+                    <div class="accolade-card">
+                        <i class="fas fa-trophy accolade-icon"></i>
+                        <div class="accolade-year">2019</div>
+                        <div class="accolade-name">The Accolade of Excellence - UP Diva</div>
+                        <div class="accolade-org">Media Impression Ads India Pvt. Ltd. and Utthan Foundation, India</div>
+                    </div>
+                    <!-- Accolade Card 2 -->
+                    <div class="accolade-card">
+                        <i class="fas fa-award accolade-icon"></i>
+                        <div class="accolade-year">2015</div>
+                        <div class="accolade-name">Malhar Samman</div>
+                        <div class="accolade-org">Indian Northern Railway, Uttar Pradesh, India</div>
+                    </div>
+                    <!-- Accolade Card 3 -->
+                    <div class="accolade-card">
+                        <i class="fas fa-graduation-cap accolade-icon"></i>
+                        <div class="accolade-year">2008</div>
+                        <div class="accolade-name">Junior Research Fellowship Award</div>
+                        <div class="accolade-org">University Grants Commission, New Delhi, India</div>
+                    </div>
+                    <!-- Accolade Card 4 -->
+                    <div class="accolade-card">
+                        <i class="fas fa-award accolade-icon"></i>
+                        <div class="accolade-year">2008</div>
+                        <div class="accolade-name">Prerna Kala Manch Samajik Sansthan Samman</div>
+                        <div class="accolade-org">Moradabad, Uttar Pradesh, India</div>
+                    </div>
+                    <!-- Accolade Card 5 -->
+                    <div class="accolade-card">
+                        <i class="fas fa-medal accolade-icon"></i>
+                        <div class="accolade-year">2006</div>
+                        <div class="accolade-name">President Award</div>
+                        <div class="accolade-org">The Bharat Scouts and Guides by President of India, Dr. A. P. J. Abdul Kalam, New Delhi, India</div>
+                    </div>
+                    <!-- Accolade Card 6 -->
+                    <div class="accolade-card">
+                        <i class="fas fa-trophy accolade-icon"></i>
+                        <div class="accolade-year">2005</div>
+                        <div class="accolade-name">Aarohi Kala Sansthan Samman</div>
+                        <div class="accolade-org">Moradabad, Uttar Pradesh, India</div>
+                    </div>
+                    <!-- Accolade Card 7 -->
+                    <div class="accolade-card">
+                        <i class="fas fa-star accolade-icon"></i>
+                        <div class="accolade-year">2005</div>
+                        <div class="accolade-name">Moradabad Idol</div>
+                        <div class="accolade-org">Moradabad, Uttar Pradesh, India</div>
+                    </div>
+                    <!-- Accolade Card 8 -->
+                    <div class="accolade-card">
+                        <i class="fas fa-medal accolade-icon"></i>
+                        <div class="accolade-year">2003</div>
+                        <div class="accolade-name">Governor Award</div>
+                        <div class="accolade-org">The Bharat Scouts and Guides, Uttar Pradesh, India</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="py-16 bg-gray-800">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold text-center mb-10 text-gray-100 section-heading">Gallery</h2>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    <!-- Placeholder Images for Gallery -->
+                    <div class="rounded-lg overflow-hidden shadow-md transform hover:scale-105 transition-transform duration-300">
+                        <img src="https://placehold.co/400x300/808080/FFFFFF?text=Gallery+Image+1" alt="Gallery Image 1" class="w-full h-full object-cover">
+                    </div>
+                    <div class="rounded-lg overflow-hidden shadow-md transform hover:scale-105 transition-transform duration-300">
+                        <img src="https://placehold.co/400x300/808080/FFFFFF?text=Gallery+Image+2" alt="Gallery Image 2" class="w-full h-full object-cover">
+                    </div>
+                    <div class="rounded-lg overflow-hidden shadow-md transform hover:scale-105 transition-transform duration-300">
+                        <img src="https://placehold.co/400x300/808080/FFFFFF?text=Gallery+Image+3" alt="Gallery Image 3" class="w-full h-full object-cover">
+                    </div>
+                    <div class="rounded-lg overflow-hidden shadow-md transform hover:scale-105 transition-transform duration-300">
+                        <img src="https://placehold.co/400x300/808080/FFFFFF?text=Gallery+Image+4" alt="Gallery Image 4" class="w-full h-full object-cover">
+                    </div>
+                    <div class="rounded-lg overflow-hidden shadow-md transform hover:scale-105 transition-transform duration-300">
+                        <img src="https://placehold.co/400x300/808080/FFFFFF?text=Gallery+Image+5" alt="Gallery Image 5" class="w-full h-full object-cover">
+                    </div>
+                    <div class="rounded-lg overflow-hidden shadow-md transform hover:scale-105 transition-transform duration-300">
+                        <img src="https://placehold.co/400x300/808080/FFFFFF?text=Gallery+Image+6" alt="Gallery Image 6" class="w-full h-full object-cover">
+                    </div>
+                    <div class="rounded-lg overflow-hidden shadow-md transform hover:scale-105 transition-transform duration-300">
+                        <img src="https://placehold.co/400x300/808080/FFFFFF?text=Gallery+Image+7" alt="Gallery Image 7" class="w-full h-full object-cover">
+                    </div>
+                    <div class="rounded-lg overflow-hidden shadow-md transform hover:scale-105 transition-transform duration-300">
+                        <img src="https://placehold.co/400x300/808080/FFFFFF?text=Gallery+Image+8" alt="Gallery Image 8" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-16 bg-gray-800">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold text-center mb-10 text-gray-100 section-heading">Get in Touch</h2>
+                <div class="max-w-xl mx-auto bg-gray-900 p-8 rounded-lg shadow-md">
+                    <p class="text-center text-lg mb-6 text-gray-300">
+                        For collaborations, performances, or workshops, please feel free to reach out.
+                    </p>
+                    <form class="space-y-4">
+                        <div>
+                            <label for="name" class="block text-gray-200 text-sm font-semibold mb-2">Name</label>
+                            <input type="text" id="name" name="name" class="w-full p-3 rounded-md bg-gray-700 text-white border border-gray-600 focus:ring-amber-500 focus:border-amber-500" placeholder="Your Name" required>
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-200 text-sm font-semibold mb-2">Email</label>
+                            <input type="email" id="email" name="email" class="w-full p-3 rounded-md bg-gray-700 text-white border border-gray-600 focus:ring-amber-500 focus:border-amber-500" placeholder="your@example.com" required>
+                        </div>
+                        <div>
+                            <label for="subject" class="block text-gray-200 text-sm font-semibold mb-2">Subject</label>
+                            <input type="text" id="subject" name="subject" class="w-full p-3 rounded-md bg-gray-700 text-white border border-gray-600 focus:ring-amber-500 focus:border-amber-500" placeholder="Subject of your message" required>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-gray-200 text-sm font-semibold mb-2">Message</label>
+                            <textarea id="message" name="message" rows="5" class="w-full p-3 rounded-md bg-gray-700 text-white border border-gray-600 focus:ring-amber-500 focus:border-amber-500" placeholder="Your message..." required></textarea>
+                        </div>
+                        <button type="submit" class="w-full btn-primary font-semibold">Send Message</button>
+                    </form>
+                    <div class="mt-8 text-center">
+                        <p class="text-gray-300 mb-4">You can also find me on:</p>
+                        <div class="flex justify-center space-x-4">
+                            <a href="#" class="icon-link youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                            <a href="#" class="icon-link apple-music" aria-label="Apple Music"><i class="fab fa-apple"></i></a>
+                            <a href="#" class="icon-link spotify" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-950 text-gray-400 py-8 text-center text-sm">
+        <div class="container mx-auto px-4">
+            <p>&copy; 2025 Tripti Sharma. All rights reserved.</p>
+            <p class="mt-2">Designed and Developed by Gemini AI</p>
+        </div>
+    </footer>
+
+    <!-- Full-Screen Video Modal -->
+    <div id="videoModal" class="modal">
+        <span class="close-button" id="closeModalBtn">&times;</span>
+        <span class="nav-button nav-button-left" id="prevVideoBtn">&lt;</span>
+        <div class="modal-content">
+            <iframe id="modalVideoFrame" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <span class="nav-button nav-button-right" id="nextVideoBtn">&gt;</span>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Modal related variables and functions ---
+            const videoThumbnails = document.querySelectorAll('.video-thumbnail'); // All thumbnails in the carousel
+            const videoModal = document.getElementById('videoModal');
+            const modalVideoFrame = document.getElementById('modalVideoFrame');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+            const prevVideoBtn = document.getElementById('prevVideoBtn');
+            const nextVideoBtn = document.getElementById('nextVideoBtn');
+
+            let currentModalVideoIndex = 0;
+            // This array will store unique video IDs for modal navigation
+            let uniqueVideoIdsForModal = [];
+
+            // Populate uniqueVideoIdsForModal from data-video-id attributes
+            videoThumbnails.forEach(thumbnail => {
+                const videoId = thumbnail.getAttribute('data-video-id');
+                if (videoId && !uniqueVideoIdsForModal.includes(videoId)) {
+                    uniqueVideoIdsForModal.push(videoId);
+                }
+            });
+
+            // Function to show a specific video in the modal
+            function showModalVideo(index) {
+                if (uniqueVideoIdsForModal.length === 0) return;
+
+                currentModalVideoIndex = (index + uniqueVideoIdsForModal.length) % uniqueVideoIdsForModal.length;
+                const videoId = uniqueVideoIdsForModal[currentModalVideoIndex];
+                // Use `autoplay=1` to ensure video plays automatically when modal opens
+                modalVideoFrame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&controls=1`;
+                videoModal.style.display = 'flex'; // Display the modal
+                document.body.style.overflow = 'hidden'; // Prevent scrolling body when modal is open
+            }
+
+            // Event listener for single-clicking on video thumbnails to open modal
+            videoThumbnails.forEach(thumbnail => {
+                thumbnail.addEventListener('click', function() { // Changed from 'dblclick' to 'click'
+                    const clickedVideoId = this.getAttribute('data-video-id');
+                    const firstOccurrenceIndex = uniqueVideoIdsForModal.indexOf(clickedVideoId);
+                    if (firstOccurrenceIndex !== -1) {
+                        showModalVideo(firstOccurrenceIndex);
+                    }
+                });
+            });
+
+            // Event listener for closing the modal
+            closeModalBtn.addEventListener('click', function() {
+                videoModal.style.display = 'none';
+                modalVideoFrame.src = ''; // Stop video playback by clearing src
+                document.body.style.overflow = ''; // Restore body scrolling
+            });
+
+            // Event listeners for modal navigation buttons
+            prevVideoBtn.addEventListener('click', function() {
+                showModalVideo(currentModalVideoIndex - 1);
+            });
+
+            nextVideoBtn.addEventListener('click', function() {
+                showModalVideo(currentModalVideoIndex + 1);
+            });
+
+            // Keyboard navigation for modal
+            document.addEventListener('keydown', function(event) {
+                if (videoModal.style.display === 'flex') { // Only active if modal is open
+                    if (event.key === 'ArrowLeft') {
+                        showModalVideo(currentModalVideoIndex - 1);
+                    } else if (event.key === 'ArrowRight') {
+                        showModalVideo(currentModalVideoIndex + 1);
+                    } else if (event.key === 'Escape') {
+                        videoModal.style.display = 'none';
+                        modalVideoFrame.src = ''; // Stop video playback
+                        document.body.style.overflow = ''; // Restore body scrolling
+                    }
+                }
+            });
+
+            // --- Carousel Navigation for Featured Videos Section ---
+            const featuredCarouselItems = Array.from(document.querySelectorAll('#featured-videos-carousel .video-thumbnail'));
+            const carouselPrevBtn = document.getElementById('carouselPrevBtn');
+            const carouselNextBtn = document.getElementById('carouselNextBtn');
+            const videoScrollContainer = document.querySelector('.video-scroll-container');
+            const mainHeader = document.getElementById('mainHeader'); // Get the header element
+
+            const numUniqueVideosInCarousel = 5; // Based on your HTML: 5 original videos
+            // Start the carousel at the beginning of the *first duplicate set* to allow seamless backward scrolling
+            let currentCarouselPhysicalIndex = numUniqueVideosInCarousel;
+
+            // Set initial scroll position to the start of the first duplicate set
+            // This creates the illusion of infinite scroll from the very beginning
+            if (featuredCarouselItems.length > numUniqueVideosInCarousel) {
+                videoScrollContainer.scrollLeft = featuredCarouselItems[numUniqueVideosInCarousel].offsetLeft;
+            }
+
+            // Function to handle carousel navigation
+            function navigateCarousel(direction) {
+                let nextPhysicalIndex = currentCarouselPhysicalIndex;
+
+                if (direction === 'next') {
+                    nextPhysicalIndex++;
+                    // If we've scrolled past the end of the *last duplicate item*,
+                    // instantly jump back to the *beginning of the first duplicate set*
+                    // before performing the smooth scroll to the target video.
+                    if (nextPhysicalIndex >= featuredCarouselItems.length) {
+                        videoScrollContainer.scrollLeft = featuredCarouselItems[numUniqueVideosInCarousel].offsetLeft;
+                        nextPhysicalIndex = numUniqueVideosInCarousel; // Reset index to the start of the first duplicate
+                    }
+                } else if (direction === 'prev') {
+                    nextPhysicalIndex--;
+                    // If we've scrolled before the *first original item*,
+                    // instantly jump forward to the *end of the last duplicate set*
+                    // before performing the smooth scroll to the target video.
+                    if (nextPhysicalIndex < 0) {
+                        videoScrollContainer.scrollLeft = featuredCarouselItems[featuredCarouselItems.length - numUniqueVideosInCarousel].offsetLeft;
+                        nextPhysicalIndex = featuredCarouselItems.length - numUniqueVideosInCarousel - 1; // Reset index to the last original item
+                    }
+                }
+
+                // Ensure the index is valid for `scrollIntoView`
+                if (nextPhysicalIndex >= 0 && nextPhysicalIndex < featuredCarouselItems.length) {
+                    const targetElement = featuredCarouselItems[nextPhysicalIndex];
+                    const headerHeight = mainHeader.offsetHeight; // Get the dynamic height of the fixed header
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                    currentCarouselPhysicalIndex = nextPhysicalIndex; // Update current physical index
+                } else {
+                    // Fallback for unexpected index, though the logic above should prevent this
+                    console.error("Invalid carousel index calculated:", nextPhysicalIndex);
+                }
+            }
+
+            // Add event listeners for carousel navigation buttons
+            carouselNextBtn.addEventListener('click', () => navigateCarousel('next'));
+            carouselPrevBtn.addEventListener('click', () => navigateCarousel('prev'));
+
+            // Optional: Keyboard navigation for carousel (if not in modal)
+            document.addEventListener('keydown', function(event) {
+                if (videoModal.style.display !== 'flex') { // Only navigate carousel if modal is not open
+                    if (event.key === 'ArrowLeft') {
+                        navigateCarousel('prev');
+                    } else if (event.key === 'ArrowRight') {
+                        navigateCarousel('next');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
