@@ -146,11 +146,14 @@
 
         /* Styles for the independent video section scrollbar (now hidden again) */
         .video-scroll-container {
-            overflow-x: hidden; /* Changed back to hidden */
+            overflow-x: auto; /* Changed to auto to allow scrolling */
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
             scroll-behavior: smooth; /* Enable smooth scrolling for buttons */
+            scrollbar-width: none; /* Hide scrollbar for Firefox */
+            -ms-overflow-style: none;  /* Hide scrollbar for IE and Edge */
         }
         .video-scroll-container::-webkit-scrollbar {
-            height: 0px; /* Hide scrollbar for webkit browsers */
+            display: none; /* Hide scrollbar for webkit browsers */
         }
         .video-scroll-container::-webkit-scrollbar-track {
             background: transparent;
@@ -278,6 +281,17 @@
                 display: block; /* Make the whole link clickable */
             }
         }
+
+        /* Keyframes for the "up and down" animation */
+        @keyframes bounce-up-down {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); } /* Moves up 10px */
+        }
+
+        /* Class to apply the animation */
+        .video-thumbnail.animate-click {
+            animation: bounce-up-down 0.4s ease-in-out; /* Apply animation */
+        }
     </style>
 </head>
 <body class="antialiased leading-relaxed bg-gray-900 text-gray-100">
@@ -287,7 +301,7 @@
         <nav class="container mx-auto flex justify-between items-center px-4">
             <img src="images/logos/tripti-sharma-logo_v0.png" alt="Tripti Sharma Logo" class="h-12 w-12 mr-4">
             <a href="#" class="text-2xl font-bold text-amber-400">Tripti Sharma</a>
-            
+
             <!-- Hamburger Icon for Mobile -->
             <button id="menuToggle" class="md:hidden text-white text-2xl focus:outline-none">
                 <i class="fas fa-bars"></i>
@@ -354,18 +368,18 @@
                 <div class="flex whitespace-nowrap space-x-4 py-4 px-2 video-scroll-container">
                     <!-- Videos for the carousel. Duplicated to enable infinite scroll effect. -->
                     <!-- Original set of videos -->
-                    <iframe class="flex-shrink-0 w-560 h-315 rounded-lg shadow-lg video-thumbnail" data-video-id="8O26bqiJ_40" src="https://www.youtube.com/embed/8O26bqiJ_40?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <iframe class="flex-shrink-0 w-560 h-315 rounded-lg shadow-lg video-thumbnail" data-video-id="vN_Oqt7XApg" src="https://www.youtube.com/embed/vN_Oqt7XApg?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <iframe class="flex-shrink-0 w-560 h-315 rounded-lg shadow-lg video-thumbnail" data-video-id="De0sI5pNW1E" src="https://www.youtube.com/embed/De0sI5pNW1E?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <iframe class="flex-shrink-0 w-560 h-315 rounded-lg shadow-lg video-thumbnail" data-video-id="zazjt9QXqt4" src="https://www.youtube.com/embed/zazjt9QXqt4?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <iframe class="flex-shrink-0 w-560 h-315 rounded-lg shadow-lg video-thumbnail" data-video-id="tpSrCJ8YHUw" src="https://www.youtube.com/embed/tpSrCJ8YHUw?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="flex-shrink-0 w-full h-48 sm:w-[560px] sm:h-[315px] md:w-[640px] md:h-[360px] lg:w-[853px] lg:h-[480px] rounded-lg shadow-lg video-thumbnail transition-transform duration-200 ease-in-out" data-video-id="8O26bqiJ_40" src="https://www.youtube.com/embed/8O26bqiJ_40?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="flex-shrink-0 w-full h-48 sm:w-[560px] sm:h-[315px] md:w-[640px] md:h-[360px] lg:w-[853px] lg:h-[480px] rounded-lg shadow-lg video-thumbnail transition-transform duration-200 ease-in-out" data-video-id="vN_Oqt7XApg" src="https://www.youtube.com/embed/vN_Oqt7XApg?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="flex-shrink-0 w-full h-48 sm:w-[560px] sm:h-[315px] md:w-[640px] md:h-[360px] lg:w-[853px] lg:h-[480px] rounded-lg shadow-lg video-thumbnail transition-transform duration-200 ease-in-out" data-video-id="De0sI5pNW1E" src="https://www.youtube.com/embed/De0sI5pNW1E?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="flex-shrink-0 w-full h-48 sm:w-[560px] sm:h-[315px] md:w-[640px] md:h-[360px] lg:w-[853px] lg:h-[480px] rounded-lg shadow-lg video-thumbnail transition-transform duration-200 ease-in-out" data-video-id="zazjt9QXqt4" src="https://www.youtube.com/embed/zazjt9QXqt4?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="flex-shrink-0 w-full h-48 sm:w-[560px] sm:h-[315px] md:w-[640px] md:h-[360px] lg:w-[853px] lg:h-[480px] rounded-lg shadow-lg video-thumbnail transition-transform duration-200 ease-in-out" data-video-id="tpSrCJ8YHUw" src="https://www.youtube.com/embed/tpSrCJ8YHUw?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
                     <!-- Duplicated set for seamless backward scrolling from the "start" of the logical list -->
-                    <iframe class="flex-shrink-0 w-560 h-315 rounded-lg shadow-lg video-thumbnail" data-video-id="8O26bqiJ_40" src="https://www.youtube.com/embed/8O26bqiJ_40?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <iframe class="flex-shrink-0 w-560 h-315 rounded-lg shadow-lg video-thumbnail" data-video-id="vN_Oqt7XApg" src="https://www.youtube.com/embed/vN_Oqt7XApg?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <iframe class="flex-shrink-0 w-560 h-315 rounded-lg shadow-lg video-thumbnail" data-video-id="De0sI5pNW1E" src="https://www.youtube.com/embed/De0sI5pNW1E?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <iframe class="flex-shrink-0 w-560 h-315 rounded-lg shadow-lg video-thumbnail" data-video-id="zazjt9QXqt4" src="https://www.youtube.com/embed/zazjt9QXqt4?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <iframe class="flex-shrink-0 w-560 h-315 rounded-lg shadow-lg video-thumbnail" data-video-id="tpSrCJ8YHUw" src="https://www.youtube.com/embed/tpSrCJ8YHUw?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="flex-shrink-0 w-full h-48 sm:w-[560px] sm:h-[315px] md:w-[640px] md:h-[360px] lg:w-[853px] lg:h-[480px] rounded-lg shadow-lg video-thumbnail transition-transform duration-200 ease-in-out" data-video-id="8O26bqiJ_40" src="https://www.youtube.com/embed/8O26bqiJ_40?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="flex-shrink-0 w-full h-48 sm:w-[560px] sm:h-[315px] md:w-[640px] md:h-[360px] lg:w-[853px] lg:h-[480px] rounded-lg shadow-lg video-thumbnail transition-transform duration-200 ease-in-out" data-video-id="vN_Oqt7XApg" src="https://www.youtube.com/embed/vN_Oqt7XApg?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="flex-shrink-0 w-full h-48 sm:w-[560px] sm:h-[315px] md:w-[640px] md:h-[360px] lg:w-[853px] lg:h-[480px] rounded-lg shadow-lg video-thumbnail transition-transform duration-200 ease-in-out" data-video-id="De0sI5pNW1E" src="https://www.youtube.com/embed/De0sI5pNW1E?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="flex-shrink-0 w-full h-48 sm:w-[560px] sm:h-[315px] md:w-[640px] md:h-[360px] lg:w-[853px] lg:h-[480px] rounded-lg shadow-lg video-thumbnail transition-transform duration-200 ease-in-out" data-video-id="zazjt9QXqt4" src="https://www.youtube.com/embed/zazjt9QXqt4?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="flex-shrink-0 w-full h-48 sm:w-[560px] sm:h-[315px] md:w-[640px] md:h-[360px] lg:w-[853px] lg:h-[480px] rounded-lg shadow-lg video-thumbnail transition-transform duration-200 ease-in-out" data-video-id="tpSrCJ8YHUw" src="https://www.youtube.com/embed/tpSrCJ8YHUw?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
 
@@ -434,7 +448,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- Dhola ve Dhola -->
                     <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
                         <img src="images/artwork/KariBadariya_2025.jpg" alt="Kari Badariya album art" class="w-full aspect-square object-contain">
@@ -450,7 +464,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- Kari Badariya 2025-->
                     <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
                         <img src="images/artwork/KariBadariya_2025.jpg" alt="Kari Badariya album art" class="w-full aspect-square object-contain">
@@ -483,7 +497,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- Sawan He Sakhi 2023 -->
                     <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
                         <img src="images/artwork/SawanHeSakhi_2023_v.jpg" alt="Sawan He Sakhi single art" class="w-full  aspect-square object-contain">
@@ -557,7 +571,7 @@
                 <!-- Each flex-col div acts as one grid item, containing all elements for that media piece -->
                 <div class="flex flex-col items-center">
                     <h3 class="text-2xl font-bold mb-4 text-white flex items-center justify-center text-center leading-tight">
-                        Latvian public television performance coverage and interview 
+                        Latvian public television performance coverage and interview
                     </h3>
                     <!-- Container for the clickable image and title preview -->
                     <a href="https://www.lsm.lv/raksts/kultura/muzika/19.08.2024-iepazit-2000-gadus-senas-tradicijas-indijas-stasti-muzika-un-deja-atcelo-uz latviju.a565596/" target="_blank"
@@ -575,7 +589,7 @@
                         <!--/div-->
                     </a>
                 </div>
-    
+
                 <!-- Deshvaani Interview 2024 -->
                 <div class="flex flex-col items-center">
                     <h3 class="text-2xl font-bold mb-4 text-white text-center leading-tight">
@@ -612,12 +626,11 @@
                             <a href="https://www.stockholmsangeet.se/" target="_blank" class="text-orange-400 hover:underline">Stockholm Sangeet Sabha</a>
                         </h3>
                         <p class="text-gray-300 mb-1">🗓️ December 6, 2023</p>
-                        <p class="text-gray-300 mb-1">📍 Restaurang Ellora, Hornsgatan 85, Stockholm, Sweden</p>
+                        <p class="text-300 mb-1">📍 Restaurang Ellora, Hornsgatan 85, Stockholm, Sweden</p>
                         <a href="https://www.stockholmsangeet.se/" target="_blank" class="text-orange-400 hover:underline">https://www.stockholmsangeet.se/</a>
                     </div>
                 </div>
 
-                    
                     <!-- Vasantuassv DU India -->
                     <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
                     <!-- The image is now wrapped in an anchor tag, making it clickable and linking to the event website. -->
@@ -932,6 +945,13 @@
                     if (firstOccurrenceIndex !== -1) {
                         showModalVideo(firstOccurrenceIndex);
                     }
+                    // Add the animation class for the "up and down" effect
+                    this.classList.add('animate-click');
+
+                    // Remove the animation class after it finishes
+                    this.addEventListener('animationend', () => {
+                        this.classList.remove('animate-click');
+                    }, { once: true }); // Ensure the listener is removed after one execution
                 });
             });
 
