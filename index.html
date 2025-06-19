@@ -24,6 +24,19 @@
             padding-bottom: 0.5rem;
             margin-bottom: 2rem;
             color: #f8f8f8; /* Ensure heading text is visible */
+            position: relative; /* Added for the ::after pseudo-element */
+            display: inline-block; /* Added for the ::after pseudo-element */
+        }
+        .section-heading::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -10px;
+            width: 80px;
+            height: 4px;
+            background-color: #f97316; /* Tailwind orange-500 */
+            border-radius: 2px;
+            transform: translateX(-50%);
         }
         /* Navigation link hover effect */
         .nav-link {
@@ -291,6 +304,74 @@
         /* Class to apply the animation */
         .video-thumbnail.animate-click {
             animation: bounce-up-down 0.4s ease-in-out; /* Apply animation */
+        }
+
+        /* Lightbox specific styles for image modal */
+        .lightbox-modal {
+            transition: opacity 0.3s ease-in-out;
+            display: flex; /* Ensure flexbox is used for centering */
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 50;
+            opacity: 0;
+            pointer-events: none;
+        }
+        .lightbox-modal.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .lightbox-modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .lightbox-modal .relative {
+            display: flex; /* Ensure buttons are aligned with image */
+            align-items: center;
+            justify-content: center;
+            max-width: 90%;
+            max-height: 90%;
+        }
+        .lightbox-modal img {
+            max-width: 100%;
+            max-height: 100%;
+            object-contain;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+        .lightbox-modal button {
+            position: absolute;
+            color: white;
+            font-size: 2.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            user-select: none;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 0.5rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            line-height: 1; /* Adjust line height for better button icon centering */
+        }
+        .lightbox-modal button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #f97316; /* Orange hover effect */
+        }
+        .lightbox-modal #lightbox-close {
+            top: 1rem;
+            right: 1rem;
+            font-size: 3rem;
+            background-color: transparent; /* Make close button background transparent by default */
+        }
+        .lightbox-modal #lightbox-close:hover {
+            background-color: rgba(0, 0, 0, 0.5); /* Add background on hover */
+        }
+        .lightbox-modal #lightbox-prev {
+            left: 1rem;
+        }
+        .lightbox-modal #lightbox-next {
+            right: 1rem;
         }
     </style>
 </head>
@@ -722,7 +803,7 @@
                         <p class="text-gray-300 mb-1">An International Webinar - Hindustani Classical Vocal</p>
                         <p class="text-gray-300 mb-1">🗓️ Monday, Feb 7, 2022, 5:00 PM (IST) / 12:30 PM (CET)</p>
                         <p class="text-gray-300 mb-3">Platform: Google Meet App</p>
-                        <p class="text-gray-300 font-medium">By: Dr. Tripti Sharma</p>
+                        <p class="text-300 font-medium">By: Dr. Tripti Sharma</p>
                         <p class="text-gray-300 text-sm">Hindustani Classical Vocalist (Stockholm, Sweden)</p>
                     </div>
                 </div>
@@ -1027,9 +1108,31 @@
         <span class="nav-button nav-button-right" id="nextVideoBtn">&gt;</span>
     </div>
 
+    <!-- Lightbox Modal Structure (for images) -->
+    <div id="lightbox-modal" class="lightbox-modal fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 hidden p-4">
+        <div class="relative max-w-full max-h-full flex items-center justify-center">
+            <!-- Previous Button -->
+            <button id="lightbox-prev" class="absolute left-4 z-10 text-white text-5xl font-bold cursor-pointer hover:text-orange-400 transition-colors duration-200" aria-label="Previous image">
+                &#8249; <!-- HTML entity for < -->
+            </button>
+
+            <img id="lightbox-image" src="" alt="Full-screen image" class="max-w-full max-h-full object-contain rounded-lg shadow-lg">
+
+            <!-- Next Button -->
+            <button id="lightbox-next" class="absolute right-4 z-10 text-white text-5xl font-bold cursor-pointer hover:text-orange-400 transition-colors duration-200" aria-label="Next image">
+                &#8250; <!-- HTML entity for > -->
+            </button>
+
+            <!-- Close button -->
+            <button id="lightbox-close" class="absolute top-4 right-4 text-white text-4xl font-bold cursor-pointer hover:text-orange-400 transition-colors duration-200" aria-label="Close image viewer">
+                &times;
+            </button>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // --- Modal related variables and functions ---
+            // --- Modal related variables and functions (for videos) ---
             const videoThumbnails = document.querySelectorAll('.video-thumbnail'); // All thumbnails in the carousel
             const videoModal = document.getElementById('videoModal');
             const modalVideoFrame = document.getElementById('modalVideoFrame');
@@ -1095,7 +1198,7 @@
                 showModalVideo(currentModalVideoIndex + 1);
             });
 
-            // Keyboard navigation for modal
+            // Keyboard navigation for video modal
             document.addEventListener('keydown', function(event) {
                 if (videoModal.style.display === 'flex') { // Only active if modal is open
                     if (event.key === 'ArrowLeft') {
@@ -1116,7 +1219,7 @@
             const carouselPrevBtn = document.getElementById('carouselPrevBtn');
             const carouselNextBtn = document.getElementById('carouselNextBtn');
             const videoScrollContainer = document.querySelector('.video-scroll-container');
-            const mainHeader = document.getElementById('mainHeader'); // Get the header element
+            const mainHeader = document.getElementById('mainHeader'); // Get the dynamic height of the fixed header
 
             const numUniqueVideosInCarousel = 5; // Based on your HTML: 5 original videos
             // Start the carousel at the beginning of the *first duplicate set* to allow seamless backward scrolling
@@ -1179,11 +1282,101 @@
 
             // Optional: Keyboard navigation for carousel (if not in modal)
             document.addEventListener('keydown', function(event) {
-                if (videoModal.style.display !== 'flex') { // Only navigate carousel if modal is not open
+                if (videoModal.style.display !== 'flex') { // Only navigate carousel if video modal is not open
                     if (event.key === 'ArrowLeft') {
                         navigateCarousel('prev');
                     } else if (event.key === 'ArrowRight') {
                         navigateCarousel('next');
+                    }
+                }
+            });
+
+
+            // --- Lightbox related variables and functions (for images) ---
+            const performanceImages = document.querySelectorAll('.performance-image');
+            const lightboxModal = document.getElementById('lightbox-modal');
+            const lightboxImage = document.getElementById('lightbox-image');
+            const lightboxClose = document.getElementById('lightbox-close');
+            const lightboxPrev = document.getElementById('lightbox-prev');
+            const lightboxNext = document.getElementById('lightbox-next');
+
+            let currentImageIndex = 0;
+            const imageSources = Array.from(performanceImages).map(img => img.getAttribute('data-full-src') || img.src);
+
+            // Function to show a specific image in the lightbox
+            const showImage = (index) => {
+                lightboxImage.src = imageSources[index];
+                currentImageIndex = index;
+            };
+
+            // Function to open the lightbox
+            const openLightbox = (initialSrc) => {
+                const initialIndex = imageSources.indexOf(initialSrc);
+                showImage(initialIndex !== -1 ? initialIndex : 0); // Show the clicked image, or the first one if not found
+
+                lightboxModal.classList.remove('hidden');
+                lightboxModal.classList.add('active'); // For transition effect
+                document.body.style.overflow = 'hidden'; // Prevent scrolling on the body
+            };
+
+            // Function to close the lightbox
+            const closeLightbox = () => {
+                lightboxModal.classList.remove('active'); // For transition effect
+                lightboxModal.classList.add('hidden');
+                document.body.style.overflow = ''; // Restore scrolling on the body
+                lightboxImage.src = ''; // Clear the image source
+            };
+
+            // Navigate to the previous image
+            const navigatePrevImage = () => { // Renamed to avoid conflict
+                currentImageIndex = (currentImageIndex - 1 + imageSources.length) % imageSources.length;
+                showImage(currentImageIndex);
+            };
+
+            // Navigate to the next image
+            const navigateNextImage = () => { // Renamed to avoid conflict
+                currentImageIndex = (currentImageIndex + 1) % imageSources.length;
+                showImage(currentImageIndex);
+            };
+
+            // Add click listener to each performance image
+            performanceImages.forEach(image => {
+                image.addEventListener('click', () => {
+                    const fullSrc = image.getAttribute('data-full-src') || image.src;
+                    openLightbox(fullSrc);
+                });
+            });
+
+            // Add click listeners for lightbox navigation buttons
+            lightboxPrev.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent modal from closing when clicking buttons
+                navigatePrevImage();
+            });
+            lightboxNext.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent modal from closing when clicking buttons
+                navigateNextImage();
+            });
+
+            // Add click listener to the lightbox close button
+            lightboxClose.addEventListener('click', closeLightbox);
+
+            // Add click listener to the lightbox overlay to close it
+            lightboxModal.addEventListener('click', (event) => {
+                // Close only if the click is directly on the modal background, not the image or navigation buttons
+                if (event.target === lightboxModal) {
+                    closeLightbox();
+                }
+            });
+
+            // Add keyboard listener for 'Escape' key and arrow keys (for lightbox)
+            document.addEventListener('keydown', (event) => {
+                if (lightboxModal.classList.contains('active')) {
+                    if (event.key === 'Escape') {
+                        closeLightbox();
+                    } else if (event.key === 'ArrowLeft') {
+                        navigatePrevImage();
+                    } else if (event.key === 'ArrowRight') {
+                        navigateNextImage();
                     }
                 }
             });
