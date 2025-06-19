@@ -621,111 +621,131 @@
     </section>
 
 
-        <!-- Performances Section -->
-        <section id="performances" class="py-16 bg-gray-900"> <!-- Dark background -->
-            <div class="container mx-auto px-4">
-                <h2 class="text-4xl font-bold text-center mb-10 text-gray-100 section-heading">My recent notable performances ...</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Performances Section -->
+    <section id="performances" class="py-16 bg-gray-900">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-10 text-gray-100 section-heading">My recent notable performances ...</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-                    <!-- Stockholm Sangeet Sabha -->
-                   <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                    <!-- The image is now wrapped in an anchor tag, making it clickable and linking to the event website. -->
-                    <a href="https://www.stockholmsangeet.se/" target="_blank">
-                        <!-- The image is set to 'object-contain' to ensure the whole image fits without cropping. -->
-                        <!-- This will scale the image down to fit within the 192px height while maintaining its aspect ratio, potentially leaving empty space. -->
-                        <img src="images/events/StockholmSangeetSabha9-2023-12-06.jpg" alt="Stockholm Sangeet Sabha poster" class="w-full h-100 object-contain">
-                    </a>
+                <!-- Stockholm Sangeet Sabha -->
+                <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                    <!-- Image is now clickable to open the lightbox -->
+                    <img src="https://placehold.co/400x300/4CAF50/FFFFFF?text=Stockholm+Sangeet+Sabha"
+                         alt="Stockholm Sangeet Sabha poster"
+                         class="w-full h-48 object-cover cursor-pointer rounded-t-lg performance-image"
+                         onerror="this.onerror=null;this.src='https://placehold.co/400x300/4CAF50/FFFFFF?text=Image+Not+Found';"
+                         data-full-src="https://placehold.co/800x600/4CAF50/FFFFFF?text=Stockholm+Sangeet+Sabha+Full">
                     <div class="p-6">
-                        <!-- The "Stockholm Sangeet Sabha" text is now also wrapped in an anchor tag to make it clickable. -->
+                        <!-- The "Stockholm Sangeet Sabha" text links to the event website. -->
                         <h3 class="text-xl font-semibold mb-2">
                             <a href="https://www.stockholmsangeet.se/" target="_blank" class="text-orange-400 hover:underline">Stockholm Sangeet Sabha</a>
                         </h3>
                         <p class="text-gray-300 mb-1">🗓️ December 6, 2023</p>
-                        <p class="text-300 mb-1">📍 Restaurang Ellora, Hornsgatan 85, Stockholm, Sweden</p>
+                        <p class="text-gray-300 mb-1">📍 Restaurang Ellora, Hornsgatan 85, Stockholm, Sweden</p>
                         <a href="https://www.stockholmsangeet.se/" target="_blank" class="text-orange-400 hover:underline">Click to visit website</a>
                     </div>
                 </div>
 
 
-                    <!-- SARANG - Festival of India in Republic of Korea -->
-                    <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                        <img src="https://placehold.co/400x300/98FB98/FFFFFF?text=SARANG+Korea" alt="SARANG Festival poster" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold mb-2 text-white">SARANG - The Festival of India in Republic of Korea</h3>
-                            <p class="text-gray-300 mb-1">Event: India, Dance and Music</p>
-                            <p class="text-gray-300 mb-1">🗓️ June 10, 3 PM</p>
-                            <p class="text-gray-300">📍 Cheongmyeong Hall Grand Auditorium</p>
-                        </div>
+                <!-- SARANG - Festival of India in Republic of Korea -->
+                <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                    <img src="https://placehold.co/400x300/98FB98/FFFFFF?text=SARANG+Korea"
+                         alt="SARANG Festival poster"
+                         class="w-full h-48 object-cover cursor-pointer rounded-t-lg performance-image"
+                         onerror="this.onerror=null;this.src='https://placehold.co/400x300/98FB98/FFFFFF?text=Image+Not+Found';"
+                         data-full-src="https://placehold.co/800x600/98FB98/FFFFFF?text=SARANG+Korea+Full">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-white">SARANG - The Festival of India in Republic of Korea</h3>
+                        <p class="text-gray-300 mb-1">Event: India, Dance and Music</p>
+                        <p class="text-gray-300 mb-1">🗓️ June 10, 3 PM</p>
+                        <p class="text-gray-300">📍 Cheongmyeong Hall Grand Auditorium</p>
                     </div>
-
-                    <!-- Pt. Kapildeo Singh Memorial Trust - Sangeet Samaroh 2022 -->
-                    <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                        <img src="https://placehold.co/400x300/DA70D6/FFFFFF?text=SANGEET+SAMAROH" alt="Sangeet Samaroh 2022 poster" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold mb-2 text-white">Pt. Kapildeo Singh Memorial Trust - Sangeet Samaroh 2022</h3>
-                            <p class="text-gray-300 mb-1">🗓️ Sunday, August 28, 2022, 10:00 AM</p>
-                            <p class="text-gray-300 mb-3">📍 Triveni Kala Sangam, New Delhi-110001</p>
-                            <p class="text-gray-300 font-medium">Performers include:</p>
-                            <ul class="list-disc list-inside text-sm text-gray-400">
-                                <li>Dr. Tripti Sharma (Vocal)</li>
-                                <li>Sh. Hiran Chata (Tabla)</li>
-                                <li>Sh. Ashiqus Kumar (Harmonium)</li>
-                                <li>Sh. Zargham Akram Khan (Tabla Solo)</li>
-                                <li>Sh. Rajendra Banerjee (Harmonium)</li>
-                                <li>Ms. Ruchi Balooni (Kathak)</li>
-                                <li>And many more...</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- INDIJAS STĀSTI -->
-                    <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                        <img src="https://placehold.co/400x300/F08080/FFFFFF?text=INDIJAS+STASTI+Latvia" alt="INDIJAS STĀSTI poster" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold mb-2 text-white">INDIJAS STĀSTI</h3>
-                            <p class="text-gray-300 mb-1">Indian Classical Music and Vocal Evening</p>
-                            <p class="text-gray-300 mb-1">🗓️ August 18, 18:00</p>
-                            <p class="text-gray-300 mb-3">📍 Angars. Tallinas Iela 10-K3</p>
-                            <p class="text-gray-300 font-medium">Artists:</p>
-                            <ul class="list-disc list-inside text-sm text-gray-400">
-                                <li>Natalja Garanina</li>
-                                <li>Tripti Sarma</li>
-                                <li>Ardzuns Santhoss</li>
-                                <li>Sebastians Dreijers</li>
-                                <li>Balradžs Singhs Sandhu</li>
-                            </ul>
-                            <p class="text-gray-300 mt-2">🎟️ IEEJAS BIĻETE: 20 EIRO</p>
-                        </div>
-                    </div>
-
-                    <!-- Vasantotsav 2022 (Kalindi College) -->
-                    <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                        <img src="https://placehold.co/400x300/DDA0DD/FFFFFF?text=VASANTOTSAV+Webinar" alt="Vasantotsav 2022 poster" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold mb-2 text-white">Vasantotsav 2022 (Kalindi College)</h3>
-                            <p class="text-gray-300 mb-1">An International Webinar - Hindustani Classical Vocal</p>
-                            <p class="text-gray-300 mb-1">🗓️ Monday, Feb 7, 2022, 5:00 PM (IST) / 12:30 PM (CET)</p>
-                            <p class="text-gray-300 mb-3">Platform: Google Meet App</p>
-                            <p class="text-gray-300 font-medium">By: Dr. Tripti Sharma</p>
-                            <p class="text-gray-300 text-sm">Hindustani Classical Vocalist (Stockholm, Sweden)</p>
-                        </div>
-                    </div>
-
-                    <!-- Sanskar Bharati (Live) -->
-                    <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                        <img src="images/events/Sanskar-Bharti-2020-05-29.jpeg" alt="Sanskar Bharati Live poster" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold mb-2 text-white">Sanskar Bharati (Live)</h3>
-                            <p class="text-gray-300 mb-1">Event: Sangeet Suman - 18</p>
-                            <p class="text-gray-300 mb-1">🗓️ Friday, May 7, 2020, 3 PM</p>
-                            <p class="text-300 mb-3">Artist: Dr. Tripti Sharma, Sweden</p>
-                            <a href="https://www.facebook.com/sanskarbhartimrtprant/" target="_blank" class="text-orange-400 hover:underline">Watch Live on Facebook</a>
-                        </div>
-                    </div>
-
                 </div>
+
+                <!-- Pt. Kapildeo Singh Memorial Trust - Sangeet Samaroh 2022 -->
+                <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                    <img src="https://placehold.co/400x300/DA70D6/FFFFFF?text=SANGEET+SAMAROH"
+                         alt="Sangeet Samaroh 2022 poster"
+                         class="w-full h-48 object-cover cursor-pointer rounded-t-lg performance-image"
+                         onerror="this.onerror=null;this.src='https://placehold.co/400x300/DA70D6/FFFFFF?text=Image+Not+Found';"
+                         data-full-src="https://placehold.co/800x600/DA70D6/FFFFFF?text=SANGEET+SAMAROH+Full">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-white">Pt. Kapildeo Singh Memorial Trust - Sangeet Samaroh 2022</h3>
+                        <p class="text-gray-300 mb-1">🗓️ Sunday, August 28, 2022, 10:00 AM</p>
+                        <p class="text-gray-300 mb-3">📍 Triveni Kala Sangam, New Delhi-110001</p>
+                        <p class="text-gray-300 font-medium">Performers include:</p>
+                        <ul class="list-disc list-inside text-sm text-gray-400">
+                            <li>Dr. Tripti Sharma (Vocal)</li>
+                            <li>Sh. Hiran Chata (Tabla)</li>
+                            <li>Sh. Ashiqus Kumar (Harmonium)</li>
+                            <li>Sh. Zargham Akram Khan (Tabla Solo)</li>
+                            <li>Sh. Rajendra Banerjee (Harmonium)</li>
+                            <li>Ms. Ruchi Balooni (Kathak)</li>
+                            <li>And many more...</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- INDIJAS STĀSTI -->
+                <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                    <img src="https://placehold.co/400x300/F08080/FFFFFF?text=INDIJAS+STASTI+Latvia"
+                         alt="INDIJAS STĀSTI poster"
+                         class="w-full h-48 object-cover cursor-pointer rounded-t-lg performance-image"
+                         onerror="this.onerror=null;this.src='https://placehold.co/400x300/F08080/FFFFFF?text=Image+Not+Found';"
+                         data-full-src="https://placehold.co/800x600/F08080/FFFFFF?text=INDIJAS+STASTI+Latvia+Full">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-white">INDIJAS STĀSTI</h3>
+                        <p class="text-gray-300 mb-1">Indian Classical Music and Vocal Evening</p>
+                        <p class="text-gray-300 mb-1">🗓️ August 18, 18:00</p>
+                        <p class="text-gray-300 mb-3">📍 Angars. Tallinas Iela 10-K3</p>
+                        <p class="text-gray-300 font-medium">Artists:</p>
+                        <ul class="list-disc list-inside text-sm text-gray-400">
+                            <li>Natalja Garanina</li>
+                            <li>Tripti Sarma</li>
+                            <li>Ardzuns Santhoss</li>
+                            <li>Sebastians Dreijers</li>
+                            <li>Balradžs Singhs Sandhu</li>
+                        </ul>
+                        <p class="text-gray-300 mt-2">🎟️ IEEJAS BIĻETE: 20 EIRO</p>
+                    </div>
+                </div>
+
+                <!-- Vasantotsav 2022 (Kalindi College) -->
+                <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                    <img src="https://placehold.co/400x300/DDA0DD/FFFFFF?text=VASANTOTSAV+Webinar"
+                         alt="Vasantotsav 2022 poster"
+                         class="w-full h-48 object-cover cursor-pointer rounded-t-lg performance-image"
+                         onerror="this.onerror=null;this.src='https://placehold.co/400x300/DDA0DD/FFFFFF?text=Image+Not+Found';"
+                         data-full-src="https://placehold.co/800x600/DDA0DD/FFFFFF?text=VASANTOTSAV+Webinar+Full">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-white">Vasantotsav 2022 (Kalindi College)</h3>
+                        <p class="text-gray-300 mb-1">An International Webinar - Hindustani Classical Vocal</p>
+                        <p class="text-gray-300 mb-1">🗓️ Monday, Feb 7, 2022, 5:00 PM (IST) / 12:30 PM (CET)</p>
+                        <p class="text-gray-300 mb-3">Platform: Google Meet App</p>
+                        <p class="text-gray-300 font-medium">By: Dr. Tripti Sharma</p>
+                        <p class="text-gray-300 text-sm">Hindustani Classical Vocalist (Stockholm, Sweden)</p>
+                    </div>
+                </div>
+
+                <!-- Sanskar Bharati (Live) -->
+                <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                    <img src="https://placehold.co/400x300/FFD700/FFFFFF?text=Sanskar+Bharati"
+                         alt="Sanskar Bharati Live poster"
+                         class="w-full h-48 object-cover cursor-pointer rounded-t-lg performance-image"
+                         onerror="this.onerror=null;this.src='https://placehold.co/400x300/FFD700/FFFFFF?text=Image+Not+Found';"
+                         data-full-src="https://placehold.co/800x600/FFD700/FFFFFF?text=Sanskar+Bharati+Full">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-white">Sanskar Bharati (Live)</h3>
+                        <p class="text-gray-300 mb-1">Event: Sangeet Suman - 18</p>
+                        <p class="text-gray-300 mb-1">🗓️ Friday, May 7, 2020, 3 PM</p>
+                        <p class="text-gray-300 mb-3">Artist: Dr. Tripti Sharma, Sweden</p>
+                        <a href="https://www.facebook.com/sanskarbhartimrtprant/" target="_blank" class="text-orange-400 hover:underline">Watch Live on Facebook</a>
+                    </div>
+                </div>
+
             </div>
-        </section>
+        </div>
+    </section>
 
             <!-- Accolades Section -->
     <section id="accolades" class="py-16 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 min-h-screen flex items-center justify-center">
