@@ -894,72 +894,78 @@
 
 
        <!--- Section Media coverage --->
-        <section id="media" class="py-16 bg-black">
-        <div class="container mx-auto px-4">
-            <div class="section-heading-container">
-                <h2 class="text-4xl font-semibold text-center text-gray-100 section-heading">Media coverage</h2>
-                <span class="section-heading-line"></span>
-                <span class="section-heading-accent-line"></span>
-            </div>
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-12">
+       <section id="media" class="py-16 bg-black">
+    <div class="container mx-auto px-4">
+        <div class="section-heading-container">
+            <h2 class="text-4xl font-semibold text-center text-gray-100 section-heading">Media coverage</h2>
+            <span class="section-heading-line"></span>
+            <span class="section-heading-accent-line"></span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-12">
 
 
-                <!-- REPlay interview -->
-                <!-- Each flex-col div acts as one grid item, containing all elements for that media piece -->
-                <div class="flex flex-col items-center">
-                    <h3 class="text-2xl font-bold mb-4 text-white flex items-center justify-center text-center leading-tight">
-                        Latvian public television performance coverage and interview
-                    </h3>
-                    <!-- Container for the clickable image and title preview -->
-                    <a href="https://www.lsm.lv/raksts/kultura/muzika/19.08.2024-iepazit-2000-gadus-senas-tradicijas-indijas-stasti-muzika-un-deja-atcelo-uz latviju.a565596/" target="_blank"
-                       class="block w-full bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 group mx-auto">
-                        <!-- Image representing the page content -->
-                        <div class="w-full aspect-video flex items-center justify-center bg-black">
-                            <img src="https://ltv.lsm.lv/storage/media/4/a/large/2/4810a373.jpg"
-                                 alt="Indijas stāsti mūzikā un dejā thumbnail"
-                                 class="w-full h-full object-contain object-center"
-                                 onerror="this.onerror=null;this.src='https://placehold.co/400x400/374151/D1D5DB?text=Image+Not+Found';">
-                        </div>
-                        <!-- Title overlay for the image -->
-                        <!--div class="text-gray-300 text-sm text-center"-->
-                            <p class="text-gray-300 text-sm text-center"><br>Indijas stāsti mūzikā un dejā atcelo uz Latviju | Latvijas Sabiedriskais medijs</p>
-                        <!--/div-->
-                    </a>
-                </div>
-
-                <!-- Deshvaani Interview 2024 -->
-                <div class="flex flex-col items-center">
-                    <h3 class="text-2xl font-bold mb-4 text-white text-center leading-tight">
-                        Exclusive interview with Deshvaani YouTube Channel
-                    </h3>
-                    <div class="w-full aspect-video mb-6 rounded-lg overflow-hidden mx-auto">
-                        <iframe class="w-full h-full" src="https://www.youtube.com/embed/C2PIKfAsCAE?si=GV30pUjJ2hO_IoV_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <!-- REPlay interview -->
+            <!-- Each flex-col div acts as one grid item, containing all elements for that media piece -->
+            <div class="flex flex-col items-center">
+                <h3 class="text-2xl font-bold mb-4 text-white flex items-center justify-center text-center leading-tight">
+                    Latvian public television performance coverage and interview
+                </h3>
+                <!-- Container for the clickable image and title preview -->
+                <a href="https://www.lsm.lv/raksts/kultura/muzika/19.08.2024-iepazit-2000-gadus-senas-tradicijas-indijas-stasti-muzika-un-deja-atcelo-uz-latviju.a565596/" target="_blank"
+                    class="block w-full bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 group mx-auto">
+                    <!-- Image representing the page content -->
+                    <div class="w-full aspect-video flex items-center justify-center bg-black">
+                        <img src="https://ltv.lsm.lv/storage/media/4/a/large/2/4810a373.jpg"
+                            alt="Indijas stāsti mūzikā un dejā thumbnail"
+                            class="w-full h-full object-contain object-center"
+                            onerror="this.onerror=null;this.src='https://placehold.co/400x400/374151/D1D5DB?text=Image+Not+Found';">
                     </div>
-                    <p class="text-gray-300 text-sm text-center">Indian Classical Interview | Deshvaani (YouTube Podcast)</p>
-                </div>
-                <!-- Add more standalone media items here if needed --> 
-                  
-                <!-- New Image Placeholder (same sizing as the first image) -->
-                <div class="flex flex-col items-center">
+                    <!-- Title overlay for the image -->
+                    <p class="text-gray-300 text-sm text-center"><br>Indijas Stāsti Mūzikā Un Dejā Atcelo Uz Latviju | Latvijas Sabiedriskais Medijs</p>
+                </a>
+            </div>
+
+            <!-- Deshvaani Interview 2024 - NOW CLICKABLE -->
+            <div class="flex flex-col items-center">
+                <h3 class="text-2xl font-bold mb-4 text-white flex items-center justify-center text-center leading-tight">
+                    Exclusive interview with Deshvaani YouTube Channel
+                </h3>
+                <!-- Wrapped in 'a' tag to make it clickable, like the first example -->
+                <a href="https://www.youtube.com/watch?v=C2PIKfAsCAE" target="_blank"
+                    class="block w-full bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 group mx-auto">
+                    <!-- Image representing the YouTube video thumbnail -->
+                    <div class="w-full aspect-video flex items-center justify-center bg-black">
+                        <!-- Using a YouTube thumbnail URL. You can often derive this from the video ID. -->
+                        <img src="https://img.youtube.com/vi/C2PIKfAsCAE/hqdefault.jpg"
+                            alt="Deshvaani Interview thumbnail"
+                            class="w-full h-full object-contain object-center"
+                            onerror="this.onerror=null;this.src='https://placehold.co/400x400/374151/D1D5DB?text=Image+Not+Found';">
+                    </div>
+                    <p class="text-gray-300 text-sm text-center"><br>Indian Classical Interview | Deshvaani (YouTube Podcast)</p>
+                </a>
+            </div>
+            <!-- Add more standalone media items here if needed -->
+
+            <!-- New Image Placeholder (same sizing as the first image) -->
+            <div class="flex flex-col items-center">
                 <h3 class="text-2xl font-bold mb-4 text-white flex items-center justify-center text-center leading-tight">
                     Amar Ujala - Hindi Newspaper, India
                 </h3>
                 <a href="#" target="_blank"
-                   class="block w-full bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 group mx-auto">
+                    class="block w-full bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 group mx-auto">
                     <div class="w-full aspect-video flex items-center justify-center bg-black">
                         <img src="images/media-coverage/newspapers/20140110-amar-ujala-moradabad-hindi_crop.png"
-                             alt="Placeholder image for new media coverage"
-                             class="w-full h-full object-contain object-center"
-                             onerror="this.onerror=null;this.src='https://placehold.co/400x400/374151/D1D5DB?text=Image+Not+Found';">
+                            alt="Placeholder image for new media coverage"
+                            class="w-full h-full object-contain object-center"
+                            onerror="this.onerror=null;this.src='https://placehold.co/400x400/374151/D1D5DB?text=Image+Not+Found';">
                     </div>
-                    <p class="text-gray-300 text-sm text-center">🗓️ January 10, 2014.</p>
+                    <p class="text-gray-300 text-sm text-center"><br>🗓️ January 10, 2014.</p>
                 </a>
             </div>
-                
-            </div>
-        </div>
-    </section>
 
+        </div>
+    </div>
+</section>
 
         <!-- Performances Section -->
     <section id="performances" class="py-16 bg-black">
