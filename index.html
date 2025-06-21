@@ -894,7 +894,8 @@
 
 
        <!--- Section Media coverage --->
-       <section id="media" class="py-16 bg-black">
+       <!--- Section Media coverage --->
+<section id="media" class="py-16 bg-black">
     <div class="container mx-auto px-4">
         <div class="section-heading-container">
             <h2 class="text-4xl font-semibold text-center text-gray-100 section-heading">Media coverage</h2>
@@ -925,21 +926,27 @@
                 </a>
             </div>
 
-            <!-- Deshvaani Interview 2024 - NOW CLICKABLE -->
+            <!-- Deshvaani Interview 2024 - NOW CLICKABLE WITH ALWAYS-VISIBLE PLAY ICON -->
             <div class="flex flex-col items-center">
                 <h3 class="text-2xl font-bold mb-4 text-white flex items-center justify-center text-center leading-tight">
                     Exclusive interview with Deshvaani YouTube Channel
                 </h3>
                 <!-- Wrapped in 'a' tag to make it clickable, like the first example -->
                 <a href="https://www.youtube.com/watch?v=C2PIKfAsCAE" target="_blank"
-                    class="block w-full bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 group mx-auto">
+                    class="block w-full bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 group mx-auto relative">
                     <!-- Image representing the YouTube video thumbnail -->
                     <div class="w-full aspect-video flex items-center justify-center bg-black">
-                        <!-- Using a YouTube thumbnail URL. You can often derive this from the video ID. -->
-                        <img src="https://img.youtube.com/vi/C2PIKfAsCAE/hqdefault.jpg"
+                        <!-- Using a YouTube thumbnail URL that is generally more reliable. -->
+                        <img src="https://img.youtube.com/vi/C2PIKfAsCAE/0.jpg"
                             alt="Deshvaani Interview thumbnail"
-                            class="w-full h-full object-contain object-center"
+                            class="w-full h-full object-cover object-center"
                             onerror="this.onerror=null;this.src='https://placehold.co/400x400/374151/D1D5DB?text=Image+Not+Found';">
+                    </div>
+                    <!-- YouTube Play Icon Overlay - now always visible with lower opacity -->
+                    <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-10 rounded-lg">
+                        <svg class="h-16 w-16 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
                     </div>
                     <p class="text-gray-300 text-sm text-center"><br>Indian Classical Interview | Deshvaani (YouTube Podcast)</p>
                 </a>
@@ -966,6 +973,7 @@
         </div>
     </div>
 </section>
+
 
         <!-- Performances Section -->
     <section id="performances" class="py-16 bg-black">
