@@ -14,7 +14,7 @@
         /* Base styles for body and typography */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #1a1a1a; /* Dark background */
+            background-color: #000000; /* Dark background changed to black */
             color: #e0e0e0; /* Light text color */
             overflow-x: hidden; /* Prevent horizontal scroll on body */
         }
@@ -295,7 +295,7 @@
                 top: 100%; /* Position below the header */
                 right: 0;
                 width: 100%; /* Full width dropdown */
-                background-color: #1a1a1a; /* Match header background */
+                background-color: #000000; /* Match header background */
                 flex-direction: column;
                 align-items: flex-end; /* Align links to the right */
                 padding: 1rem 0;
@@ -401,12 +401,40 @@
             cursor: pointer;
             border-radius: 0.5rem 0.5rem 0 0; /* Rounded top corners */
         }
+
+        /* Styles for Discography album art with play button overlay */
+        .discography-item-image-wrapper {
+            position: relative;
+            overflow: hidden; /* Ensures the overlay stays within the bounds of the image wrapper */
+        }
+
+        .play-button-overlay {
+            position: absolute;
+            inset: 0; /* Covers the entire area of the parent wrapper */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.6); /* Dark semi-transparent overlay */
+            opacity: 0; /* Hidden by default */
+            transition: opacity 0.3s ease; /* Smooth transition for opacity change */
+            cursor: pointer; /* Indicate clickability */
+        }
+
+        .discography-item-image-wrapper:hover .play-button-overlay {
+            opacity: 1; /* Shows the overlay on hover */
+        }
+
+        .play-button-overlay i {
+            font-size: 4rem; /* Large play icon */
+            color: white;
+            text-shadow: 0 0 15px rgba(255, 0, 0, 0.8); /* Red glow for YouTube icon */
+        }
     </style>
 </head>
 <body class="antialiased leading-relaxed bg-gray-900 text-gray-100">
 
     <!-- Header and Navigation -->
-    <header id="mainHeader" class="bg-gray-800 text-white shadow-lg py-4 fixed w-full z-30">
+    <header id="mainHeader" class="bg-black text-white shadow-lg py-4 fixed w-full z-30">
         <nav class="container mx-auto flex justify-between items-center px-4">
             <img src="images/logos/aalapini-logo_v0.png" alt="Tripti Sharma Logo" class="h-12 w-12 mr-4">
             <a href="#" class="text-2xl font-bold text-amber-400">Tripti Sharma</a>
@@ -464,7 +492,7 @@
         </section>
 
         <!-- Music Section: Featured Videos and Discography -->
-        <section id="music" class="py-16 bg-gray-800">
+        <section id="music" class="py-16 bg-black">
         <div class="container mx-auto px-4">
             <div class="section-heading-container">
                 <h2 class="text-4xl font-semibold text-center text-gray-100 section-heading">Listen to me ...</h2>
@@ -473,7 +501,7 @@
             </div>
             <!-- Featured Videos Carousel -->
             <h3 class="text-3xl font-semibold text-center mb-6 text-gray-100">Featured videos</h3>
-            <div id="featured-videos-carousel" class="py-4 bg-gray-900 rounded-lg mb-8 shadow-md relative">
+            <div id="featured-videos-carousel" class="py-4 bg-black rounded-lg mb-8 shadow-md relative">
                 <!-- Carousel Navigation Buttons -->
                 <span id="carouselPrevBtn" class="carousel-nav-button carousel-prev-button">&lt;</span>
                 <span id="carouselNextBtn" class="carousel-nav-button carousel-next-button">&gt;</span>
@@ -502,10 +530,15 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
 
                     <!-- NEW: Shiva Stuti 2025 -->
-                    <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                        <img src="images/artwork/ShivaStuti_2025.jpg" alt="Batiya album art" class="w-full aspect-square object-contain">
+                    <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <div class="discography-item-image-wrapper">
+                            <img src="images/artwork/ShivaStuti_2025.jpg" alt="Shiva Stuti album art" class="w-full aspect-square object-contain">
+                            <a href="#" class="play-button-overlay" aria-label="Play Shiva Stuti on YouTube" data-video-id="8RshT7Bwth8">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
                         <div class="p-4">
-                            <h3 class="text-lg font-semibold text-white"><a href="https://youtu.be/8RshT7Bwth8?si=QG48ubQZ_AvtzIR0">Shiva Stuti</a></h3>
+                            <h3 class="text-lg font-semibold text-white"><a href="https://youtu.be/8RshT7Bwth8?si=QG48ubQQZ_AvtzIR0" target="_blank">Shiva Stuti</a></h3>
                             <p class="text-gray-300 text-sm">2025 </p>
                             <p class="text-gray-400 text-xs mb-2">Tripti Sharma, Palace on Wheels</p>
                             <div class="flex space-x-2 text-2xl">
@@ -517,10 +550,15 @@
                     </div>
 
                     <!-- NEW: Batiyan -->
-                    <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                        <img src="images/artwork/Batiyan_2025.jpg" alt="Batiya album art" class="w-full aspect-square object-contain">
+                    <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <div class="discography-item-image-wrapper">
+                            <img src="images/artwork/Batiyan_2025.jpg" alt="Batiyan album art" class="w-full aspect-square object-contain">
+                            <a href="#" class="play-button-overlay" aria-label="Play Batiyan on YouTube" data-video-id="ZsZk2zv7qcA">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
                         <div class="p-4">
-                            <h3 class="text-lg font-semibold text-white"><a href="https://youtu.be/ZsZk2zv7qcA?si=vU2XK3lRQAdD92Nd">Batiyan</a></h3>
+                            <h3 class="text-lg font-semibold text-white"><a href="https://youtu.be/ZsZk2zv7qcA?si=vU2XK3lRQAdD92Nd" target="_blank">Batiyan</a></h3>
                             <p class="text-gray-300 text-sm">2025 </p>
                             <p class="text-gray-400 text-xs mb-2">Tripti Sharma, Palace on Wheels</p>
                             <div class="flex space-x-2 text-2xl">
@@ -532,10 +570,15 @@
                     </div>
 
                      <!-- UPDATED: Payar Karta Hai -->
-                    <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                        <img src="images/artwork/Pardesiya_2025.jpg" alt="Pardesiya album art" class="w-full aspect-square object-contain">
+                    <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <div class="discography-item-image-wrapper">
+                            <img src="images/artwork/Pardesiya_2025.jpg" alt="Pyar Karta Hai album art" class="w-full aspect-square object-contain">
+                            <a href="#" class="play-button-overlay" aria-label="Play Pyar Karta Hai on YouTube" data-video-id="l5tk5VeH90Y">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
                         <div class="p-4">
-                            <h3 class="text-lg font-semibold text-white"><a href="https://youtu.be/l5tk5VeH90Y?si=tnF2i2OlvbX">Pyar Karta Hai</a></h3>
+                            <h3 class="text-lg font-semibold text-white"><a href="https://youtu.be/l5tk5VeH90Y?si=tnF2i2OlvbX" target="_blank">Pyar Karta Hai</a></h3>
                             <p class="text-gray-300 text-sm">2025</p>
                             <p class="text-gray-400 text-xs mb-2">Tripti Sharma, Palace on Wheels</p>
                             <div class="flex space-x-2 text-2xl">
@@ -547,10 +590,15 @@
                     </div>
 
                     <!-- UPDATED: Pardesiya (added YouTube link) -->
-                    <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                        <img src="images/artwork/Pardesiya_2025.jpg" alt="Pardesiya album art" class="w-full aspect-square object-contain">
+                    <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <div class="discography-item-image-wrapper">
+                            <img src="images/artwork/Pardesiya_2025.jpg" alt="Pardesiya album art" class="w-full aspect-square object-contain">
+                            <a href="#" class="play-button-overlay" aria-label="Play Pardesiya on YouTube" data-video-id="OT2qIaU6NH8">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
                         <div class="p-4">
-                            <h3 class="text-lg font-semibold text-white"><a href="https://youtu.be/OT2qIaU6NH8?si=JsQVYgtxW90kPgFn">Pardesiya</a></h3>
+                            <h3 class="text-lg font-semibold text-white"><a href="https://youtu.be/OT2qIaU6NH8?si=JsQVYgtxW90kPgFn" target="_blank">Pardesiya</a></h3>
                             <p class="text-gray-300 text-sm">2025 </p>
                             <p class="text-gray-400 text-xs mb-2">Tripti Sharma, Palace on Wheels</p>
                             <div class="flex space-x-2 text-2xl">
@@ -562,10 +610,15 @@
                     </div>
 
                      <!-- Mere Mehboob -->
-                    <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                        <img src="images/artwork/KariBadariya_2025.jpg" alt="Kari Badariya album art" class="w-full aspect-square object-contain">
+                    <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <div class="discography-item-image-wrapper">
+                            <img src="images/artwork/KariBadariya_2025.jpg" alt="Mere Mehboob album art" class="w-full aspect-square object-contain">
+                            <a href="#" class="play-button-overlay" aria-label="Play Mere Mehboob on YouTube" data-video-id="C4HSywLPeg8">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
                         <div class="p-4">
-                            <h3 class="text-lg font-semibold text-white"> <a href="https://youtu.be/C4HSywLPeg8?si=Vncey5zEDSVcsKik">Mere Mehboob</a></h3>
+                            <h3 class="text-lg font-semibold text-white"> <a href="https://youtu.be/C4HSywLPeg8?si=Vncey5zEDSVcsKik" target="_blank">Mere Mehboob</a></h3>
                             <p class="text-gray-300 text-sm">2025 </p>
                             <p class="text-gray-400 text-xs mb-2">Tripti Sharma, Palace on Wheels</p>
                             <!-- Only audio links for this entry -->
@@ -578,10 +631,15 @@
                     </div>
 
                     <!-- Dhola ve Dhola -->
-                    <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                        <img src="images/artwork/KariBadariya_2025.jpg" alt="Kari Badariya album art" class="w-full aspect-square object-contain">
+                    <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <div class="discography-item-image-wrapper">
+                            <img src="images/artwork/KariBadariya_2025.jpg" alt="Dhola Ve Dhola album art" class="w-full aspect-square object-contain">
+                            <a href="#" class="play-button-overlay" aria-label="Play Dhola Ve Dhola on YouTube" data-video-id="rGOM67gowxg">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
                         <div class="p-4">
-                            <h3 class="text-lg font-semibold text-white"> <a href="https://youtu.be/rGOM67gowxg?si=wxQrAf58QesZIehv">Dhola Ve Dhola</a></h3>
+                            <h3 class="text-lg font-semibold text-white"> <a href="https://youtu.be/rGOM67gowxg?si=wxQrAf58QesZIehv" target="_blank">Dhola Ve Dhola</a></h3>
                             <p class="text-gray-300 text-sm">2025 </p>
                             <p class="text-gray-400 text-xs mb-2">Tripti Sharma, Palace on Wheels</p>
                             <!-- Only audio links for this entry -->
@@ -594,10 +652,15 @@
                     </div>
 
                     <!-- Kari Badariya 2025-->
-                    <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                        <img src="images/artwork/KariBadariya_2025.jpg" alt="Kari Badariya album art" class="w-full aspect-square object-contain">
+                    <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <div class="discography-item-image-wrapper">
+                            <img src="images/artwork/KariBadariya_2025.jpg" alt="Kari Badariya album art" class="w-full aspect-square object-contain">
+                            <a href="#" class="play-button-overlay" aria-label="Play Kari Badariya on YouTube" data-video-id="naGFb0Lw5oA">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
                         <div class="p-4">
-                            <h3 class="text-lg font-semibold text-white"> <a href="https://youtu.be/naGFb0Lw5oA?si=8dsdciELZNL3A">Kari Badariya</a></h3>
+                            <h3 class="text-lg font-semibold text-white"> <a href="https://youtu.be/naGFb0Lw5oA?si=8dsdciELZNL3A" target="_blank">Kari Badariya</a></h3>
                             <p class="text-gray-300 text-sm">2025 </p>
                             <p class="text-gray-400 text-xs mb-2">Tripti Sharma, Palace on Wheels</p>
                             <!-- Only audio links for this entry -->
@@ -610,12 +673,17 @@
                     </div>
 
                     <!-- UPDATED: Jhoom Jhoom 2024 -->
-                    <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                        <!-- Changed h-48 to aspect-square to ensure a square ratio. -->
-                        <!-- Changed object-cover to object-contain so the whole image fits within the box. -->
-                        <img src="images/artwork/JhoomJhoom_2024.jpg" alt="Jhoom Jhoom single art" class="w-full aspect-square object-contain">
+                    <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <div class="discography-item-image-wrapper">
+                            <!-- Changed h-48 to aspect-square to ensure a square ratio. -->
+                            <!-- Changed object-cover to object-contain so the whole image fits within the box. -->
+                            <img src="images/artwork/JhoomJhoom_2024.jpg" alt="Jhoom Jhoom single art" class="w-full aspect-square object-contain">
+                            <a href="#" class="play-button-overlay" aria-label="Play Jhoom Jhoom on YouTube" data-video-id="01XlZopwlA4">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
                         <div class="p-4">
-                            <h3 class="text-lg font-semibold text-white">Jhoom Jhoom</h3>
+                            <h3 class="text-lg font-semibold text-white"><a href="https://www.youtube.com/watch?v=01XlZopwlA4" target="_blank">Jhoom Jhoom</a></h3>
                             <p class="text-gray-300 text-sm">2024 </p>
                             <p class="text-gray-400 text-xs mb-2">Tripti Sharma, Palace on Wheels</p>
                             <div class="flex space-x-2 text-2xl">
@@ -627,10 +695,15 @@
                     </div>
 
                     <!-- Sawan He Sakhi 2023 -->
-                    <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                        <img src="images/artwork/SawanHeSakhi_2023_v.jpg" alt="Sawan He Sakhi single art" class="w-full  aspect-square object-contain">
+                    <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <div class="discography-item-image-wrapper">
+                            <img src="images/artwork/SawanHeSakhi_2023_v.jpg" alt="Sawan He Sakhi single art" class="w-full  aspect-square object-contain">
+                            <a href="#" class="play-button-overlay" aria-label="Play Sawan He Sakhi on YouTube" data-video-id="De0sI5pNW1E">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
                         <div class="p-4">
-                            <h3 class="text-lg font-semibold text-white"><a href="https://youtu.be/De0sI5pNW1E?si=tbCcWy7PN_qD9y58">Sawan He Sakhi</a></h3>
+                            <h3 class="text-lg font-semibold text-white"><a href="https://youtu.be/De0sI5pNW1E?si=tbCcWy7PN_qD9y58" target="_blank">Sawan He Sakhi</a></h3>
                             <p class="text-gray-300 text-sm">2023</p>
                             <p class="text-gray-400 text-xs mb-2">Tripti Sharma, Pravesh Mallick</p>
                             <div class="flex space-x-2 text-2xl">
@@ -642,14 +715,19 @@
                     </div>
 
                      <!-- Koyaliya 2022 -->
-                    <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                        <img src="images/artwork/Koyaliya_2022.jpg" alt="koyaliya single art" class="w-full  aspect-square object-contain">
+                    <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <div class="discography-item-image-wrapper">
+                            <img src="images/artwork/Koyaliya_2022.jpg" alt="Koyaliya single art" class="w-full  aspect-square object-contain">
+                            <a href="#" class="play-button-overlay" aria-label="Play Koyaliya on YouTube" data-video-id="vN_Oqt7XApg">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
                         <div class="p-4">
-                            <h3 class="text-lg font-semibold text-white"><a href="https://youtu.be/vN_Oqt7XApg?si=wVIy1wY6BV5pio1H">Koyaliya</a></h3>
+                            <h3 class="text-lg font-semibold text-white"><a href="https://youtu.be/vN_Oqt7XApg?si=wVIy1wY6BV5pio1H" target="_blank">Koyaliya</a></h3>
                             <p class="text-gray-300 text-sm">2022 </p>
-                            <p class="text-gray-400 text-xs mb-2">Tripti Sharma, Pravesh Mallick</p>
+                            <p class="text-gray-400 text-xs mb-2">Tripti Sharma, Palace on Wheels</p>
                             <div class="flex space-x-2 text-2xl">
-                                <a href="https://youtu.be/vN_Oqt7XApg?si=wVIy1wY6BV5pio1H" class="icon-link youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                                <a href="https://youtu.be/vN_Oqt7XApg?si=wVIy1wY6BV5pio1H" target="_blank" class="icon-link youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                                 <a href="https://music.apple.com/us/album/koyaliya-feat-tripti-sharma-single/1631222407" class="icon-link apple-music" aria-label="Apple Music"><i class="fab fa-apple"></i></a>
                                 <a href="https://open.spotify.com/track/4L4vibhec7SOS1gv7ne0Sn?si=826ffc5f77f847d0" class="icon-link spotify" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
                             </div>
@@ -662,7 +740,7 @@
 
 
         <!-- About Me Section -->
-        <section id="about" class="py-16 bg-gray-800 text-gray-200"> <!-- Dark background -->
+        <section id="about" class="py-16 bg-black text-gray-200"> <!-- Dark background -->
             <div class="container mx-auto px-4">
                 <div class="section-heading-container">
                     <h2 class="text-4xl font-semibold text-center text-gray-100 section-heading">My musical journey ...</h2>
@@ -691,9 +769,9 @@
             </div>
         </section>
 
-    
+
        <!--- Section Media coverage --->
-        <section id="media" class="py-16 bg-gray-800">
+        <section id="media" class="py-16 bg-black">
         <div class="container mx-auto px-4">
             <div class="section-heading-container">
                 <h2 class="text-4xl font-semibold text-center text-gray-100 section-heading">Media coverage...</h2>
@@ -702,7 +780,7 @@
             </div>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-12">
 
-    
+
                 <!-- REPlay interview -->
                 <!-- Each flex-col div acts as one grid item, containing all elements for that media piece -->
                 <div class="flex flex-col items-center">
@@ -711,9 +789,9 @@
                     </h3>
                     <!-- Container for the clickable image and title preview -->
                     <a href="https://www.lsm.lv/raksts/kultura/muzika/19.08.2024-iepazit-2000-gadus-senas-tradicijas-indijas-stasti-muzika-un-deja-atcelo-uz latviju.a565596/" target="_blank"
-                       class="block w-full bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 group mx-auto">
+                       class="block w-full bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 group mx-auto">
                         <!-- Image representing the page content -->
-                        <div class="w-full aspect-video flex items-center justify-center bg-gray-700">
+                        <div class="w-full aspect-video flex items-center justify-center bg-black">
                             <img src="https://ltv.lsm.lv/storage/media/4/a/large/2/4810a373.jpg"
                                  alt="Indijas stāsti mūzikā un dejā thumbnail"
                                  class="w-full h-full object-contain object-center"
@@ -721,7 +799,7 @@
                         </div>
                         <!-- Title overlay for the image -->
                         <!--div class="text-gray-300 text-sm text-center"-->
-                            <p class="text-gray-300 text-sm text-center">Indijas stāsti mūzikā un dejā atceļo uz Latviju | Latvijas Sabiedriskais medijs</p>
+                            <p class="text-gray-300 text-sm text-center">Indijas stāsti mūzikā un dejā atcelo uz Latviju | Latvijas Sabiedriskais medijs</p>
                         <!--/div-->
                     </a>
                 </div>
@@ -743,7 +821,7 @@
 
 
         <!-- Performances Section -->
-    <section id="performances" class="py-16 bg-gray-900">
+    <section id="performances" class="py-16 bg-black">
         <div class="container mx-auto px-4">
             <div class="section-heading-container">
                 <h2 class="text-4xl font-bold text-center text-gray-100 section-heading">Recent notable performances ...</h2>
@@ -753,7 +831,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
                 <!-- Stockholm Sangeet Sabha -->
-                <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
                     <!-- Image is now clickable to open the lightbox, using the original image path -->
                     <img src="images/events/20231206-Stockholm-Sangeet-Sabha-9.jpeg"
                          alt="Stockholm Sangeet Sabha poster"
@@ -771,7 +849,7 @@
                 </div>
 
                 <!-- Lativa 2024 -->
-                <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
                     <img src="images/events/20240818-Riga-Lativa-Indijas-Stasti.jpeg"
                          alt="Lativa 2024 Festival poster"
                          class="performance-image"
@@ -784,9 +862,9 @@
                     </div>
                 </div>
 
-                
+
                 <!-- Riga Birthday, Lativa 2023 -->
-                <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
                     <img src="images/events/20230819-Riga-Lativa-Birthday.jpeg"
                          alt="Riga Birthday 2023 Festival poster"
                          class="performance-image"
@@ -798,9 +876,9 @@
                         <p class="text-gray-300 mb-1">🗓️ August 19, 2023</p>
                     </div>
                 </div>
-                
+
                 <!-- Lativa 2023 -->
-                <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
                     <img src="images/events/20230816-Riga-Lativa-Nakts-Raga.jpeg"
                          alt="Lativa 2023 Festival poster"
                          class="performance-image"
@@ -814,7 +892,7 @@
                 </div>
 
                 <!-- Korea 2022-->
-                <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
                     <img src="images/events/20221006-Sarang-Korea.jpeg"
                          alt="Sangeet Samaroh 2022 poster"
                          class="performance-image"
@@ -828,7 +906,7 @@
                 </div>
 
                 <!-- Sangeet Samaroh Delhi 2022 -->
-                <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
                     <img src="images/events/20220828-Sangeet-Samaroh-Delhi.jpeg"
                          alt="Sangeet Samaroh Delhi 2022 poster"
                          class="performance-image"
@@ -842,7 +920,7 @@
                 </div>
 
                 <!-- Vasantotsav 2022 (Kalindi College) -->
-                <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
                     <img src="images/events/20220209-Vasantuassv-DU-India.jpeg"
                          alt="Vasantotsav 2022 poster"
                          class="performance-image"
@@ -856,14 +934,14 @@
                 </div>
 
                 <!-- Sanskar Bharati (Live) -->
-                <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
                     <img src="images/events/20200529-Sanskar-Bharti.jpeg"
                          alt="Sanskar Bharati Live poster"
                          class="performance-image"
                          onerror="this.onerror=null;this.src='images/events/20200529-Sanskar-Bharti.jpeg';"
                          data-full-src="images/events/20200529-Sanskar-Bharti.jpeg"> <!-- data-full-src also uses original path -->
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2 text-white"> <a href="https://www.facebook.com/sanskarbhartimrtprant/"> Sanskar Bharati, Meerut, India</a></h3>
+                        <h3 class="text-xl font-semibold mb-2 text-white"> <a href="https://www.facebook.com/sanskarbhartimrtprant/" target="_blank"> Sanskar Bharati, Meerut, India</a></h3>
                         <p class="text-gray-300 mb-1">Sangeet Suman - 18</p>
                         <p class="text-gray-300 mb-1">🗓️ May 7, 2020</p>
                     </div>
@@ -874,7 +952,7 @@
     </section>
 
             <!-- Accolades Section -->
-    <section id="accolades" class="py-16 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 min-h-screen flex items-center justify-center">
+    <section id="accolades" class="py-16 bg-black min-h-screen flex items-center justify-center">
         <div class="container mx-auto px-4 py-8">
             <div class="section-heading-container">
                 <h2 class="text-4xl md:text-5xl font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 section-heading tracking-tight">
@@ -887,7 +965,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 xl:gap-10">
                 <!-- Accolade Card 1 -->
                 <div class="
-                    bg-gray-800 bg-opacity-70 rounded-xl shadow-lg p-6
+                    bg-black bg-opacity-70 rounded-xl shadow-lg p-6
                     flex flex-col items-center text-center
                     transform transition-all duration-300 ease-in-out
                     hover:scale-105 hover:shadow-2xl
@@ -907,7 +985,7 @@
 
                 <!-- Accolade Card 2 -->
                 <div class="
-                    bg-gray-800 bg-opacity-70 rounded-xl shadow-lg p-6
+                    bg-black bg-opacity-70 rounded-xl shadow-lg p-6
                     flex flex-col items-center text-center
                     transform transition-all duration-300 ease-in-out
                     hover:scale-105 hover:shadow-2xl
@@ -927,7 +1005,7 @@
 
                 <!-- Accolade Card 3 -->
                 <div class="
-                    bg-gray-800 bg-opacity-70 rounded-xl shadow-lg p-6
+                    bg-black bg-opacity-70 rounded-xl shadow-lg p-6
                     flex flex-col items-center text-center
                     transform transition-all duration-300 ease-in-out
                     hover:scale-105 hover:shadow-2xl
@@ -947,7 +1025,7 @@
 
                 <!-- Accolade Card 4 -->
                 <div class="
-                    bg-gray-800 bg-opacity-70 rounded-xl shadow-lg p-6
+                    bg-black bg-opacity-70 rounded-xl shadow-lg p-6
                     flex flex-col items-center text-center
                     transform transition-all duration-300 ease-in-out
                     hover:scale-105 hover:shadow-2xl
@@ -967,7 +1045,7 @@
 
                 <!-- Accolade Card 5 -->
                 <div class="
-                    bg-gray-800 bg-opacity-70 rounded-xl shadow-lg p-6
+                    bg-black bg-opacity-70 rounded-xl shadow-lg p-6
                     flex flex-col items-center text-center
                     transform transition-all duration-300 ease-in-out
                     hover:scale-105 hover:shadow-2xl
@@ -987,7 +1065,7 @@
 
                 <!-- Accolade Card 6 -->
                 <div class="
-                    bg-gray-800 bg-opacity-70 rounded-xl shadow-lg p-6
+                    bg-black bg-opacity-70 rounded-xl shadow-lg p-6
                     flex flex-col items-center text-center
                     transform transition-all duration-300 ease-in-out
                     hover:scale-105 hover:shadow-2xl
@@ -1007,7 +1085,7 @@
 
                 <!-- Accolade Card 7 -->
                 <div class="
-                    bg-gray-800 bg-opacity-70 rounded-xl shadow-lg p-6
+                    bg-black bg-opacity-70 rounded-xl shadow-lg p-6
                     flex flex-col items-center text-center
                     transform transition-all duration-300 ease-in-out
                     hover:scale-105 hover:shadow-2xl
@@ -1027,7 +1105,7 @@
 
                 <!-- Accolade Card 8 -->
                 <div class="
-                    bg-gray-800 bg-opacity-70 rounded-xl shadow-lg p-6
+                    bg-black bg-opacity-70 rounded-xl shadow-lg p-6
                     flex flex-col items-center text-center
                     transform transition-all duration-300 ease-in-out
                     hover:scale-105 hover:shadow-2xl
@@ -1049,7 +1127,7 @@
     </section>
 
         <!-- Gallery Section -->
-        <section id="gallery" class="py-16 bg-gray-800">
+        <section id="gallery" class="py-16 bg-black">
             <div class="container mx-auto px-4">
                 <div class="section-heading-container">
                     <h2 class="text-4xl font-semibold text-center text-gray-100 section-heading">Gallery</h2>
@@ -1081,14 +1159,14 @@
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="py-16 bg-gray-800">
+        <section id="contact" class="py-16 bg-black">
             <div class="container mx-auto px-4">
                 <div class="section-heading-container">
                     <h2 class="text-4xl font-semibold text-center text-gray-100 section-heading">Contact me ...</h2>
                     <span class="section-heading-line"></span>
                     <span class="section-heading-accent-line"></span>
                 </div>
-                <div class="max-w-xl mx-auto bg-gray-900 p-8 rounded-lg shadow-md">
+                <div class="max-w-xl mx-auto bg-black p-8 rounded-lg shadow-md">
                     <!--p class="text-center text-lg mb-6 text-gray-300">
                         For collaborations, performances, and workshops, please feel free to reach out.
                 </p-->
@@ -1148,7 +1226,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-950 text-gray-400 py-8 text-center text-sm">
+    <footer class="bg-black text-gray-400 py-8 text-center text-sm">
         <div class="container mx-auto px-4">
             <p>&copy; 2025 Tripti Sharma. All rights reserved.</p>
             <p class="mt-2">Designed and Developed by Pravin Kumar Rana using Gemini AI</p>
@@ -1191,6 +1269,8 @@
         document.addEventListener('DOMContentLoaded', function() {
             // --- Modal related variables and functions (for videos) ---
             const videoThumbnails = document.querySelectorAll('.video-thumbnail'); // All thumbnails in the carousel
+            const discographyPlayButtons = document.querySelectorAll('.discography-item-image-wrapper .play-button-overlay'); // New: Select discography play buttons
+
             const videoModal = document.getElementById('videoModal');
             const modalVideoFrame = document.getElementById('modalVideoFrame');
             const closeModalBtn = document.getElementById('closeModalBtn');
@@ -1198,16 +1278,30 @@
             const nextVideoBtn = document.getElementById('nextVideoBtn');
 
             let currentModalVideoIndex = 0;
-            // This array will store unique video IDs for modal navigation
+            // This array will store unique video IDs for modal navigation, combining both sources
             let uniqueVideoIdsForModal = [];
 
-            // Populate uniqueVideoIdsForModal from data-video-id attributes
-            videoThumbnails.forEach(thumbnail => {
-                const videoId = thumbnail.getAttribute('data-video-id');
-                if (videoId && !uniqueVideoIdsForModal.includes(videoId)) {
-                    uniqueVideoIdsForModal.push(videoId);
-                }
-            });
+            // Function to populate uniqueVideoIdsForModal from all sources
+            function populateUniqueVideoIds() {
+                uniqueVideoIdsForModal = []; // Clear existing
+                // Add video IDs from featured carousel
+                videoThumbnails.forEach(thumbnail => {
+                    const videoId = thumbnail.getAttribute('data-video-id');
+                    if (videoId && !uniqueVideoIdsForModal.includes(videoId)) {
+                        uniqueVideoIdsForModal.push(videoId);
+                    }
+                });
+                // Add video IDs from discography play buttons
+                discographyPlayButtons.forEach(button => {
+                    const videoId = button.getAttribute('data-video-id');
+                    if (videoId && !uniqueVideoIdsForModal.includes(videoId)) {
+                        uniqueVideoIdsForModal.push(videoId);
+                    }
+                });
+            }
+
+            // Call this once on DOMContentLoaded
+            populateUniqueVideoIds();
 
             // Function to show a specific video in the modal
             function showModalVideo(index) {
@@ -1223,7 +1317,7 @@
 
             // Event listener for single-clicking on video thumbnails to open modal
             videoThumbnails.forEach(thumbnail => {
-                thumbnail.addEventListener('click', function() { // Changed from 'dblclick' to 'click'
+                thumbnail.addEventListener('click', function() {
                     const clickedVideoId = this.getAttribute('data-video-id');
                     const firstOccurrenceIndex = uniqueVideoIdsForModal.indexOf(clickedVideoId);
                     if (firstOccurrenceIndex !== -1) {
@@ -1238,6 +1332,19 @@
                     }, { once: true }); // Ensure the listener is removed after one execution
                 });
             });
+
+            // New: Event listener for discography play buttons
+            discographyPlayButtons.forEach(button => {
+                button.addEventListener('click', function(event) {
+                    event.preventDefault(); // Prevent default link behavior (opening new tab)
+                    const clickedVideoId = this.getAttribute('data-video-id');
+                    const firstOccurrenceIndex = uniqueVideoIdsForModal.indexOf(clickedVideoId);
+                    if (firstOccurrenceIndex !== -1) {
+                        showModalVideo(firstOccurrenceIndex);
+                    }
+                });
+            });
+
 
             // Event listener for closing the modal
             closeModalBtn.addEventListener('click', function() {
@@ -1354,7 +1461,7 @@
             const lightboxModal = document.getElementById('lightbox-modal');
             const lightboxImage = document.getElementById('lightbox-image');
             const lightboxClose = document.getElementById('lightbox-close');
-            const lightboxPrev = document.getElementById('lightbox-prev');
+            const lightboxPrev = document = document.getElementById('lightbox-prev');
             const lightboxNext = document.getElementById('lightbox-next');
 
             let currentImageIndex = 0;
