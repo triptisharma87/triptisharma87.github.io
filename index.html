@@ -19,24 +19,42 @@
             overflow-x: hidden; /* Prevent horizontal scroll on body */
         }
         /* Styling for section headings */
-        .section-heading {
-            border-bottom: 2px solid #555; /* Darker border for headings */
-            padding-bottom: 0.5rem;
-            margin-bottom: 2rem;
-            color: #f8f8f8; /* Ensure heading text is visible */
-            position: relative; /* Added for the ::after pseudo-element */
-            display: inline-block; /* Added for the ::after pseudo-element */
+        /* Modified section-heading to remove pseudo-element and use a full-width border for flexibility */
+        .section-heading-container {
+            position: relative;
+            margin-bottom: 2rem; /* Space below the heading */
+            text-align: center;
         }
-        .section-heading::after {
-            content: '';
+
+        .section-heading {
+            color: #f8f8f8; /* Ensure heading text is visible */
+            padding-bottom: 0.5rem; /* Space between text and line */
+            display: inline-block; /* Allows the border to wrap content */
+        }
+
+        /* The line below the section heading */
+        .section-heading-line {
+            display: block;
+            width: 100%; /* Occupy full width */
+            height: 2px; /* Thickness of the line */
+            background-color: #555; /* Darker border color */
             position: absolute;
-            left: 50%;
-            bottom: -10px;
-            width: 80px;
-            height: 4px;
+            bottom: 0; /* Align to the bottom of the container */
+            left: 0;
+        }
+
+        /* Accent line for heading */
+        .section-heading-accent-line {
+            display: block;
+            height: 4px; /* Thicker accent line */
             background-color: #f97316; /* Tailwind orange-500 */
             border-radius: 2px;
-            transform: translateX(-50%);
+            position: absolute;
+            left: 50%; /* Center it */
+            transform: translateX(-50%); /* Adjust for true centering */
+            width: 80px; /* Fixed width for the accent */
+            bottom: -10px; /* Position below the line */
+            z-index: 10; /* Ensure it's above the main line */
         }
         /* Navigation link hover effect */
         .nav-link {
@@ -373,6 +391,16 @@
         .lightbox-modal #lightbox-next {
             right: 1rem;
         }
+
+        /* Performance image styling */
+        .performance-image {
+            width: 100%;
+            height: 250px; /* Increased height for better visibility */
+            object-fit: cover; /* Ensures the image covers the area, cropping if necessary */
+            object-position: top; /* Aligns the image to the top */
+            cursor: pointer;
+            border-radius: 0.5rem 0.5rem 0 0; /* Rounded top corners */
+        }
     </style>
 </head>
 <body class="antialiased leading-relaxed bg-gray-900 text-gray-100">
@@ -395,6 +423,7 @@
                 <li><a href="#music" class="nav-link text-white hover:text-amber-400">Music</a></li>
                 <li><a href="#about" class="nav-link text-white hover:text-amber-400">Biography</a></li>
                 <li><a href="#media" class="nav-link text-white hover:text-amber-400">Media</a></li>
+                <li><a href="#performances" class="nav-link text-white hover:text-amber-400">Performances</a></li> <!-- Added Performances link -->
                 <li><a href="#accolades" class="nav-link text-white hover:text-amber-400">Accolades</a></li>
                 <li><a href="#gallery" class="nav-link text-white hover:text-amber-400">Gallery</a></li>
                 <li><a href="#contact" class="nav-link text-white hover:text-amber-400">Contact</a></li>
@@ -437,8 +466,11 @@
         <!-- Music Section: Featured Videos and Discography -->
         <section id="music" class="py-16 bg-gray-800">
         <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-semibold text-center mb-10 text-gray-100 section-heading">Listen to me ...</h2>
-            <!--h2 class="text-4xl font-semibold text-center mb-10 text-gray-100 section-heading rounded-lg p-4 bg-gray-700 shadow-xl">Listein to me ...</h2-->
+            <div class="section-heading-container">
+                <h2 class="text-4xl font-semibold text-center text-gray-100 section-heading">Listen to me ...</h2>
+                <span class="section-heading-line"></span>
+                <span class="section-heading-accent-line"></span>
+            </div>
             <!-- Featured Videos Carousel -->
             <h3 class="text-3xl font-semibold text-center mb-6 text-gray-100">Featured videos</h3>
             <div id="featured-videos-carousel" class="py-4 bg-gray-900 rounded-lg mb-8 shadow-md relative">
@@ -632,7 +664,11 @@
         <!-- About Me Section -->
         <section id="about" class="py-16 bg-gray-800 text-gray-200"> <!-- Dark background -->
             <div class="container mx-auto px-4">
-                <h2 class="text-4xl font-semibold text-center mb-10 text-gray-100 section-heading">My musical journey ...</h2>
+                <div class="section-heading-container">
+                    <h2 class="text-4xl font-semibold text-center text-gray-100 section-heading">My musical journey ...</h2>
+                    <span class="section-heading-line"></span>
+                    <span class="section-heading-accent-line"></span>
+                </div>
                 <div class="text-lg text-gray-300 space-y-6"> <!-- Removed grid for text and integrated images inline -->
                     <p>Tripti Sharma is a promising Indian classical and semi-classical vocalist, deeply rooted in the rich traditions of the <span class="font-semibold text-accent">Banaras Gharana</span>. This ancient and distinguished gharana of Indian classical music is renowned for its technicalities and profound expressions. Tripti's diverse repertoire includes <span class="font-semibold">Khayal, Thumri, Tappa, Dadra, Kajri, Holi, Jhoola, Chaiti, and Bhajan</span>. As a performer, her compositions revolve around themes of spirituality, peace, love, and devotion.</p>
                     <p>
@@ -659,7 +695,11 @@
        <!--- Section Media coverage --->
         <section id="media" class="py-16 bg-gray-800">
         <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-semibold text-center mb-10 text-gray-100 section-heading">Media coverage...</h2>
+            <div class="section-heading-container">
+                <h2 class="text-4xl font-semibold text-center text-gray-100 section-heading">Media coverage...</h2>
+                <span class="section-heading-line"></span>
+                <span class="section-heading-accent-line"></span>
+            </div>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-12">
 
     
@@ -705,7 +745,11 @@
         <!-- Performances Section -->
     <section id="performances" class="py-16 bg-gray-900">
         <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center mb-10 text-gray-100 section-heading">Recent notable performances ...</h2>
+            <div class="section-heading-container">
+                <h2 class="text-4xl font-bold text-center text-gray-100 section-heading">Recent notable performances ...</h2>
+                <span class="section-heading-line"></span>
+                <span class="section-heading-accent-line"></span>
+            </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
                 <!-- Stockholm Sangeet Sabha -->
@@ -713,7 +757,7 @@
                     <!-- Image is now clickable to open the lightbox, using the original image path -->
                     <img src="images/events/20231206-Stockholm-Sangeet-Sabha-9.jpeg"
                          alt="Stockholm Sangeet Sabha poster"
-                         class="w-full h-48 object-cover cursor-pointer rounded-t-lg performance-image"
+                         class="performance-image"
                          onerror="this.onerror=null;this.src='20231206-Stockholm-Sangeet-Sabha-9.jpeg';"
                          data-full-src="images/events/20231206-Stockholm-Sangeet-Sabha-9.jpeg"> <!-- data-full-src also uses original path -->
                     <div class="p-6">
@@ -730,7 +774,7 @@
                 <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
                     <img src="images/events/20240818-Riga-Lativa-Indijas-Stasti.jpeg"
                          alt="Lativa 2024 Festival poster"
-                         class="w-full h-48 object-cover cursor-pointer rounded-t-lg performance-image"
+                         class="performance-image"
                          onerror="this.onerror=null;this.src='images/events/20240818-Riga-Lativa-Indijas-Stasti.jpeg';"
                          data-full-src="images/events/20240818-Riga-Lativa-Indijas-Stasti.jpeg">
                     <div class="p-6">
@@ -745,7 +789,7 @@
                 <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
                     <img src="images/events/20230819-Riga-Lativa-Birthday.jpeg"
                          alt="Riga Birthday 2023 Festival poster"
-                         class="w-full h-48 object-cover cursor-pointer rounded-t-lg performance-image"
+                         class="performance-image"
                          onerror="this.onerror=null;this.src='images/events/20230819-Riga-Lativa-Birthday.jpeg';"
                          data-full-src="images/events/20230819-Riga-Lativa-Birthday.jpeg">
                     <div class="p-6">
@@ -759,7 +803,7 @@
                 <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
                     <img src="images/events/20230816-Riga-Lativa-Nakts-Raga.jpeg"
                          alt="Lativa 2023 Festival poster"
-                         class="w-full h-48 object-cover cursor-pointer rounded-t-lg performance-image"
+                         class="performance-image"
                          onerror="this.onerror=null;this.src='images/events/20230816-Riga-Lativa-Nakts-Raga.jpeg';"
                          data-full-src="images/events/20230816-Riga-Lativa-Nakts-Raga.jpeg">
                     <div class="p-6">
@@ -773,7 +817,7 @@
                 <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
                     <img src="images/events/20221006-Sarang-Korea.jpeg"
                          alt="Sangeet Samaroh 2022 poster"
-                         class="w-full h-48 object-cover cursor-pointer rounded-t-lg performance-image"
+                         class="performance-image"
                          onerror="this.onerror=null;this.src='images/events/20221006-Sarang-Korea.jpeg';"
                          data-full-src="images/events/20221006-Sarang-Korea.jpeg">
                     <div class="p-6">
@@ -787,7 +831,7 @@
                 <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
                     <img src="images/events/20220828-Sangeet-Samaroh-Delhi.jpeg"
                          alt="Sangeet Samaroh Delhi 2022 poster"
-                         class="w-full h-48 object-cover cursor-pointer rounded-t-lg performance-image"
+                         class="performance-image"
                          onerror="this.onerror=null;this.src='images/events/20220828-Sangeet-Samaroh-Delhi.jpeg';"
                          data-full-src="images/events/20220828-Sangeet-Samaroh-Delhi.jpeg">
                     <div class="p-6">
@@ -801,7 +845,7 @@
                 <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
                     <img src="images/events/20220209-Vasantuassv-DU-India.jpeg"
                          alt="Vasantotsav 2022 poster"
-                         class="w-full h-48 object-cover cursor-pointer rounded-t-lg performance-image"
+                         class="performance-image"
                          onerror="this.onerror=null;this.src='images/events/20220209-Vasantuassv-DU-India.jpeg';"
                          data-full-src="images/events/20220209-Vasantuassv-DU-India.jpeg">
                     <div class="p-6">
@@ -815,7 +859,7 @@
                 <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
                     <img src="images/events/20200529-Sanskar-Bharti.jpeg"
                          alt="Sanskar Bharati Live poster"
-                         class="w-full h-48 object-cover cursor-pointer rounded-t-lg performance-image"
+                         class="performance-image"
                          onerror="this.onerror=null;this.src='images/events/20200529-Sanskar-Bharti.jpeg';"
                          data-full-src="images/events/20200529-Sanskar-Bharti.jpeg"> <!-- data-full-src also uses original path -->
                     <div class="p-6">
@@ -832,9 +876,13 @@
             <!-- Accolades Section -->
     <section id="accolades" class="py-16 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 min-h-screen flex items-center justify-center">
         <div class="container mx-auto px-4 py-8">
-            <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 section-heading tracking-tight">
-                Selected Accolades
-            </h2>
+            <div class="section-heading-container">
+                <h2 class="text-4xl md:text-5xl font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 section-heading tracking-tight">
+                    Selected Accolades
+                </h2>
+                <span class="section-heading-line"></span>
+                <span class="section-heading-accent-line"></span>
+            </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 xl:gap-10">
                 <!-- Accolade Card 1 -->
@@ -1003,7 +1051,11 @@
         <!-- Gallery Section -->
         <section id="gallery" class="py-16 bg-gray-800">
             <div class="container mx-auto px-4">
-                <h2 class="text-4xl font-semibold text-center mb-10 text-gray-100 section-heading">Gallery</h2>
+                <div class="section-heading-container">
+                    <h2 class="text-4xl font-semibold text-center text-gray-100 section-heading">Gallery</h2>
+                    <span class="section-heading-line"></span>
+                    <span class="section-heading-accent-line"></span>
+                </div>
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     <!-- Gallery Item -->
                     <div class="aspect-square rounded-lg overflow-hidden shadow-md transform hover:scale-105 transition-transform duration-300">
@@ -1031,7 +1083,11 @@
         <!-- Contact Section -->
         <section id="contact" class="py-16 bg-gray-800">
             <div class="container mx-auto px-4">
-                <h2 class="text-4xl  font-semibold text-center mb-10 text-gray-100 section-heading">Contact me ...</h2>
+                <div class="section-heading-container">
+                    <h2 class="text-4xl font-semibold text-center text-gray-100 section-heading">Contact me ...</h2>
+                    <span class="section-heading-line"></span>
+                    <span class="section-heading-accent-line"></span>
+                </div>
                 <div class="max-w-xl mx-auto bg-gray-900 p-8 rounded-lg shadow-md">
                     <!--p class="text-center text-lg mb-6 text-gray-300">
                         For collaborations, performances, and workshops, please feel free to reach out.
