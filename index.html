@@ -134,15 +134,85 @@
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        /* CSS Variables for Theme */
+        :root {
+            /* Dark Theme (Default) */
+            --bg-color-primary: #000000;
+            --text-color-primary: #e0e0e0;
+            --bg-color-secondary: #2a2a2a; /* For cards, sections */
+            --header-bg: #000000;
+            --accent-color: #f59e0b;
+            --line-color: #555;
+            --icon-bg: #333;
+            --icon-color: #e0e0e0;
+            --shadow-color: rgba(0, 0, 0, 0.3);
+            --shadow-hover-color: rgba(0, 0, 0, 0.5);
+            --border-color-default: #e0e0e0; 
+            --modal-bg: #1a202c; /* Specific for modal background */
+        }
+
+        @media (prefers-color-scheme: light) {
+            :root {
+                /* Light Theme */
+                --bg-color-primary: #ffffff;
+                --text-color-primary: #333333;
+                --bg-color-secondary: #f0f0f0;
+                --header-bg: #ffffff;
+                --accent-color: #f59e0b; /* Keep accent same */
+                --line-color: #cccccc;
+                --icon-bg: #e0e0e0;
+                --icon-color: #333333;
+                --shadow-color: rgba(0, 0, 0, 0.1);
+                --shadow-hover-color: rgba(0, 0, 0, 0.2);
+                --border-color-default: #333333;
+                --modal-bg: #ffffff; /* Specific for modal background */
+            }
+        }
+
         /* Base styles for body and typography */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #000000; /* Dark background changed to black */
-            color: #e0e0e0; /* Light text color */
+            background-color: var(--bg-color-primary);
+            color: var(--text-color-primary);
             overflow-x: hidden; /* Prevent horizontal scroll on body */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.625;
         }
+
+        /* Custom classes for theme application */
+        .theme-bg-primary {
+            background-color: var(--bg-color-primary);
+        }
+
+        .theme-bg-secondary {
+            background-color: var(--bg-color-secondary);
+        }
+
+        .theme-text-primary {
+            color: var(--text-color-primary);
+        }
+
+        .theme-text-secondary {
+            color: var(--text-color-primary); /* Use primary with opacity for secondary text feel */
+            opacity: 0.7;
+        }
+
+        .theme-header {
+            background-color: var(--header-bg);
+            color: var(--text-color-primary);
+            box-shadow: 0 4px 6px var(--shadow-color); /* Apply shadow with variable */
+        }
+
+        .theme-shadow {
+            box-shadow: 0 4px 6px var(--shadow-color);
+        }
+
+        .theme-shadow-hover:hover {
+            box-shadow: 0 8px 12px var(--shadow-hover-color);
+        }
+
         /* Styling for section headings */
-        /* Modified section-heading to remove pseudo-element and use a full-width border for flexibility */
         .section-heading-container {
             position: relative;
             margin-bottom: 2rem; /* Space below the heading */
@@ -150,7 +220,7 @@
         }
 
         .section-heading {
-            color: #f8f8f8; /* Ensure heading text is visible */
+            color: var(--text-color-primary); /* Ensure heading text is visible */
             padding-bottom: 0.5rem; /* Space between text and line */
             display: inline-block; /* Allows the border to wrap content */
         }
@@ -160,7 +230,7 @@
             display: block;
             width: 100%; /* Occupy full width */
             height: 2px; /* Thickness of the line */
-            background-color: #555; /* Darker border color */
+            background-color: var(--line-color);
             position: absolute;
             bottom: 0; /* Align to the bottom of the container */
             left: 0;
@@ -170,7 +240,7 @@
         .section-heading-accent-line {
             display: block;
             height: 4px; /* Thicker accent line */
-            background-color: #f97316; /* Tailwind orange-500 */
+            background-color: var(--accent-color);
             border-radius: 2px;
             position: absolute;
             left: 50%; /* Center it */
@@ -182,24 +252,25 @@
         /* Navigation link hover effect */
         .nav-link {
             transition: color 0.3s ease;
+            color: var(--text-color-primary); /* Ensure initial color is correct */
         }
         .nav-link:hover {
-            color: #f59e0b; /* Tailwind amber-500 */
+            color: var(--accent-color);
         }
         /* Primary button styling */
         .btn-primary {
-            background-color: #f59e0b; /* Tailwind amber-500 */
+            background-color: var(--accent-color);
             color: white;
             padding: 0.75rem 1.5rem;
             border-radius: 0.5rem;
             transition: background-color 0.3s ease;
         }
         .btn-primary:hover {
-            background-color: #d97706; /* Tailwind orange-600 */
+            background-color: #d97706; /* Tailwind orange-600 - keeping this specific for button hover for now */
         }
         /* Accent text color */
         .text-accent {
-            color: #f59e0b; /* Tailwind amber-500 */
+            color: var(--accent-color);
         }
         /* Social media icon link styling */
         .icon-link {
@@ -209,19 +280,20 @@
             width: 2.5rem;
             height: 2.5rem;
             border-radius: 50%;
-            background-color: #333; /* Darker background for icons */
-            color: #e0e0e0; /* Light icon color */
+            background-color: var(--icon-bg);
+            color: var(--icon-color);
             transition: background-color 0.3s ease, color 0.3s ease;
         }
         .icon-link:hover {
-            background-color: #f59e0b;
+            background-color: var(--accent-color);
             color: white;
         }
         /* Specific hover colors for social media icons */
+        /* Keeping these specific for brand colors */
         .icon-link.youtube:hover { background-color: #FF0000; }
         .icon-link.apple-music:hover { background-color: #FC3C44; }
         .icon-link.spotify:hover { background-color: #1DB954; }
-        .icon-link.epidemic-sound:hover { background-color: #000000; color: #66CC00; } /* Example color for Epidemic Sound */
+        .icon-link.epidemic-sound:hover { background-color: #000000; color: #66CC00; }
         .icon-link.instagram:hover { background-color: #E4405F; }
         .icon-link.facebook:hover { background-color: #1877F2; }
 
@@ -244,48 +316,51 @@
         }
         /* Custom styles for Accolades cards */
         .accolade-card {
-            background-color: #2a2a2a; /* Slightly lighter dark background for cards */
+            background-color: var(--bg-color-secondary);
             border-radius: 0.75rem;
             padding: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 6px var(--shadow-color);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            border-top: 4px solid var(--border-color-default); /* Use default border color */
         }
         .accolade-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 8px 12px var(--shadow-hover-color);
+            border-top-color: var(--accent-color); /* Change border color on hover */
         }
         .accolade-icon {
             font-size: 3rem;
-            color: #f59e0b; /* Accent color for icons */
+            color: var(--accent-color); /* Accent color for icons */
             margin-bottom: 1rem;
         }
         .accolade-year {
             font-size: 1.5rem;
             font-weight: 700;
-            color: #f8f8f8;
+            color: var(--text-color-primary);
             margin-bottom: 0.5rem;
         }
         .accolade-name {
             font-size: 1.1rem;
             font-weight: 600;
-            color: #e0e0e0;
+            color: var(--text-color-primary);
             margin-bottom: 0.25rem;
         }
         .accolade-org {
             font-size: 0.9rem;
-            color: #b0b0b0;
+            color: var(--text-color-primary); /* Use primary text color for consistency */
+            opacity: 0.7; /* Make it slightly lighter */
         }
         /* Styles for media section (individual video items) */
         .media-item {
-            background-color: #2a2a2a;
+            background-color: var(--bg-color-secondary);
             border-radius: 0.75rem;
             padding: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 6px var(--shadow-color);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -336,7 +411,7 @@
             max-width: 1200px; /* Max width for larger screens */
             height: 0;
             padding-bottom: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
-            background-color: #1a202c; /* Tailwind gray-900 */
+            background-color: var(--modal-bg); /* Use primary background */
             border-radius: 0.5rem;
             overflow: hidden; /* Ensure video stays within bounds */
         }
@@ -351,7 +426,7 @@
         /* Styles for modal close and navigation buttons */
         .close-button, .nav-button {
             position: absolute;
-            color: white;
+            color: white; /* Always white for visibility on dark overlay */
             font-size: 2.5rem;
             font-weight: bold;
             cursor: pointer;
@@ -418,12 +493,12 @@
                 top: 100%; /* Position below the header */
                 right: 0;
                 width: 100%; /* Full width dropdown */
-                background-color: #000000; /* Match header background */
+                background-color: var(--header-bg); /* Match header background */
                 flex-direction: column;
                 align-items: flex-end; /* Align links to the right */
                 padding: 1rem 0;
-                border-top: 1px solid #333;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+                border-top: 1px solid var(--line-color);
+                box-shadow: 0 4px 6px var(--shadow-color);
                 transition: all 0.3s ease-in-out; /* Smooth transition */
             }
             .nav-links-mobile li {
@@ -478,9 +553,9 @@
         .lightbox-modal img {
             max-width: 100%;
             max-height: 100%;
-            object-contain;
+            object-fit: contain; /* Corrected to object-fit */
             border-radius: 0.5rem;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 10px var(--shadow-color);
         }
         .lightbox-modal button {
             position: absolute;
@@ -497,7 +572,7 @@
         }
         .lightbox-modal button:hover {
             background-color: rgba(0, 0, 0, 0.8);
-            color: #f97316; /* Orange hover effect */
+            color: var(--accent-color); /* Orange hover effect */
         }
         .lightbox-modal #lightbox-close {
             top: 1rem;
@@ -554,31 +629,31 @@
         }
     </style>
 </head>
-<body class="antialiased leading-relaxed bg-gray-900 text-gray-100">
+<body class="antialiased leading-relaxed">
 
     <!-- Header and Navigation -->
-    <header id="mainHeader" class="bg-black text-white shadow-lg py-4 fixed w-full z-30">
+    <header id="mainHeader" class="py-4 fixed w-full z-30 theme-header">
         <nav class="container mx-auto flex items-center px-4 relative">
             <!-- Logo and Title container - for small screens this will be centered -->
             <div class="flex-1 flex justify-center items-center md:justify-start">
                 <img src="images/logos/aalapini-logo_v0.png" alt="Tripti Sharma Logo" class="h-12 w-12 mr-2 md:mr-4">
-                <a href="#" class="text-2xl uppercase font-normal text-white text-center md:text-left">Tripti Sharma</a>
+                <a href="#" class="text-2xl uppercase font-normal text-center md:text-left theme-text-primary">Tripti Sharma</a>
             </div>
 
             <!-- Hamburger Icon for Mobile - absolutely positioned on smaller screens -->
-            <button id="menuToggle" class="md:hidden text-white text-2xl focus:outline-none absolute right-4 top-1/2 -translate-y-1/2 z-40">
+            <button id="menuToggle" class="md:hidden text-2xl focus:outline-none absolute right-4 top-1/2 -translate-y-1/2 z-40 theme-text-primary">
                 <i class="fas fa-bars"></i>
             </button>
 
             <!-- Navigation Links - hidden on small screens, flex on medium screens and up, positioned to the right -->
             <ul id="mainNav" class="hidden md:flex flex-wrap md:justify-end md:space-x-8 text-lg">
                 <!-- Navigation links in uppercase -->
-                <li><a href="#home" class="nav-link text-white hover:text-amber-400 uppercase">Home</a></li>
-                <li><a href="#music" class="nav-link text-white hover:text-amber-400 uppercase">Music</a></li>
-                <li><a href="#about" class="nav-link text-white hover:text-amber-400 uppercase">Biography</a></li>
-                <li><a href="#performances" class="nav-link text-white hover:text-amber-400 uppercase">Performances</a></li>
-                <li><a href="#gallery" class="nav-link text-white hover:text-amber-400 uppercase">Gallery</a></li>
-                <li><a href="#contact" class="nav-link text-white hover:text-amber-400 uppercase">Contact</a></li>
+                <li><a href="#home" class="nav-link uppercase">Home</a></li>
+                <li><a href="#music" class="nav-link uppercase">Music</a></li>
+                <li><a href="#about" class="nav-link uppercase">Biography</a></li>
+                <li><a href="#performances" class="nav-link uppercase">Performances</a></li>
+                <li><a href="#gallery" class="nav-link uppercase">Gallery</a></li>
+                <li><a href="#contact" class="nav-link uppercase">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -586,7 +661,7 @@
     <main class="pt-20"> <!-- Padding top to account for fixed header -->
 
         <!-- Hero Section -->
-        <section id="home" class="relative text-white overflow-hidden shadow-xl h-[80vh] md:h-[90vh] flex items-center">
+        <section id="home" class="relative text-white overflow-hidden theme-shadow h-[80vh] md:h-[90vh] flex items-center">
             <!-- Full-width background image. object-right ensures the right side of the image is more prominent. -->
             <img src="images/profile//tripti-sharma-profile-hr1-2025.jpg" alt="Tripti Sharma performing" class="absolute inset-0 w-full h-full object-cover object-right z-0">
 
@@ -594,12 +669,12 @@
             <div class="absolute top-0 left-0 h-full w-full md:w-1/3 bg-black bg-opacity-50 md:bg-opacity-20 z-10">
                 <!-- Content inside the blur overlay, centered vertically and horizontally on small screens -->
                 <div class="h-full flex flex-col justify-center items-center text-center p-4 md:p-8 md:text-left">
-                    <h1 class="text-4xl md:text-4xl lg:text-5xl font-extrabold leading-tight mb-4 drop-shadow-lg text-white">Tripti Sharma</h1>
-                    <p class="text-xl md:text-lg lg:text-xl font-light mb-6 text-white">Indian Classical and Semi-classical Vocalist</p>
-                    <p class="text-base md:text-sm lg:text-base mb-8 md:text-center text-white">Deeply rooted in the rich traditions of the Banaras Gharana.</p>
+                    <h1 class="text-4xl md:text-4xl lg:text-5xl font-extrabold leading-tight mb-4 drop-shadow-lg theme-text-primary">Tripti Sharma</h1>
+                    <p class="text-xl md:text-lg lg:text-xl font-light mb-6 theme-text-primary">Indian Classical and Semi-classical Vocalist</p>
+                    <p class="text-base md:text-sm lg:text-base mb-8 md:text-center theme-text-primary">Deeply rooted in the rich traditions of the Banaras Gharana.</p>
                     <div class="flex flex-col sm:flex-row justify-center md:justify-start space-x-0 sm:space-x-4 space-y-4 sm:space-y-0 mb-6">
-                        <a href="#music" class="btn-primary inline-block font-semibold bg-white text-orange-600 hover:bg-gray-100">Listen to me </a>
-                        <a href="#contact" class="btn-primary inline-block font-semibold bg-white text-orange-600 hover:bg-gray-100">Contact me</a>
+                        <a href="#music" class="btn-primary inline-block font-semibold">Listen to me </a>
+                        <a href="#contact" class="btn-primary inline-block font-semibold">Contact me</a>
                     </div>
                     <!-- Social media icons in Hero section -->
                     <div class="flex justify-center md:justify-start space-x-4">
@@ -615,23 +690,23 @@
         </section>
 
         <!-- Music Section: Featured Videos and Discography -->
-        <section id="music" class="py-16 bg-black min-h-[calc(100vh-5rem)]">
+        <section id="music" class="py-16 min-h-[calc(100vh-5rem)] theme-bg-primary">
         <div class="container mx-auto px-4 md:px-8 lg:px-16">
             <div class="section-heading-container">
                 <!-- Changed text-4xl to text-3xl -->
-                <h2 class="text-3xl text-center text-gray-100 section-heading">Listen to me</h2>
+                <h2 class="text-3xl text-center section-heading">Listen to me</h2>
                 <span class="section-heading-line"></span>
                 <span class="section-heading-accent-line"></span>
             </div>
             <!-- Featured Videos Carousel -->
             <!-- Changed text-3xl to text-2xl -->
             <div class="section-heading-container">
-		<h3 class="text-2xl text-center text-gray-100 section-heading">Featured videos</h3>
+		<h3 class="text-2xl text-center section-heading">Featured videos</h3>
                  <!--span class="section-heading-line"></span-->
                  <span class="section-heading-accent-line"></span>
             </div>
 
-            <div id="featured-videos-carousel" class="py-4 bg-black rounded-lg mb-8 shadow-md relative">
+            <div id="featured-videos-carousel" class="py-4 rounded-lg mb-8 theme-shadow relative theme-bg-secondary">
                 <!-- Carousel Navigation Buttons -->
                 <span id="carouselPrevBtn" class="carousel-nav-button carousel-prev-button">&lt;</span>
                 <span id="carouselNextBtn" class="carousel-nav-button carousel-next-button">&gt;</span>
@@ -639,18 +714,18 @@
                 <div class="flex whitespace-nowrap space-x-4 py-4 px-2 video-scroll-container">
                     <!-- Videos for the carousel. Duplicated to enable infinite scroll effect. -->
                     <!-- Original set of videos -->
-                    <iframe class="flex-shrink-0 w-full h-48 sm:w-[560px] sm:h-[315px] md:w-[640px] md:h-[360px] lg:w-[853px] lg:h-[480px] rounded-lg shadow-lg video-thumbnail transition-transform duration-200 ease-in-out" data-video-id="8O26bqiJ_40" src="https://www.youtube.com/embed/8O26bqiJ_40?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <iframe class="flex-shrink-0 w-full h-48 sm:w-[560px] sm:h-[315px] md:w-[640px] md:h-[360px] lg:w-[853px] lg:h-[480px] rounded-lg shadow-lg video-thumbnail transition-transform duration-200 ease-in-out" data-video-id="vN_Oqt7XApg" src="https://www.youtube.com/embed/vN_Oqt7XApg?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <iframe class="flex-shrink-0 w-full h-48 sm:w-[560px] sm:h-[315px] md:w-[640px] md:h-[360px] lg:w-[853px] lg:h-[480px] rounded-lg shadow-lg video-thumbnail transition-transform duration-200 ease-in-out" data-video-id="De0sI5pNW1E" src="https://www.youtube.com/embed/De0sI5pNW1E?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <iframe class="flex-shrink-0 w-full h-48 sm:w-[560px] sm:h-[315px] md:w-[640px] md:h-[360px] lg:w-[853px] lg:h-[480px] rounded-lg shadow-lg video-thumbnail transition-transform duration-200 ease-in-out" data-video-id="zazjt9QXqt4" src="https://www.youtube.com/embed/zazjt9QXqt4?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <iframe class="flex-shrink-0 w-full h-48 sm:w-[560px] sm:h-[315px] md:w-[640px] md:h-[360px] lg:w-[853px] lg:h-[480px] rounded-lg shadow-lg video-thumbnail transition-transform duration-200 ease-in-out" data-video-id="tpSrCJ8YHUw" src="https://www.youtube.com/embed/tpSrCJ8YHUw?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="flex-shrink-0 w-full h-48 sm:w-[560px] sm:h-[315px] md:w-[640px] md:h-[360px] lg:w-[853px] lg:h-[480px] rounded-lg theme-shadow video-thumbnail transition-transform duration-200 ease-in-out" data-video-id="8O26bqiJ_40" src="https://www.youtube.com/embed/8O26bqiJ_40?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="flex-shrink-0 w-full h-48 sm:w-[560px] sm:h-[315px] md:w-[640px] md:h-[360px] lg:w-[853px] lg:h-[480px] rounded-lg theme-shadow video-thumbnail transition-transform duration-200 ease-in-out" data-video-id="vN_Oqt7XApg" src="https://www.youtube.com/embed/vN_Oqt7XApg?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="flex-shrink-0 w-full h-48 sm:w-[560px] sm:h-[315px] md:w-[640px] md:h-[360px] lg:w-[853px] lg:h-[480px] rounded-lg theme-shadow video-thumbnail transition-transform duration-200 ease-in-out" data-video-id="De0sI5pNW1E" src="https://www.youtube.com/embed/De0sI5pNW1E?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="flex-shrink-0 w-full h-48 sm:w-[560px] sm:h-[315px] md:w-[640px] md:h-[360px] lg:w-[853px] lg:h-[480px] rounded-lg theme-shadow video-thumbnail transition-transform duration-200 ease-in-out" data-video-id="zazjt9QXqt4" src="https://www.youtube.com/embed/zazjt9QXqt4?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="flex-shrink-0 w-full h-48 sm:w-[560px] sm:h-[315px] md:w-[640px] md:h-[360px] lg:w-[853px] lg:h-[480px] rounded-lg theme-shadow video-thumbnail transition-transform duration-200 ease-in-out" data-video-id="tpSrCJ8YHUw" src="https://www.youtube.com/embed/tpSrCJ8YHUw?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
                     <!-- Duplicated set for seamless backward scrolling from the "start" of the logical list -->
-                    <iframe class="flex-shrink-0 w-full h-48 sm:w-[560px] sm:h-[315px] md:w-[640px] md:h-[360px] lg:w-[853px] lg:h-[480px] rounded-lg shadow-lg video-thumbnail transition-transform duration-200 ease-in-out" data-video-id="8O26bqiJ_40" src="https://www.youtube.com/embed/8O26bqiJ_40?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <iframe class="flex-shrink-0 w-full h-48 sm:w-[560px] sm:h-[315px] md:w-[640px] md:h-[360px] lg:w-[853px] lg:h-[480px] rounded-lg shadow-lg video-thumbnail transition-transform duration-200 ease-in-out" data-video-id="vN_Oqt7XApg" src="https://www.youtube.com/embed/vN_Oqt7XApg?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <iframe class="flex-shrink-0 w-full h-48 sm:w-[560px] sm:h-[315px] md:w-[640px] md:h-[360px] lg:w-[853px] lg:h-[480px] rounded-lg shadow-lg video-thumbnail transition-transform duration-200 ease-in-out" data-video-id="De0sI5pNW1E" src="https://www.youtube.com/embed/De0sI5pNW1E?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <iframe class="flex-shrink-0 w-full h-48 sm:w-[560px] sm:h-[315px] md:w-[640px] md:h-[360px] lg:w-[853px] lg:h-[480px] rounded-lg shadow-lg video-thumbnail transition-transform duration-200 ease-in-out" data-video-id="zazjt9QXqt4" src="https://www.youtube.com/embed/zazjt9QXqt4?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <iframe class="flex-shrink-0 w-full h-48 sm:w-[560px] sm:h-[315px] md:w-[640px] md:h-[360px] lg:w-[853px] lg:h-[480px] rounded-lg shadow-lg video-thumbnail transition-transform duration-200 ease-in-out" data-video-id="tpSrCJ8YHUw" src="https://www.youtube.com/embed/tpSrCJ8YHUw?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="flex-shrink-0 w-full h-48 sm:w-[560px] sm:h-[315px] md:w-[640px] md:h-[360px] lg:w-[853px] lg:h-[480px] rounded-lg theme-shadow video-thumbnail transition-transform duration-200 ease-in-out" data-video-id="8O26bqiJ_40" src="https://www.youtube.com/embed/8O26bqiJ_40?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="flex-shrink-0 w-full h-48 sm:w-[560px] sm:h-[315px] md:w-[640px] md:h-[360px] lg:w-[853px] lg:h-[480px] rounded-lg theme-shadow video-thumbnail transition-transform duration-200 ease-in-out" data-video-id="vN_Oqt7XApg" src="https://www.youtube.com/embed/vN_Oqt7XApg?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="flex-shrink-0 w-full h-48 sm:w-[560px] sm:h-[315px] md:w-[640px] md:h-[360px] lg:w-[853px] lg:h-[480px] rounded-lg theme-shadow video-thumbnail transition-transform duration-200 ease-in-out" data-video-id="De0sI5pNW1E" src="https://www.youtube.com/embed/De0sI5pNW1E?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="flex-shrink-0 w-full h-48 sm:w-[560px] sm:h-[315px] md:w-[640px] md:h-[360px] lg:w-[853px] lg:h-[480px] rounded-lg theme-shadow video-thumbnail transition-transform duration-200 ease-in-out" data-video-id="zazjt9QXqt4" src="https://www.youtube.com/embed/zazjt9QXqt4?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="flex-shrink-0 w-full h-48 sm:w-[560px] sm:h-[315px] md:w-[640px] md:h-[360px] lg:w-[853px] lg:h-[480px] rounded-lg theme-shadow video-thumbnail transition-transform duration-200 ease-in-out" data-video-id="tpSrCJ8YHUw" src="https://www.youtube.com/embed/tpSrCJ8YHUw?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
 
@@ -658,7 +733,7 @@
             <!-- Discography Section -->
             <!-- Changed text-3xl to text-2xl -->
 	    <div class="section-heading-container">
-		<h3 class="text-2xl text-center text-gray-100 section-heading">Discography</h3>
+		<h3 class="text-2xl text-center section-heading">Discography</h3>
                  <!--span class="section-heading-line"></span-->
                  <span class="section-heading-accent-line"></span>
             </div>
@@ -668,7 +743,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- NEW: Shiva Stuti 2025 -->
                     <!-- Flex container for album art and text/links -->
-                    <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 flex items-center p-4 space-x-4">
+                    <div class="rounded-lg theme-shadow-hover flex items-center p-4 space-x-4 theme-bg-secondary">
                         <div class="discography-item-image-wrapper w-[28%] flex-shrink-0">
                             <!-- Adjusted width to w-[28%] -->
                             <img src="images/artwork/ShivaStuti_2025.jpg" alt="Shiva Stuti album art" class="w-full aspect-square object-contain rounded-lg">
@@ -678,9 +753,9 @@
                         </div>
                         <div class="flex-grow flex flex-col justify-center">
                             <!-- flex-grow to take remaining space, flex-col for stacked text, justify-center for vertical alignment -->
-                            <h3 class="text-lg font-semibold text-white"><a href="https://youtu.be/8RshT7Bwth8?si=QG48ubQQZ_AvtzIR0" target="_blank">Shiva Stuti</a></h3>
-                            <p class="text-gray-300 text-sm">2025 </p>
-                            <p class="text-gray-400 text-xs mb-2">Tripti Sharma, Palace on Wheels</p>
+                            <h3 class="text-lg font-semibold theme-text-primary"><a href="https://youtu.be/8RshT7Bwth8?si=QG48ubQQZ_AvtzIR0" target="_blank">Shiva Stuti</a></h3>
+                            <p class="text-sm theme-text-secondary">2025 </p>
+                            <p class="text-xs mb-2 theme-text-secondary">Tripti Sharma, Palace on Wheels</p>
                             <div class="flex space-x-2 text-2xl">
                                 <a href="https://youtu.be/8RshT7Bwth8?si=QG48ubQZ_AvtzIR0" target="_blank" class="icon-link youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                                 <a href="https://music.apple.com/se/album/shiva-stuti-single/1817373669" class="icon-link apple-music" aria-label="Apple Music"><i class="fab fa-apple"></i></a>
@@ -690,7 +765,7 @@
                     </div>
 
                     <!-- NEW: Batiyan -->
-                    <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 flex items-center p-4 space-x-4">
+                    <div class="rounded-lg theme-shadow-hover flex items-center p-4 space-x-4 theme-bg-secondary">
                         <div class="discography-item-image-wrapper w-[28%] flex-shrink-0">
                             <img src="images/artwork/Batiyan_2025.jpg" alt="Batiyan album art" class="w-full aspect-square object-contain rounded-lg">
                             <a href="#" class="play-button-overlay" aria-label="Play Batiyan on YouTube" data-video-id="ZsZk2zv7qcA">
@@ -698,9 +773,9 @@
                             </a>
                         </div>
                         <div class="flex-grow flex flex-col justify-center">
-                            <h3 class="text-lg font-semibold text-white"><a href="https://youtu.be/ZsZk2zv7qcA?si=vU2XK3lRQAdD92Nd" target="_blank">Batiyan</a></h3>
-                            <p class="text-gray-300 text-sm">2025 </p>
-                            <p class="text-gray-400 text-xs mb-2">Tripti Sharma, Palace on Wheels</p>
+                            <h3 class="text-lg font-semibold theme-text-primary"><a href="https://youtu.be/ZsZk2zv7qcA?si=vU2XK3lRQAdD92Nd" target="_blank">Batiyan</a></h3>
+                            <p class="text-sm theme-text-secondary">2025 </p>
+                            <p class="text-xs mb-2 theme-text-secondary">Tripti Sharma, Palace on Wheels</p>
                             <div class="flex space-x-2 text-2xl">
                                 <a href="https://youtu.be/ZsZk2zv7qcA?si=vU2XK3lRQAdD92Nd" target="_blank" class="icon-link youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                                 <a href="https://music.apple.com/us/album/batiyan-single/1809193547" class="icon-link apple-music" aria-label="Apple Music"><i class="fab fa-apple"></i></a>
@@ -710,7 +785,7 @@
                     </div>
 
                      <!-- UPDATED: Payar Karta Hai -->
-                    <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 flex items-center p-4 space-x-4">
+                    <div class="rounded-lg theme-shadow-hover flex items-center p-4 space-x-4 theme-bg-secondary">
                         <div class="discography-item-image-wrapper w-[28%] flex-shrink-0">
                             <img src="images/artwork/Pardesiya_2025.jpg" alt="Pyar Karta Hai album art" class="w-full aspect-square object-contain rounded-lg">
                             <a href="#" class="play-button-overlay" aria-label="Play Pyar Karta Hai on YouTube" data-video-id="l5tk5VeH90Y">
@@ -718,9 +793,9 @@
                             </a>
                         </div>
                         <div class="flex-grow flex flex-col justify-center">
-                            <h3 class="text-lg font-semibold text-white"><a href="https://youtu.be/l5tk5VeH90Y?si=tnF2i2OlvbX" target="_blank">Pyar Karta Hai</a></h3>
-                            <p class="text-gray-300 text-sm">2025</p>
-                            <p class="text-gray-400 text-xs mb-2">Tripti Sharma, Palace on Wheels</p>
+                            <h3 class="text-lg font-semibold theme-text-primary"><a href="https://youtu.be/l5tk5VeH90Y?si=tnF2i2OlvbX" target="_blank">Pyar Karta Hai</a></h3>
+                            <p class="text-sm theme-text-secondary">2025</p>
+                            <p class="text-xs mb-2 theme-text-secondary">Tripti Sharma, Palace on Wheels</p>
                             <div class="flex space-x-2 text-2xl">
                                 <a href="https://youtu.be/l5tk5VeH90Y?si=tnF2i2OlvbX" target="_blank" class="icon-link youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                                 <a href="https://music.apple.com/us/song/pyar-karta-ai/1810793491" class="icon-link apple-music" aria-label="Apple Music"><i class="fab fa-apple"></i></a>
@@ -730,7 +805,7 @@
                     </div>
 
                     <!-- UPDATED: Pardesiya (added YouTube link) -->
-                    <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 flex items-center p-4 space-x-4">
+                    <div class="rounded-lg theme-shadow-hover flex items-center p-4 space-x-4 theme-bg-secondary">
                         <div class="discography-item-image-wrapper w-[28%] flex-shrink-0">
                             <img src="images/artwork/Pardesiya_2025.jpg" alt="Pardesiya album art" class="w-full aspect-square object-contain rounded-lg">
                             <a href="#" class="play-button-overlay" aria-label="Play Pardesiya on YouTube" data-video-id="OT2qIaU6NH8">
@@ -738,9 +813,9 @@
                             </a>
                         </div>
                         <div class="flex-grow flex flex-col justify-center">
-                            <h3 class="text-lg font-semibold text-white"><a href="https://youtu.be/OT2qIaU6NH8?si=JsQVYgtxW90kPgFn" target="_blank">Pardesiya</a></h3>
-                            <p class="text-gray-300 text-sm">2025 </p>
-                            <p class="text-gray-400 text-xs mb-2">Tripti Sharma, Palace on Wheels</p>
+                            <h3 class="text-lg font-semibold theme-text-primary"><a href="https://youtu.be/OT2qIaU6NH8?si=JsQVYgtxW90kPgFn" target="_blank">Pardesiya</a></h3>
+                            <p class="text-sm theme-text-secondary">2025 </p>
+                            <p class="text-xs mb-2 theme-text-secondary">Tripti Sharma, Palace on Wheels</p>
                             <div class="flex space-x-2 text-2xl">
                                 <a href="https://youtu.be/OT2qIaU6NH8?si=JsQVYgtxW90kPgFn" target="_blank" class="icon-link youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                                 <a href="https://music.apple.com/us/song/pardesiya/1810793490" class="icon-link apple-music" aria-label="Apple Music"><i class="fab fa-apple"></i></a>
@@ -750,7 +825,7 @@
                     </div>
 
                      <!-- Mere Mehboob -->
-                    <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 flex items-center p-4 space-x-4">
+                    <div class="rounded-lg theme-shadow-hover flex items-center p-4 space-x-4 theme-bg-secondary">
                         <div class="discography-item-image-wrapper w-[28%] flex-shrink-0">
                             <img src="images/artwork/KariBadariya_2025.jpg" alt="Mere Mehboob album art" class="w-full aspect-square object-contain rounded-lg">
                             <a href="#" class="play-button-overlay" aria-label="Play Mere Mehboob on YouTube" data-video-id="C4HSywLPeg8">
@@ -758,9 +833,9 @@
                             </a>
                         </div>
                         <div class="flex-grow flex flex-col justify-center">
-                            <h3 class="text-lg font-semibold text-white"> <a href="https://youtu.be/C4HSywLPeg8?si=Vncey5zEDSVcsKik" target="_blank">Mere Mehboob</a></h3>
-                            <p class="text-gray-300 text-sm">2025 </p>
-                            <p class="text-gray-400 text-xs mb-2">Tripti Sharma, Palace on Wheels</p>
+                            <h3 class="text-lg font-semibold theme-text-primary"> <a href="https://youtu.be/C4HSywLPeg8?si=Vncey5zEDSVcsKik" target="_blank">Mere Mehboob</a></h3>
+                            <p class="text-sm theme-text-secondary">2025 </p>
+                            <p class="text-xs mb-2 theme-text-secondary">Tripti Sharma, Palace on Wheels</p>
                             <!-- Only audio links for this entry -->
                             <div class="flex space-x-2 text-2xl">
                                 <a href="https://youtu.be/C4HSywLPeg8?si=Vncey5zEDSVcsKik" target="_blank" class="icon-link youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
@@ -771,7 +846,7 @@
                     </div>
 
                     <!-- Dhola ve Dhola -->
-                    <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 flex items-center p-4 space-x-4">
+                    <div class="rounded-lg theme-shadow-hover flex items-center p-4 space-x-4 theme-bg-secondary">
                         <div class="discography-item-image-wrapper w-[28%] flex-shrink-0">
                             <img src="images/artwork/KariBadariya_2025.jpg" alt="Dhola Ve Dhola album art" class="w-full aspect-square object-contain rounded-lg">
                             <a href="#" class="play-button-overlay" aria-label="Play Dhola Ve Dhola on YouTube" data-video-id="rGOM67gowxg">
@@ -779,9 +854,9 @@
                             </a>
                         </div>
                         <div class="flex-grow flex flex-col justify-center">
-                            <h3 class="text-lg font-semibold text-white"> <a href="https://youtu.be/rGOM67gowxg?si=wxQrAf58QesZIehv" target="_blank">Dhola Ve Dhola</a></h3>
-                            <p class="text-gray-300 text-sm">2025 </p>
-                            <p class="text-gray-400 text-xs mb-2">Tripti Sharma, Palace on Wheels</p>
+                            <h3 class="text-lg font-semibold theme-text-primary"> <a href="https://youtu.be/rGOM67gowxg?si=wxQrAf58QesZIehv" target="_blank">Dhola Ve Dhola</a></h3>
+                            <p class="text-sm theme-text-secondary">2025 </p>
+                            <p class="text-xs mb-2 theme-text-secondary">Tripti Sharma, Palace on Wheels</p>
                             <!-- Only audio links for this entry -->
                             <div class="flex space-x-2 text-2xl">
                                 <a href="https://youtu.be/rGOM67gowxg?si=wxQrAf58QesZIehv" target="_blank" class="icon-link youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
@@ -792,7 +867,7 @@
                     </div>
 
                     <!-- Kari Badariya 2025-->
-                    <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 flex items-center p-4 space-x-4">
+                    <div class="rounded-lg theme-shadow-hover flex items-center p-4 space-x-4 theme-bg-secondary">
                         <div class="discography-item-image-wrapper w-[28%] flex-shrink-0">
                             <img src="images/artwork/KariBadariya_2025.jpg" alt="Kari Badariya album art" class="w-full aspect-square object-contain rounded-lg">
                             <a href="#" class="play-button-overlay" aria-label="Play Kari Badariya on YouTube" data-video-id="naGFb0Lw5oA">
@@ -800,9 +875,9 @@
                             </a>
                         </div>
                         <div class="flex-grow flex flex-col justify-center">
-                            <h3 class="text-lg font-semibold text-white"> <a href="https://youtu.be/naGFb0Lw5oA?si=8dsdciELZNL3A" target="_blank">Kari Badariya</a></h3>
-                            <p class="text-gray-300 text-sm">2025 </p>
-                            <p class="text-gray-400 text-xs mb-2">Tripti Sharma, Palace on Wheels</p>
+                            <h3 class="text-lg font-semibold theme-text-primary"> <a href="https://youtu.be/naGFb0Lw5oA?si=8dsdciELZNL3A" target="_blank">Kari Badariya</a></h3>
+                            <p class="text-sm theme-text-secondary">2025 </p>
+                            <p class="text-xs mb-2 theme-text-secondary">Tripti Sharma, Palace on Wheels</p>
                             <!-- Only audio links for this entry -->
                             <div class="flex space-x-2 text-2xl">
                                 <a href="https://youtu.be/naGFb0Lw5oA?si=8dsdciELZNL3A" target="_blank" class="icon-link youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
@@ -813,7 +888,7 @@
                     </div>
 
                     <!-- UPDATED: Jhoom Jhoom 2024 -->
-                    <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 flex items-center p-4 space-x-4">
+                    <div class="rounded-lg theme-shadow-hover flex items-center p-4 space-x-4 theme-bg-secondary">
                         <div class="discography-item-image-wrapper w-[28%] flex-shrink-0">
                             <!-- Adjusted width to w-[28%] -->
                             <img src="images/artwork/JhoomJhoom_2024.jpg" alt="Jhoom Jhoom single art" class="w-full aspect-square object-contain rounded-lg">
@@ -822,9 +897,9 @@
                             </a>
                         </div>
                         <div class="flex-grow flex flex-col justify-center">
-                            <h3 class="text-lg font-semibold text-white"><a href="https://www.youtube.com/watch?v=01XlZopwlA4" target="_blank">Jhoom Jhoom</a></h3>
-                            <p class="text-gray-300 text-sm">2024 </p>
-                            <p class="text-gray-400 text-xs mb-2">Tripti Sharma, Palace on Wheels</p>
+                            <h3 class="text-lg font-semibold theme-text-primary"><a href="https://www.youtube.com/watch?v=01XlZopwlA4" target="_blank">Jhoom Jhoom</a></h3>
+                            <p class="text-sm theme-text-secondary">2024 </p>
+                            <p class="text-xs mb-2 theme-text-secondary">Tripti Sharma, Palace on Wheels</p>
                             <div class="flex space-x-2 text-2xl">
                                 <a href="https://www.youtube.com/watch?v=01XlZopwlA4" target="_blank" class="icon-link youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                                 <a href="https://music.apple.com/in/album/jhoom-jhoom-single/1777117119" class="icon-link apple-music" aria-label="Apple Music"><i class="fab fa-apple"></i></a>
@@ -834,7 +909,7 @@
                     </div>
 
                     <!-- Sawan He Sakhi 2023 -->
-                    <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 flex items-center p-4 space-x-4">
+                    <div class="rounded-lg theme-shadow-hover flex items-center p-4 space-x-4 theme-bg-secondary">
                         <div class="discography-item-image-wrapper w-[28%] flex-shrink-0">
                             <img src="images/artwork/SawanHeSakhi_2023_v.jpg" alt="Sawan He Sakhi single art" class="w-full  aspect-square object-contain rounded-lg">
                             <a href="#" class="play-button-overlay" aria-label="Play Sawan He Sakhi on YouTube" data-video-id="De0sI5pNW1E">
@@ -842,9 +917,9 @@
                             </a>
                         </div>
                         <div class="flex-grow flex flex-col justify-center">
-                            <h3 class="text-lg font-semibold text-white"><a href="https://youtu.be/De0sI5pNW1E?si=tbCcWy7PN_qD9y58" target="_blank">Sawan He Sakhi</a></h3>
-                            <p class="text-gray-300 text-sm">2023</p>
-                            <p class="text-gray-400 text-xs mb-2">Tripti Sharma, Pravesh Mallick</p>
+                            <h3 class="text-lg font-semibold theme-text-primary"><a href="https://youtu.be/De0sI5pNW1E?si=tbCcWy7PN_qD9y58" target="_blank">Sawan He Sakhi</a></h3>
+                            <p class="text-sm theme-text-secondary">2023</p>
+                            <p class="text-xs mb-2 theme-text-secondary">Tripti Sharma, Pravesh Mallick</p>
                             <div class="flex space-x-2 text-2xl">
                                 <a href="https://youtu.be/De0sI5pNW1E?si=tbCcWy7PN_qD9y58" target="_blank" class="icon-link youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                                 <a href="https://music.apple.com/us/album/sawan-he-sakhi-feat-tripti-sharma-single/1701011851" class="icon-link apple-music" aria-label="Apple Music"><i class="fab fa-apple"></i></a>
@@ -854,7 +929,7 @@
                     </div>
 
                      <!-- Koyaliya 2022 -->
-                    <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 flex items-center p-4 space-x-4">
+                    <div class="rounded-lg theme-shadow-hover flex items-center p-4 space-x-4 theme-bg-secondary">
                         <div class="discography-item-image-wrapper w-[28%] flex-shrink-0">
                             <img src="images/artwork/Koyaliya_2022.jpg" alt="Koyaliya single art" class="w-full  aspect-square object-contain rounded-lg">
                             <a href="#" class="play-button-overlay" aria-label="Play Koyaliya on YouTube" data-video-id="vN_Oqt7XApg">
@@ -862,9 +937,9 @@
                             </a>
                         </div>
                         <div class="flex-grow flex flex-col justify-center">
-                            <h3 class="text-lg font-semibold text-white"><a href="https://youtu.be/vN_Oqt7XApg?si=wVIy1wY6BV5pio1H" target="_blank">Koyaliya</a></h3>
-                            <p class="text-gray-300 text-sm">2022 </p>
-                            <p class="text-gray-400 text-xs mb-2">Tripti Sharma, Palace on Wheels</p>
+                            <h3 class="text-lg font-semibold theme-text-primary"><a href="https://youtu.be/vN_Oqt7XApg?si=wVIy1wY6BV5pio1H" target="_blank">Koyaliya</a></h3>
+                            <p class="text-sm theme-text-secondary">2022 </p>
+                            <p class="text-xs mb-2 theme-text-secondary">Tripti Sharma, Palace on Wheels</p>
                             <div class="flex space-x-2 text-2xl">
                                 <a href="https://youtu.be/vN_Oqt7XApg?si=wVIy1wY6BV5pio1H" target="_blank" class="icon-link youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                                 <a href="https://music.apple.com/us/album/koyaliya-feat-tripti-sharma-single/1631222407" class="icon-link apple-music" aria-label="Apple Music"><i class="fab fa-apple"></i></a>
@@ -879,24 +954,23 @@
 
 
         <!-- About Me Section -->
-        <section id="about" class="py-16 bg-black text-gray-200 min-h-[calc(100vh-5rem)]"> <!-- Dark background -->
+        <section id="about" class="py-16 min-h-[calc(100vh-5rem)] theme-bg-primary theme-text-primary"> 
             <div class="container mx-auto px-4 md:px-8 lg:px-16">
                 <div class="section-heading-container">
-                    <!-- Changed text-4xl to text-3xl -->
-                    <h2 class="text-3xl text-center text-gray-100 section-heading">My musical journey</h2>
+                    <h2 class="text-3xl text-center section-heading">My musical journey</h2>
                     <span class="section-heading-line"></span>
                     <span class="section-heading-accent-line"></span>
                 </div>
-                <div class="text-lg text-gray-300 space-y-6 text-justify"> <!-- Removed grid for text and integrated images inline -->
+                <div class="text-lg space-y-6 text-justify theme-text-primary"> 
                     <p>Tripti Sharma is a promising Indian classical and semi-classical vocalist, deeply rooted in the rich traditions of the <span class="font-semibold text-accent">Banaras Gharana</span>. This ancient and distinguished gharana of Indian classical music is renowned for its technicalities and profound expressions. Tripti's diverse repertoire includes <span class="font-semibold">Khayal, Thumri, Tappa, Dadra, Kajri, Holi, Jhoola, Chaiti, and Bhajan</span>. As a performer, her compositions revolve around themes of spirituality, peace, love, and devotion.</p>
                     <p>
-                        <img src="images/profile/brij-gopal-vyas.jpg" alt="Pandit Brij Gopal Vyas Ji" class="rounded-lg shadow-md inline-image w-full md:max-w-[200px] lg:max-w-[250px] mx-auto sm:float-right sm:ml-4 sm:mb-2 sm:mx-0">
+                        <img src="images/profile/brij-gopal-vyas.jpg" alt="Pandit Brij Gopal Vyas Ji" class="rounded-lg theme-shadow inline-image w-full md:max-w-[200px] lg:max-w-[250px] mx-auto sm:float-right sm:ml-4 sm:mb-2 sm:mx-0">
                         Hailing from the beautiful brass city of Moradabad, Uttar Pradesh, Tripti's musical journey began at a very young age under the tutelage of <span class="font-semibold text-accent">Pandit Brij Gopal Vyas Ji</span>, who provided her foundational understanding of Indian classical music and bhajans.
                     </p>
                     <p>
                         In pursuit of academic excellence, Tripti moved to Delhi, where she earned her <span class="font-semibold">Doctor of Philosophy in Indian Classical Music</span> from Delhi University. Her doctoral research explored the profound contributions of the legendary musician and Bharat Ratna awardee, <span class="font-semibold text-accent">Pandit Bhimsen Joshi Ji</span>. Tripti also holds the <span class="font-semibold">Sangeet Prabhakar</span> from Prayagraj, India, in Music Vocal, Instrument (Tabla), and Kathak Dance.</p>
                     <p>
-                        <img src="images/profile/sunanda-sharma.jpg" alt="Ms. Sunanda Sharma Ji" class="rounded-lg shadow-md inline-image sm:float-left sm:mr-4 sm:mb-2 w-full max-w-[150px] md:max-w-[200px] lg:max-w-[250px] mx-auto sm:mx-0">
+                        <img src="images/profile/sunanda-sharma.jpg" alt="Ms. Sunanda Sharma Ji" class="rounded-lg theme-shadow inline-image sm:float-left sm:mr-4 sm:mb-2 w-full max-w-[150px] md:max-w-[200px] lg:max-w-[250px] mx-auto sm:mx-0">
                         A significant turn in her musical journey came when she began delving into the intricate nuances of music with her esteemed guru, <a href="http://sunandasharma.com/"><span class="font-semibold text-accent">Ms. Sunanda Sharma Ji</span></a>, an illustrious representative of the Banaras Gharana. Embracing the age-old guru-shishya parampara, Tripti lived with her guru, accompanying her to countless performances across India and abroad, thereby imbibing the essence of this rich musical heritage.
                     </p>
                     <p>
@@ -910,36 +984,36 @@
                 <!-- Media coverage subsection -->
                 <div id="media" class="mt-16"> <!-- Added margin-top to separate from main bio text -->
                     <div class="section-heading-container">
-                        <h3 class="text-2xl text-center text-gray-100 section-heading">Media coverage</h3>
+                        <h3 class="text-2xl text-center section-heading">Media coverage</h3>
                         <!--span class="section-heading-line"></span-->
                         <span class="section-heading-accent-line"></span>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-12">
                         <!-- REPlay interview -->
                         <div class="flex flex-col items-center">
-                            <h3 class="text-2xl mb-4 text-white flex items-center justify-center text-center leading-tight">
+                            <h3 class="text-2xl mb-4 flex items-center justify-center text-center leading-tight theme-text-primary">
                                 Latvian public television performance coverage and interview
                             </h3>
                             <a href="https://www.lsm.lv/raksts/kultura/muzika/19.08.2024-iepazit-2000-gadus-senas-tradicijas-indijas-stasti-muzika-un-deja-atcelo-uz-latviju.a565596/" target="_blank"
-                                class="block w-full bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 group mx-auto">
-                                <div class="w-full aspect-video flex items-center justify-center bg-black">
+                                class="block w-full rounded-lg theme-shadow-hover overflow-hidden transform transition-transform duration-300 group mx-auto theme-bg-secondary">
+                                <div class="w-full aspect-video flex items-center justify-center theme-bg-secondary">
                                     <img src="https://ltv.lsm.lv/storage/media/4/a/large/2/4810a373.jpg"
                                         alt="Indijas stāsti mūzikā un dejā thumbnail"
                                         class="w-full h-full object-contain object-center"
                                         onerror="this.onerror=null;this.src='https://placehold.co/400x400/374151/D1D5DB?text=Image+Not+Found';">
                                 </div>
-                                <p class="text-gray-300 text-sm text-center"><br>Indijas Stāsti Mūzikā Un Dejā Atcelo Uz Latviju | Latvijas Sabiedriskais Medijs</p>
+                                <p class="text-sm text-center theme-text-secondary"><br>Indijas Stāsti Mūzikā Un Dejā Atcelo Uz Latviju | Latvijas Sabiedriskais Medijs</p>
                             </a>
                         </div>
 
                         <!-- Deshvaani Interview 2024 -->
                         <div class="flex flex-col items-center">
-                            <h3 class="text-2xl mb-4 text-white flex items-center justify-center text-center leading-tight">
+                            <h3 class="text-2xl mb-4 flex items-center justify-center text-center leading-tight theme-text-primary">
                                 Exclusive interview with Deshvaani YouTube Channel
                             </h3>
                             <a href="https://www.youtube.com/watch?v=C2PIKfAsCAE" target="_blank"
-                                class="block w-full bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 group mx-auto relative">
-                                <div class="w-full aspect-video flex items-center justify-center bg-black">
+                                class="block w-full rounded-lg theme-shadow-hover overflow-hidden transform transition-transform duration-300 group mx-auto relative theme-bg-secondary">
+                                <div class="w-full aspect-video flex items-center justify-center theme-bg-secondary">
                                     <img src="https://img.youtube.com/vi/C2PIKfAsCAE/0.jpg"
                                         alt="Deshvaani Interview thumbnail"
                                         class="w-full h-full object-cover object-center"
@@ -950,24 +1024,24 @@
                                         <path d="M8 5v14l11-7z"/>
                                     </svg>
                                 </div>
-                                <p class="text-gray-300 text-sm text-center"><br>Indian Classical Interview | Deshvaani (YouTube Podcast)</p>
+                                <p class="text-sm text-center theme-text-secondary"><br>Indian Classical Interview | Deshvaani (YouTube Podcast)</p>
                             </a>
                         </div>
                         
                         <!-- New Image Placeholder (same sizing as the first image) -->
                         <div class="flex flex-col items-center">
-                            <h3 class="text-2xl mb-4 text-white flex items-center justify-center text-center leading-tight">
+                            <h3 class="text-2xl mb-4 flex items-center justify-center text-center leading-tight theme-text-primary">
                                 Amar Ujala - Hindi Newspaper, India
                             </h3>
                             <a href="#" target="_blank"
-                                class="block w-full bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 group mx-auto">
-                                <div class="w-full aspect-video flex items-center justify-center bg-black">
+                                class="block w-full rounded-lg theme-shadow-hover overflow-hidden transform transition-transform duration-300 group mx-auto theme-bg-secondary">
+                                <div class="w-full aspect-video flex items-center justify-center theme-bg-secondary">
                                     <img src="images/media-coverage/newspapers/20140110-amar-ujala-moradabad-hindi_crop.png"
                                         alt="Placeholder image for new media coverage"
                                         class="w-full h-full object-contain object-center"
                                         onerror="this.onerror=null;this.src='https://placehold.co/400x400/374151/D1D5DB?text=Image+Not+Found';">
                                 </div>
-                                <p class="text-gray-300 text-sm text-center"><br>🗓️ January 10, 2014.</p>
+                                <p class="text-sm text-center theme-text-secondary"><br>🗓️ January 10, 2014.</p>
                             </a>
                         </div>
                     </div>
@@ -976,167 +1050,151 @@
                 <!-- Accolades subsection -->
                 <div id="accolades" class="mt-16 py-8"> <!-- Added margin-top and py to add spacing -->
                     <div class="section-heading-container">
-                        <h3 class="text-2xl text-center text-gray-100 section-heading">Selected accolades</h3>
+                        <h3 class="text-2xl text-center section-heading">Selected accolades</h3>
                         <!--span class="section-heading-line"></span-->
                         <span class="section-heading-accent-line"></span>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 xl:gap-10">
                         <!-- Accolade Card 1 -->
                         <div class="
-                            bg-black bg-opacity-70 rounded-xl shadow-lg p-6
+                            rounded-xl p-6
                             flex flex-col items-center text-center
                             transform transition-all duration-300 ease-in-out
-                            hover:scale-105 hover:shadow-2xl
-                            border-t-4 border-white-500
-                            hover:border-white-500
-                            accolade-card
+                            hover:scale-105
+                            accolade-card theme-bg-secondary theme-shadow theme-shadow-hover
                         ">
-                            <i class="fas fa-trophy text-5xl text-white-400 mb-4 drop-shadow-lg accolade-icon"></i>
-                            <div class="text-sm font-light text-gray-400 mb-1 accolade-year">2019</div>
-                            <h3 class="text-xl text-white mb-2 leading-tight accolade-name">
+                            <i class="fas fa-trophy text-5xl mb-4 drop-shadow-lg accolade-icon"></i>
+                            <div class="text-sm font-light mb-1 accolade-year">2019</div>
+                            <h3 class="text-xl mb-2 leading-tight accolade-name">
                                 The Accolade of Excellence - UP Diva
                             </h3>
-                            <p class="text-sm text-gray-300 accolade-org">
+                            <p class="text-sm accolade-org">
                                 Media Impression Ads India Pvt. Ltd. and Utthan Foundation, India
                             </p>
                         </div>
 
                         <!-- Accolade Card 2 -->
                         <div class="
-                            bg-black bg-opacity-70 rounded-xl shadow-lg p-6
+                            rounded-xl p-6
                             flex flex-col items-center text-center
                             transform transition-all duration-300 ease-in-out
-                            hover:scale-105 hover:shadow-2xl
-                            border-t-4 border-white-500
-                            hover:border-white-500
-                            accolade-card
+                            hover:scale-105
+                            accolade-card theme-bg-secondary theme-shadow theme-shadow-hover
                         ">
-                            <i class="fas fa-award text-5xl text-white-400 mb-4 drop-shadow-lg accolade-icon"></i>
-                            <div class="text-sm font-light text-gray-400 mb-1 accolade-year">2015</div>
-                            <h3 class="text-xl text-white mb-2 leading-tight accolade-name">
+                            <i class="fas fa-award text-5xl mb-4 drop-shadow-lg accolade-icon"></i>
+                            <div class="text-sm font-light mb-1 accolade-year">2015</div>
+                            <h3 class="text-xl mb-2 leading-tight accolade-name">
                                 Malhar Samman
                             </h3>
-                            <p class="text-sm text-gray-300 accolade-org">
+                            <p class="text-sm accolade-org">
                                 Indian Northern Railway, Uttar Pradesh, India
                             </p>
                         </div>
 
                         <!-- Accolade Card 3 -->
                         <div class="
-                            bg-black bg-opacity-70 rounded-xl shadow-lg p-6
+                            rounded-xl p-6
                             flex flex-col items-center text-center
                             transform transition-all duration-300 ease-in-out
-                            hover:scale-105 hover:shadow-2xl
-                            border-t-4 border-white-500
-                            hover:border-white-500
-                            accolade-card
+                            hover:scale-105
+                            accolade-card theme-bg-secondary theme-shadow theme-shadow-hover
                         ">
-                            <i class="fas fa-graduation-cap text-5xl text-white-400 mb-4 drop-shadow-lg accolade-icon"></i>
-                            <div class="text-sm font-light text-gray-400 mb-1 accolade-year">2008</div>
-                            <h3 class="text-xl text-white mb-2 leading-tight accolade-name">
+                            <i class="fas fa-graduation-cap text-5xl mb-4 drop-shadow-lg accolade-icon"></i>
+                            <div class="text-sm font-light mb-1 accolade-year">2008</div>
+                            <h3 class="text-xl mb-2 leading-tight accolade-name">
                                 Junior Research Fellowship Award
                             </h3>
-                            <p class="text-sm text-gray-300 accolade-org">
+                            <p class="text-sm accolade-org">
                                 University Grants Commission, New Delhi, India
                             </p>
                         </div>
 
                         <!-- Accolade Card 4 -->
                         <div class="
-                            bg-black bg-opacity-70 rounded-xl shadow-lg p-6
+                            rounded-xl p-6
                             flex flex-col items-center text-center
                             transform transition-all duration-300 ease-in-out
-                            hover:scale-105 hover:shadow-2xl
-                            border-t-4 border-white-500
-                            hover:border-white-500
-                            accolade-card
+                            hover:scale-105
+                            accolade-card theme-bg-secondary theme-shadow theme-shadow-hover
                         ">
-                            <i class="fas fa-award text-5xl text-white-400 mb-4 drop-shadow-lg accolade-icon"></i>
-                            <div class="text-sm font-light text-gray-400 mb-1 accolade-year">2008</div>
-                            <h3 class="text-xl text-white mb-2 leading-tight accolade-name">
+                            <i class="fas fa-award text-5xl mb-4 drop-shadow-lg accolade-icon"></i>
+                            <div class="text-sm font-light mb-1 accolade-year">2008</div>
+                            <h3 class="text-xl mb-2 leading-tight accolade-name">
                                 Prerna Kala Manch Samajik Sansthan Samman
                             </h3>
-                            <p class="text-sm text-gray-300 accolade-org">
+                            <p class="text-sm accolade-org">
                                 Moradabad, Uttar Pradesh, India
                             </p>
                         </div>
 
                         <!-- Accolade Card 5 -->
                         <div class="
-                            bg-black bg-opacity-70 rounded-xl shadow-lg p-6
+                            rounded-xl p-6
                             flex flex-col items-center text-center
                             transform transition-all duration-300 ease-in-out
-                            hover:scale-105 hover:shadow-2xl
-                            border-t-4 border-white-500
-                            hover:border-white-500
-                            accolade-card
+                            hover:scale-105
+                            accolade-card theme-bg-secondary theme-shadow theme-shadow-hover
                         ">
-                            <i class="fas fa-medal text-5xl text-white-400 mb-4 drop-shadow-lg accolade-icon"></i>
-                            <div class="text-sm font-light text-gray-400 mb-1 accolade-year">2006</div>
-                            <h3 class="text-xl text-white mb-2 leading-tight accolade-name">
+                            <i class="fas fa-medal text-5xl mb-4 drop-shadow-lg accolade-icon"></i>
+                            <div class="text-sm font-light mb-1 accolade-year">2006</div>
+                            <h3 class="text-xl mb-2 leading-tight accolade-name">
                                 President Award
                             </h3>
-                            <p class="text-sm text-gray-300 accolade-org">
+                            <p class="text-sm accolade-org">
                                 The Bharat Scouts and Guides by President of India, Dr. A. P. J. Abdul Kalam, New Delhi, India
                             </p>
                         </div>
 
                         <!-- Accolade Card 6 -->
                         <div class="
-                            bg-black bg-opacity-70 rounded-xl shadow-lg p-6
+                            rounded-xl p-6
                             flex flex-col items-center text-center
                             transform transition-all duration-300 ease-in-out
-                            hover:scale-105 hover:shadow-2xl
-                            border-t-4 border-white-500
-                            hover:border-white-500
-                            accolade-card
+                            hover:scale-105
+                            accolade-card theme-bg-secondary theme-shadow theme-shadow-hover
                         ">
-                            <i class="fas fa-trophy text-5xl text-white-400 mb-4 drop-shadow-lg accolade-icon"></i>
-                            <div class="text-sm font-light text-gray-400 mb-1 accolade-year">2005</div>
-                            <h3 class="text-xl text-white mb-2 leading-tight accolade-name">
+                            <i class="fas fa-trophy text-5xl mb-4 drop-shadow-lg accolade-icon"></i>
+                            <div class="text-sm font-light mb-1 accolade-year">2005</div>
+                            <h3 class="text-xl mb-2 leading-tight accolade-name">
                                 Aarohi Kala Sansthan Samman
                             </h3>
-                            <p class="text-sm text-gray-300 accolade-org">
+                            <p class="text-sm accolade-org">
                                 Moradabad, Uttar Pradesh, India
                             </p>
                         </div>
 
                         <!-- Accolade Card 7 -->
                         <div class="
-                            bg-black bg-opacity-70 rounded-xl shadow-lg p-6
+                            rounded-xl p-6
                             flex flex-col items-center text-center
                             transform transition-all duration-300 ease-in-out
-                            hover:scale-105 hover:shadow-2xl
-                            border-t-4 border-white-500
-                            hover:border-white-500
-                            accolade-card
+                            hover:scale-105
+                            accolade-card theme-bg-secondary theme-shadow theme-shadow-hover
                         ">
-                            <i class="fas fa-star text-5xl text-white-400 mb-4 drop-shadow-lg accolade-icon"></i>
-                            <div class="text-sm font-light text-gray-400 mb-1 accolade-year">2005</div>
-                            <h3 class="text-xl text-white mb-2 leading-tight accolade-name">
+                            <i class="fas fa-star text-5xl mb-4 drop-shadow-lg accolade-icon"></i>
+                            <div class="text-sm font-light mb-1 accolade-year">2005</div>
+                            <h3 class="text-xl mb-2 leading-tight accolade-name">
                                 Moradabad Idol
                             </h3>
-                            <p class="text-sm text-gray-300 accolade-org">
+                            <p class="text-sm accolade-org">
                                 Moradabad, Uttar Pradesh, India
                             </p>
                         </div>
 
                         <!-- Accolade Card 8 -->
                         <div class="
-                            bg-black bg-opacity-70 rounded-xl shadow-lg p-6
+                            rounded-xl p-6
                             flex flex-col items-center text-center
                             transform transition-all duration-300 ease-in-out
-                            hover:scale-105 hover:shadow-2xl
-                            border-t-4 border-white-500
-                            hover:border-white-500
-                            accolade-card
+                            hover:scale-105
+                            accolade-card theme-bg-secondary theme-shadow theme-shadow-hover
                         ">
-                            <i class="fas fa-medal text-5xl text-white-400 mb-4 drop-shadow-lg accolade-icon"></i>
-                            <div class="text-sm font-light text-gray-400 mb-1 accolade-year">2003</div>
-                            <h3 class="text-xl text-white mb-2 leading-tight accolade-name">
+                            <i class="fas fa-medal text-5xl mb-4 drop-shadow-lg accolade-icon"></i>
+                            <div class="text-sm font-light mb-1 accolade-year">2003</div>
+                            <h3 class="text-xl mb-2 leading-tight accolade-name">
                                 Governor Award
                             </h3>
-                            <p class="text-sm text-gray-300 accolade-org">
+                            <p class="text-sm accolade-org">
                                 The Bharat Scouts and Guides, Uttar Pradesh, India
                             </p>
                         </div>
@@ -1147,18 +1205,18 @@
 
 
         <!-- Performances Section -->
-    <section id="performances" class="py-16 bg-black min-h-[calc(100vh-5rem)]">
+    <section id="performances" class="py-16 min-h-[calc(100vh-5rem)] theme-bg-primary">
         <div class="container mx-auto px-4 md:px-8 lg:px-16">
             <div class="section-heading-container">
                 <!-- Changed text-4xl to text-3xl -->
-                <h2 class="text-3xl text-center text-gray-100 section-heading">Recent notable performances</h2>
+                <h2 class="text-3xl text-center section-heading">Recent notable performances</h2>
                 <span class="section-heading-line"></span>
                 <span class="section-heading-accent-line"></span>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
                 <!-- Lativa aug 18 2024 -->
-                <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <div class="rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 theme-bg-secondary theme-shadow theme-shadow-hover">
                     <img src="images/events/20240818-Riga-Lativa-Indijas-Stasti.jpg"
                          alt="Lativa 2024 Festival poster"
                          class="performance-image"
@@ -1166,14 +1224,14 @@
                          data-full-src="images/events/20240818-Riga-Lativa-Indijas-Stasti.jpg">
                     <div class="p-6">
                         <!-- Changed text-xl to text-lg -->
-                        <h3 class="text-lg mb-2 text-white">Indijas Stasti, Riga, Lativa</h3>
-                        <p class="text-gray-300 mb-1">Indian Classical Music and Vocal Evening</p>
-                        <p class="text-gray-300 mb-1">🗓️ August 18, 2024</p>
+                        <h3 class="text-lg mb-2 theme-text-primary">Indijas Stasti, Riga, Lativa</h3>
+                        <p class="mb-1 theme-text-secondary">Indian Classical Music and Vocal Evening</p>
+                        <p class="mb-1 theme-text-secondary">🗓️ August 18, 2024</p>
                     </div>
                 </div>
 
                  <!-- Lativa aug 16 2024 -->
-                <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <div class="rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 theme-bg-secondary theme-shadow theme-shadow-hover">
                   <a href="https://fb.me/e/5hBDyazEp">  <img src="images/events/20240816-ILCC-Independence-Day-Celebration-Riga-Lativa.jpg"
                          alt="Lativa 2024 Independence Day poster"
                          class="performance-image"
@@ -1181,14 +1239,14 @@
                          data-full-src="images/events/20240816-ILCC-Independence-Day-Celebration-Riga-Lativa.jpg"></a>
                     <div class="p-6">
                         <!-- Changed text-xl to text-lg -->
-                        <h3 class="text-lg mb-2 text-white"><a href="https://fb.me/e/5hBDyazEp">78th Independence Day of India Celebration, Riga, Lativa</a></h3>
-                        <p class="text-gray-300 mb-1">Indo-Latvian Chamber of Commerce and Embassy of India to Sweden and Lativa</p>
-                        <p class="text-gray-300 mb-1">🗓️ August 16, 2024</p>
+                        <h3 class="text-lg mb-2 theme-text-primary"><a href="https://fb.me/e/5hBDyazEp">78th Independence Day of India Celebration, Riga, Lativa</a></h3>
+                        <p class="mb-1 theme-text-secondary">Indo-Latvian Chamber of Commerce and Embassy of India to Sweden and Lativa</p>
+                        <p class="mb-1 theme-text-secondary">🗓️ August 16, 2024</p>
                     </div>
                 </div>
 
                 <!-- Stockholm Sangeet Sabha 2023 -->
-                <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <div class="rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 theme-bg-secondary theme-shadow theme-shadow-hover">
                     <!-- Image is now clickable to open the lightbox, using the original image path -->
                     <img src="images/events/20231206-Stockholm-Sangeet-Sabha-9.jpg"
                          alt="Stockholm Sangeet Sabha poster"
@@ -1198,15 +1256,15 @@
                     <div class="p-6">
                         <!-- Changed text-xl to text-lg -->
                         <h3 class="text-lg mb-2">
-                            <a href="https://www.stockholmsangeet.se/" target="_blank" class="text-orange-400 hover:underline">Stockholm Sangeet Sabha, Stockholm, Sweden</a>
+                            <a href="https://www.stockholmsangeet.se/" target="_blank" class="text-accent hover:underline">Stockholm Sangeet Sabha, Stockholm, Sweden</a>
                         </h3>
-                        <p class="text-gray-300 mb-1">Concert and Open Stage - 9th Session</p>
-                        <p class="text-gray-300 mb-1">🗓️ December 6, 2023</p>
+                        <p class="mb-1 theme-text-secondary">Concert and Open Stage - 9th Session</p>
+                        <p class="mb-1 theme-text-secondary">🗓️ December 6, 2023</p>
                     </div>
                 </div>
 
                 <!-- Riga Birthday, Lativa 2023 -->
-                <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <div class="rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 theme-bg-secondary theme-shadow theme-shadow-hover">
                     <img src="images/events/20230819-Riga-Lativa-Birthday.jpg"
                          alt="Riga Birthday 2023 Festival poster"
                          class="performance-image"
@@ -1214,14 +1272,14 @@
                          data-full-src="images/events/20230819-Riga-Lativa-Birthday.jpg">
                     <div class="p-6">
                         <!-- Changed text-xl to text-lg -->
-                        <h3 class="text-lg mb-2 text-white">Riga Birthday Celebration, Riga, Lativa</h3>
-                        <p class="text-gray-300 mb-1">Indian Classical Music Group "Chaturveni" Performance</p>
-                        <p class="text-gray-300 mb-1">🗓️ August 19, 2023</p>
+                        <h3 class="text-lg mb-2 theme-text-primary">Riga Birthday Celebration, Riga, Lativa</h3>
+                        <p class="mb-1 theme-text-secondary">Indian Classical Music Group "Chaturveni" Performance</p>
+                        <p class="mb-1 theme-text-secondary">🗓️ August 19, 2023</p>
                     </div>
                 </div>
 
                   <!-- Lativa aug 18 2023 -->
-                <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <div class="rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 theme-bg-secondary theme-shadow theme-shadow-hover">
                   <a href="https://fb.me/e/bb1Bp4aXf">  <img src="images/events/20230818-ILCC-Independence-Day-Celebration-Riga-Lativa.jpg"
                          alt="Lativa 2023 Independence Day poster"
                          class="performance-image"
@@ -1229,13 +1287,13 @@
                          data-full-src="images/events/20230818-ILCC-Independence-Day-Celebration-Riga-Lativa.jpg"></a>
                     <div class="p-6">
                         <!-- Changed text-xl to text-lg -->
-                        <h3 class="text-lg mb-2 text-white"><a href="https://fb.me/e/bb1Bp4aXf">77th Independence Day of India Celebration, Riga, Lativa</a></h3>
-                        <p class="text-gray-300 mb-1">Indo-Latvian Chamber of Commerce and Embassy of India to Sweden and Lativa</p>
-                        <p class="text-gray-300 mb-1">🗓️ August 18, 2023</p>
+                        <h3 class="text-lg mb-2 theme-text-primary"><a href="https://fb.me/e/bb1Bp4aXf">77th Independence Day of India Celebration, Riga, Lativa</a></h3>
+                        <p class="mb-1 theme-text-secondary">Indo-Latvian Chamber of Commerce and Embassy of India to Sweden and Lativa</p>
+                        <p class="mb-1 theme-text-secondary">🗓️ August 18, 2023</p>
                     </div>
                 </div>
                 <!-- Lativa 2023 -->
-                <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <div class="rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 theme-bg-secondary theme-shadow theme-shadow-hover">
                     <img src="images/events/20230816-Riga-Lativa-Nakts-Raga.jpg"
                          alt="Lativa 2023 Festival poster"
                          class="performance-image"
@@ -1243,14 +1301,14 @@
                          data-full-src="images/events/20230816-Riga-Lativa-Nakts-Raga.jpg">
                     <div class="p-6">
                         <!-- Changed text-xl to text-lg -->
-                        <h3 class="text-lg mb-2 text-white">Nakts Raga, Riga, Lativa</h3>
-                        <p class="text-gray-300 mb-1">Indian Classical Music and Indian Classical Vocal Evening</p>
-                        <p class="text-gray-300 mb-1">🗓️ August 16, 2023</p>
+                        <h3 class="text-lg mb-2 theme-text-primary">Nakts Raga, Riga, Lativa</h3>
+                        <p class="mb-1 theme-text-secondary">Indian Classical Music and Indian Classical Vocal Evening</p>
+                        <p class="mb-1 theme-text-secondary">🗓️ August 16, 2023</p>
                     </div>
                 </div>
 
                 <!-- Korea 2022-->
-                <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <div class="rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 theme-bg-secondary theme-shadow theme-shadow-hover">
                     <img src="images/events/20221006-Sarang-Korea.jpg"
                          alt="Sangeet Samaroh 2022 poster"
                          class="performance-image"
@@ -1258,14 +1316,14 @@
                          data-full-src="images/events/20221006-Sarang-Korea.jpg">
                     <div class="p-6">
                         <!-- Changed text-xl to text-lg -->
-                        <h3 class="text-lg mb-2 text-white">Sarang - The Festival of India (Tour), Republic of Korea</h3>
-                         <p class="text-gray-300 mb-1">Embassy of India, Seoul, Repblic of Korea</p>
-                         <p class="text-gray-300 mb-1">🗓️ Sep 31 - Oct 14, 2022</p>
+                        <h3 class="text-lg mb-2 theme-text-primary">Sarang - The Festival of India (Tour), Republic of Korea</h3>
+                         <p class="mb-1 theme-text-secondary">Embassy of India, Seoul, Repblic of Korea</p>
+                         <p class="mb-1 theme-text-secondary">🗓️ Sep 31 - Oct 14, 2022</p>
                     </div>
                 </div>
 
                 <!-- Sangeet Samaroh Delhi 2022 -->
-                <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <div class="rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 theme-bg-secondary theme-shadow theme-shadow-hover">
                     <img src="images/events/20220828-Sangeet-Samaroh-Delhi.jpg"
                          alt="Sangeet Samaroh Delhi 2022 poster"
                          class="performance-image"
@@ -1273,14 +1331,14 @@
                          data-full-src="images/events/20220828-Sangeet-Samaroh-Delhi.jpg">
                     <div class="p-6">
                         <!-- Changed text-xl to text-lg -->
-                        <h3 class="text-lg mb-2 text-white">Sangeet Samaroh, Delhi, India</h3>
-                        <p class="text-gray-300 mb-1">Pt. Kapildeo Singh Memorial Trust</p>
-                        <p class="text-300 mb-1">🗓️ August 28, 2022</p>
+                        <h3 class="text-lg mb-2 theme-text-primary">Sangeet Samaroh, Delhi, India</h3>
+                        <p class="mb-1 theme-text-secondary">Pt. Kapildeo Singh Memorial Trust</p>
+                        <p class="mb-1 theme-text-secondary">🗓️ August 28, 2022</p>
                     </div>
                 </div>
 
                 <!-- Vasantotsav 2022 (Kalindi College) -->
-                <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <div class="rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 theme-bg-secondary theme-shadow theme-shadow-hover">
                     <img src="images/events/20220209-Vasantuassv-DU-India.jpg"
                          alt="Vasantotsav 2022 poster"
                          class="performance-image"
@@ -1288,14 +1346,14 @@
                          data-full-src="images/events/20220209-Vasantuassv-DU-India.jpg">
                     <div class="p-6">
                         <!-- Changed text-xl to text-lg -->
-                        <h3 class="text-lg mb-2 text-white">Vasantotsav, Delhi, India</h3>
-                        <p class="text-gray-300 mb-1">International Webinar - Hindustani Classical Vocal</p>
-                        <p class="text-gray-300 mb-1">🗓️ Feb 7, 2022</p>
+                        <h3 class="text-lg mb-2 theme-text-primary">Vasantotsav, Delhi, India</h3>
+                        <p class="mb-1 theme-text-secondary">International Webinar - Hindustani Classical Vocal</p>
+                        <p class="mb-1 theme-text-secondary">🗓️ Feb 7, 2022</p>
                     </div>
                 </div>
 
                 <!-- Sanskar Bharati (Live) -->
-                <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <div class="rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 theme-bg-secondary theme-shadow theme-shadow-hover">
                     <img src="images/events/20200529-Sanskar-Bharti.jpg"
                          alt="Sanskar Bharati Live poster"
                          class="performance-image"
@@ -1303,9 +1361,9 @@
                          data-full-src="images/events/20200529-Sanskar-Bharti.jpg"> <!-- data-full-src also uses original path -->
                     <div class="p-6">
                         <!-- Changed text-xl to text-lg -->
-                        <h3 class="text-lg mb-2 text-white"> <a href="https://www.facebook.com/sanskarbhartimrtprant/" target="_blank"> Sanskar Bharati, Meerut, India</a></h3>
-                        <p class="text-gray-300 mb-1">Sangeet Suman - 18</p>
-                        <p class="text-gray-300 mb-1">🗓️ May 29, 2020</p>
+                        <h3 class="text-lg mb-2 theme-text-primary"> <a href="https://www.facebook.com/sanskarbhartimrtprant/" target="_blank"> Sanskar Bharati, Meerut, India</a></h3>
+                        <p class="mb-1 theme-text-secondary">Sangeet Suman - 18</p>
+                        <p class="mb-1 theme-text-secondary">🗓️ May 29, 2020</p>
                     </div>
                 </div>
 
@@ -1314,41 +1372,41 @@
     </section>
 
         <!-- Gallery Section -->
-        <section id="gallery" class="py-16 bg-black min-h-[calc(100vh-5rem)]">
+        <section id="gallery" class="py-16 min-h-[calc(100vh-5rem)] theme-bg-primary">
             <div class="container mx-auto px-4 md:px-8 lg:px-16">
                 <div class="section-heading-container">
                     <!-- Changed text-4xl to text-3xl -->
-                    <h2 class="text-3xl text-center text-gray-100 section-heading">Gallery</h2>
+                    <h2 class="text-3xl text-center section-heading">Gallery</h2>
                     <span class="section-heading-line"></span>
                     <span class="section-heading-accent-line"></span>
                 </div>
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     <!-- Gallery Item -->
-                    <div class="aspect-square rounded-lg overflow-hidden shadow-md transform hover:scale-105 transition-transform duration-300">
+                    <div class="aspect-square rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 theme-bg-secondary theme-shadow theme-shadow-hover">
                         <img src="images/gallary/gallary_8.jpg" alt="Gallery Image 8" class="w-full h-full object-cover gallery-image-item" data-full-src="images/gallary/gallary_8.jpg">
                     </div>
-                    <div class="aspect-square rounded-lg overflow-hidden shadow-md transform hover:scale-105 transition-transform duration-300">
+                    <div class="aspect-square rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 theme-bg-secondary theme-shadow theme-shadow-hover">
                         <img src="images/gallary/gallary_7.jpg" alt="Gallery Image 7" class="w-full h-full object-cover gallery-image-item" data-full-src="images/gallary/gallary_7.jpg">
                     </div>
-                    <div class="aspect-square rounded-lg overflow-hidden shadow-md transform hover:scale-105 transition-transform duration-300">
+                    <div class="aspect-square rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 theme-bg-secondary theme-shadow theme-shadow-hover">
                         <img src="images/gallary/gallary_6.jpg" alt="Gallery Image 6" class="w-full h-full object-cover gallery-image-item" data-full-src="images/gallary/gallary_6.jpg">
                     </div>
-                    <div class="aspect-square rounded-lg overflow-hidden shadow-md transform hover:scale-105 transition-transform duration-300">
+                    <div class="aspect-square rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 theme-bg-secondary theme-shadow theme-shadow-hover">
                         <img src="images/gallary/gallary_0.jpg" alt="Gallery Image 1" class="w-full h-full object-cover gallery-image-item" data-full-src="images/gallary/gallary_0.jpg">
                     </div>
-                    <div class="aspect-square rounded-lg overflow-hidden shadow-md transform hover:scale-105 transition-transform duration-300">
+                    <div class="aspect-square rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 theme-bg-secondary theme-shadow theme-shadow-hover">
                         <img src="images/gallary/gallary_1.jpg" alt="Gallery Image 2" class="w-full h-full object-cover gallery-image-item" data-full-src="images/gallary/gallary_1.jpg">
                     </div>
-                    <div class="aspect-square rounded-lg overflow-hidden shadow-md transform hover:scale-105 transition-transform duration-300">
+                    <div class="aspect-square rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 theme-bg-secondary theme-shadow theme-shadow-hover">
                         <img src="images/gallary/gallary_2.jpg" alt="Gallery Image 3" class="w-full h-full object-cover gallery-image-item" data-full-src="images/gallary/gallary_2.jpg">
                     </div>
-                    <div class="aspect-square rounded-lg overflow-hidden shadow-md transform hover:scale-105 transition-transform duration-300">
+                    <div class="aspect-square rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 theme-bg-secondary theme-shadow theme-shadow-hover">
                         <img src="images/gallary/gallary_3.jpg" alt="Gallery Image 4" class="w-full h-full object-cover gallery-image-item" data-full-src="images/gallary/gallary_3.jpg">
                     </div>
-                    <div class="aspect-square rounded-lg overflow-hidden shadow-md transform hover:scale-105 transition-transform duration-300">
+                    <div class="aspect-square rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 theme-bg-secondary theme-shadow theme-shadow-hover">
                         <img src="images/gallary/gallary_4.jpg" alt="Gallery Image 5" class="w-full h-full object-cover gallery-image-item" data-full-src="images/gallary/gallary_4.jpg">
                     </div>
-                     <div class="aspect-square rounded-lg overflow-hidden shadow-md transform hover:scale-105 transition-transform duration-300">
+                     <div class="aspect-square rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 theme-bg-secondary theme-shadow theme-shadow-hover">
                         <img src="images/gallary/gallary_5.jpg" alt="Gallery Image 5" class="w-full h-full object-cover gallery-image-item" data-full-src="images/gallary/gallary_5.jpg">
                     </div>
                 </div>
@@ -1356,57 +1414,57 @@
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="py-16 bg-black min-h-[calc(100vh-5rem)]">
+        <section id="contact" class="py-16 min-h-[calc(100vh-5rem)] theme-bg-primary">
             <div class="container mx-auto px-4 md:px-8 lg:px-16">
                 <div class="section-heading-container">
                     <!-- Changed text-4xl to text-3xl -->
-                    <h2 class="text-3xl text-center text-gray-100 section-heading">Contact me</h2>
+                    <h2 class="text-3xl text-center section-heading">Contact me</h2>
                     <span class="section-heading-line"></span>
                     <span class="section-heading-accent-line"></span>
                 </div>
-                <div class="max-w-xl mx-auto bg-black p-8 rounded-lg shadow-md">
-                    <!--p class="text-center text-lg mb-6 text-gray-300">
+                <div class="max-w-xl mx-auto p-8 rounded-lg theme-shadow theme-bg-secondary">
+                    <!--p class="text-center text-lg mb-6 theme-text-secondary">
                         For collaborations, performances, and workshops, please feel free to reach out.
                 </p-->
                     <!---form class="space-y-4 mb-8">
                         <div>
-                            <label for="name" class="block text-gray-200 text-sm font-semibold mb-2">Name</label>
-                            <input type="text" id="name" name="name" class="w-full p-3 rounded-md bg-gray-700 text-white border border-gray-600 focus:ring-amber-500 focus:border-amber-500" placeholder="Your Name" required>
+                            <label for="name" class="block theme-text-primary text-sm font-semibold mb-2">Name</label>
+                            <input type="text" id="name" name="name" class="w-full p-3 rounded-md bg-gray-700 theme-text-primary border border-gray-600 focus:ring-amber-500 focus:border-amber-500" placeholder="Your Name" required>
                         </div>
                         <div>
-                            <label for="email" class="block text-gray-200 text-sm font-semibold mb-2">Email</label>
-                            <input type="email" id="email" name="email" class="w-full p-3 rounded-md bg-gray-700 text-white border border-gray-600 focus:ring-amber-500 focus:border-amber-500" placeholder="your@example.com" required>
+                            <label for="email" class="block theme-text-primary text-sm font-semibold mb-2">Email</label>
+                            <input type="email" id="email" name="email" class="w-full p-3 rounded-md bg-gray-700 theme-text-primary border border-gray-600 focus:ring-amber-500 focus:border-amber-500" placeholder="your@example.com" required>
                         </div>
                         <div>
-                            <label for="subject" class="block text-gray-200 text-sm font-semibold mb-2">Subject</label>
-                            <input type="text" id="subject" name="subject" class="w-full p-3 rounded-md bg-gray-700 text-white border border-gray-600 focus:ring-amber-500 focus:border-amber-500" placeholder="Subject of your message" required>
+                            <label for="subject" class="block theme-text-primary text-sm font-semibold mb-2">Subject</label>
+                            <input type="text" id="subject" name="subject" class="w-full p-3 rounded-md bg-gray-700 theme-text-primary border border-gray-600 focus:ring-amber-500 focus:border-amber-500" placeholder="Subject of your message" required>
                         </div>
                         <div>
-                            <label for="message" class="block text-gray-200 text-sm font-semibold mb-2">Message</label>
-                            <textarea id="message" name="message" rows="5" class="w-full p-3 rounded-md bg-gray-700 text-white border border-gray-600 focus:ring-amber-500 focus:border-amber-500" placeholder="Your message..." required></textarea>
+                            <label for="message" class="block theme-text-primary text-sm font-semibold mb-2">Message</label>
+                            <textarea id="message" name="message" rows="5" class="w-full p-3 rounded-md bg-gray-700 theme-text-primary border border-gray-600 focus:ring-amber-500 focus:border-amber-500" placeholder="Your message..." required></textarea>
                         </div>
                         <button type="submit" class="w-full btn-primary font-semibold">Send Message</button>
                 </form-->
 
                     <div class="text-center mb-6">
-                        <p class="text-gray-300 mb-4">For collaborations, performances, or workshops, please write me ...</p>
+                        <p class="mb-4 theme-text-secondary">For collaborations, performances, or workshops, please write me ...</p>
                         <div class="flex flex-wrap justify-center space-x-4 space-y-2">
                             <!-- Phone Contact -->
-                            <!---div class="flex items-center space-x-2 text-gray-300">
-                                <i class="fas fa-phone-alt text-lg text-amber-500"></i>
+                            <!---div class="flex items-center space-x-2 theme-text-secondary">
+                                <i class="fas fa-phone-alt text-lg text-accent"></i>
                                 <!--span>+46 (0) 76 272 6596</span-->
                                 <!---span>+46 (0) coming soon ...</span--->
                         </div-->
                             <!-- Email Contact -->
-                            <div class="flex items-center space-x-2 text-gray-300">
-                                <i class="fas fa-envelope text-lg text-amber-500"></i>
+                            <div class="flex items-center space-x-2 theme-text-secondary">
+                                <i class="fas fa-envelope text-lg text-accent"></i>
                                 <span>tripti.sharma87 @ gmail.com</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="mt-8 text-center">
-                        <p class="text-gray-300 mb-4">Connect with me</p>
+                        <p class="mb-4 theme-text-secondary">Connect with me</p>
                         <div class="flex flex-wrap justify-center space-x-4">
                             <a href="https://www.instagram.com/triptisharma87/" target="_blank" class="icon-link instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                             <a href="https://www.facebook.com/tripti.sharma.3382" target="_blank" class="icon-link facebook" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
@@ -1422,10 +1480,10 @@
         </section>
     </main>
     <!-- Footer -->
-    <footer class="bg-black text-gray-400 py-8 text-center text-sm">
+    <footer class="py-8 text-center text-sm theme-header" style="opacity: 0.7;">
         <div class="container mx-auto px-4">
             <p>&copy; 2025 Tripti Sharma. All rights reserved.</p>
-            <p class="mt-2"><a href="https://www.algopra.com/index.html">Designed and Developed by Pravin Kumar Rana</a></p>
+            <p class="mt-2"><a href="https://www.algopra.com/index.html" class="theme-text-primary" style="opacity: 1;">Designed and Developed by Pravin Kumar Rana</a></p>
         </div>
     </footer>
 
@@ -1443,19 +1501,19 @@
     <div id="lightbox-modal" class="lightbox-modal fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 hidden p-4">
         <div class="relative max-w-full max-h-full flex items-center justify-center">
             <!-- Previous Button -->
-            <button id="lightbox-prev" class="absolute left-4 z-10 text-white text-5xl font-bold cursor-pointer hover:text-orange-400 transition-colors duration-200" aria-label="Previous image">
+            <button id="lightbox-prev" class="absolute left-4 z-10 text-white text-5xl font-bold cursor-pointer transition-colors duration-200" aria-label="Previous image">
                 &#8249; <!-- HTML entity for < -->
             </button>
 
-            <img id="lightbox-image" src="" alt="Full-screen image" class="max-w-full max-h-full object-contain rounded-lg shadow-lg">
+            <img id="lightbox-image" src="" alt="Full-screen image" class="max-w-full max-h-full object-contain rounded-lg theme-shadow">
 
             <!-- Next Button -->
-            <button id="lightbox-next" class="absolute right-4 z-10 text-white text-5xl font-bold cursor-pointer hover:text-orange-400 transition-colors duration-200" aria-label="Next image">
+            <button id="lightbox-next" class="absolute right-4 z-10 text-white text-5xl font-bold cursor-pointer transition-colors duration-200" aria-label="Next image">
                 &#8250; <!-- HTML entity for > -->
             </button>
 
             <!-- Close button -->
-            <button id="lightbox-close" class="absolute top-4 right-4 text-white text-4xl font-bold cursor-pointer hover:text-orange-400 transition-colors duration-200" aria-label="Close image viewer">
+            <button id="lightbox-close" class="absolute top-4 right-4 text-white text-4xl font-bold cursor-pointer transition-colors duration-200" aria-label="Close image viewer">
                 &times;
             </button>
         </div>
