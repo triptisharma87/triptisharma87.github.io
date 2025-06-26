@@ -596,6 +596,7 @@
 
         /* Styles for media coverage images (new for inline images) */
         .media-image-wrapper {
+            position: relative; /* Added for absolute positioning of play button overlay */
             width: 100%;
             height: 250px; /* Fixed height similar to performance images */
             overflow: hidden; /* Hide overflow for object-fit */
@@ -603,6 +604,7 @@
             display: flex; /* To center image if needed, or simply for structure */
             align-items: center;
             justify-content: center;
+            cursor: pointer; /* Indicate clickability for lightbox images */
         }
 
         .media-image-wrapper img {
@@ -630,7 +632,8 @@
             cursor: pointer; /* Indicate clickability */
         }
 
-        .discography-item-image-wrapper:hover .play-button-overlay {
+        .discography-item-image-wrapper:hover .play-button-overlay,
+        .media-image-wrapper:hover .play-button-overlay { /* Apply to media-image-wrapper too */
             opacity: 1; /* Shows the overlay on hover */
         }
 
@@ -685,7 +688,7 @@
                     <h1 class="text-4xl md:text-4xl lg:text-5xl font-extrabold leading-tight mb-6 drop-shadow-lg text-white">Tripti Sharma</h1>
                     <p class="text-xl md:text-lg lg:text-xl font-light mb-8 text-white">Indian Classical and Semi-classical Vocalist</p>
                     <p class="text-base md:text-sm lg:text-base mb-10 md:text-center text-white">Deeply rooted in the rich traditions of the Banaras Gharana.</p>
-		    <br><br><br><br><br><br>
+<br><br><br><br><br><br>
                     <div class="flex justify-center md:justify-start space-x-4 mb-8">
                         <a href="#music" class="btn-primary inline-block font-semibold">Listen to me </a>
                         <a href="#contact" class="btn-primary inline-block font-semibold">Contact me</a>
@@ -1009,13 +1012,14 @@
                             <div class="media-image-wrapper theme-bg-secondary">
                                 <img src="https://ltv.lsm.lv/storage/media/4/a/large/2/4810a373.jpg"
                                     alt="Indijas stāsti mūzikā un dejā thumbnail"
-                                    onerror="this.onerror=null;this.src='https://placehold.co/300x250/374151/D1D5DB?text=Image+Not+Found';">
+                                    onerror="this.onerror=null;this.src='https://placehold.co/300x250/374151/D1D5DB?text=Image+Not+Found';"
+                                    class="media-image-lightbox" data-full-src="https://ltv.lsm.lv/storage/media/4/a/large/2/4810a373.jpg">
                             </div>
                             <div class="p-6 text-center">
                                 <h3 class="text-lg mb-2 theme-text-primary">Latvian public television performance coverage and interview</h3>
                                 <p class="mb-1 theme-text-secondary">Indijas Stāsti Mūzikā Un Dejā Atcelo Uz Latviju | Latvijas Sabiedriskais Medijs</p>
                                 <p class="mb-1 theme-text-secondary">🗓️ August 19, 2024</p>
-                                <a href="https://www.lsm.lv/raksts/kultura/muzika/19.08.2024-iepazit-2000-gadus-senas-tradicijas-indijas-stasti-muzika-un-deja-atcelo-uz-latviju.a565596/" target="_blank" class="text-accent hover:underline text-sm font-semibold mt-2 inline-block">Read more</a>
+                                <a href="https://www.lsm.lv/raksts/kultura/muzika/19.08.2024-iepazit-2000-gadus-senas-tradicijas-indijas-stasti-muzika-un-deja-atcelo-uz-latviju.a565596/" target="_blank" class="text-accent hover:underline text-sm font-semibold mt-2 inline-block">Watch interview (Latvian)</a>
                             </div>
                         </div>
 
@@ -1025,16 +1029,15 @@
                                 <img src="https://img.youtube.com/vi/C2PIKfAsCAE/0.jpg"
                                     alt="Deshvaani Interview thumbnail"
                                     onerror="this.onerror=null;this.src='https://placehold.co/300x250/374151/D1D5DB?text=Image+Not+Found';">
-                                <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-10 rounded-lg">
-                                    <svg class="h-16 w-16 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M8 5v14l11-7z"/>
-                                    </svg>
-                                </div>
+                                <!-- Replaced SVG play button with a play-button-overlay anchor tag -->
+                                <a href="#" class="play-button-overlay media-play-overlay" aria-label="Play Deshvaani Interview on YouTube" data-video-id="C2PIKfAsCAE">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
                             </div>
                             <div class="p-6 text-center">
                                 <h3 class="text-lg mb-2 theme-text-primary">Exclusive interview with Deshvaani YouTube Channel</h3>
-                                <p class="mb-1 theme-text-secondary">Indian Classical Interview | Deshvaani (YouTube Podcast)</p>
-                                <p class="mb-1 theme-text-secondary">🗓️ July 28, 2024</p>
+                                <p class="mb-1 theme-text-secondary">Indian Classical Interview | YouTube Podcast</p>
+                                <p class="mb-1 theme-text-secondary">🗓️ December 08, 2024</p>
                                 <a href="https://www.youtube.com/watch?v=C2PIKfAsCAE" target="_blank" class="text-accent hover:underline text-sm font-semibold mt-2 inline-block">Watch interview</a>
                             </div>
                         </div>
@@ -1042,15 +1045,18 @@
                         <!-- Amar Ujala - Hindi Newspaper, India -->
                         <div class="rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 theme-bg-secondary theme-shadow theme-shadow-hover">
                             <div class="media-image-wrapper theme-bg-secondary">
+                                <!-- Added data-full-src and media-image-lightbox class -->
                                 <img src="images/media-coverage/newspapers/20140110-amar-ujala-moradabad-hindi_crop.png"
                                     alt="Amar Ujala Newspaper thumbnail"
-                                    onerror="this.onerror=null;this.src='https://placehold.co/300x250/374151/D1D5DB?text=Image+Not+Found';">
+                                    onerror="this.onerror=null;this.src='images/media-coverage/newspapers/20140110-amar-ujala-moradabad-hindi.jpeg';"
+                                    class="media-image-lightbox" data-full-src="images/media-coverage/newspapers/20140110-amar-ujala-moradabad-hindi.jpeg">
                             </div>
                             <div class="p-6 text-center">
                                 <h3 class="text-lg mb-2 theme-text-primary">Amar Ujala - Hindi Newspaper, India</h3>
                                 <p class="mb-1 theme-text-secondary">Coverage of Tripti Sharma's performance</p>
                                 <p class="mb-1 theme-text-secondary">🗓️ January 10, 2014</p>
-                                <a href="#" target="_blank" class="text-accent hover:underline text-sm font-semibold mt-2 inline-block">View Article (Placeholder)</a>
+				<a href="images/media-coverage/newspapers/20140110-amar-ujala-moradabad-hindi_crop.png" target="_blank" class="text-accent hover:underline text-sm font-semibold mt-2 inline-block">View Article</a>
+                                <!-- Removed the 'View Article' link as image will now open in lightbox -->
                             </div>
                         </div>
                     </div>
@@ -1532,7 +1538,8 @@
         document.addEventListener('DOMContentLoaded', function() {
             // --- Modal related variables and functions (for videos) ---
             const videoThumbnails = document.querySelectorAll('.video-thumbnail'); // All thumbnails in the carousel
-            const discographyPlayButtons = document.querySelectorAll('.discography-item-image-wrapper .play-button-overlay'); // New: Select discography play buttons
+            const discographyPlayButtons = document.querySelectorAll('.discography-item-image-wrapper .play-button-overlay'); // Select discography play buttons
+            const mediaPlayButtons = document.querySelectorAll('.media-play-overlay'); // NEW: Select media play buttons
 
             const videoModal = document.getElementById('videoModal');
             const modalVideoFrame = document.getElementById('modalVideoFrame');
@@ -1541,7 +1548,7 @@
             const nextVideoBtn = document.getElementById('nextVideoBtn');
 
             let currentModalVideoIndex = 0;
-            // This array will store unique video IDs for modal navigation, combining both sources
+            // This array will store unique video IDs for modal navigation, combining all sources
             let uniqueVideoIdsForModal = [];
 
             // Function to populate uniqueVideoIdsForModal from all sources
@@ -1556,6 +1563,13 @@
                 });
                 // Add video IDs from discography play buttons
                 discographyPlayButtons.forEach(button => {
+                    const videoId = button.getAttribute('data-video-id');
+                    if (videoId && !uniqueVideoIdsForModal.includes(videoId)) {
+                        uniqueVideoIdsForModal.push(videoId);
+                    }
+                });
+                // NEW: Add video IDs from media play buttons
+                mediaPlayButtons.forEach(button => {
                     const videoId = button.getAttribute('data-video-id');
                     if (videoId && !uniqueVideoIdsForModal.includes(videoId)) {
                         uniqueVideoIdsForModal.push(videoId);
@@ -1596,10 +1610,22 @@
                 });
             });
 
-            // New: Event listener for discography play buttons
+            // Event listener for discography play buttons
             discographyPlayButtons.forEach(button => {
                 button.addEventListener('click', function(event) {
                     event.preventDefault(); // Prevent default link behavior (opening new tab)
+                    const clickedVideoId = this.getAttribute('data-video-id');
+                    const firstOccurrenceIndex = uniqueVideoIdsForModal.indexOf(clickedVideoId);
+                    if (firstOccurrenceIndex !== -1) {
+                        showModalVideo(firstOccurrenceIndex);
+                    }
+                });
+            });
+
+            // NEW: Event listener for media play buttons
+            mediaPlayButtons.forEach(button => {
+                button.addEventListener('click', function(event) {
+                    event.preventDefault(); // Prevent default link behavior
                     const clickedVideoId = this.getAttribute('data-video-id');
                     const firstOccurrenceIndex = uniqueVideoIdsForModal.indexOf(clickedVideoId);
                     if (firstOccurrenceIndex !== -1) {
@@ -1680,7 +1706,7 @@
                         videoScrollContainer.scrollLeft = featuredCarouselItems[featuredCarouselItems.length - numUniqueVideosInCarousel].offsetLeft;
                         nextPhysicalIndex = featuredCarouselItems.length - numUniqueVideosInCarousel - 1; // Reset index to the last original item
                     }
-                } 
+                    } 
 
                 // Ensure the index is valid for `scrollIntoView`
                 if (nextPhysicalIndex >= 0 && nextPhysicalIndex < featuredCarouselItems.length) {
@@ -1722,6 +1748,7 @@
             // --- Lightbox related variables and functions (for images) ---
             const performanceImages = document.querySelectorAll('.performance-image');
             const galleryImages = document.querySelectorAll('.gallery-image-item'); // Select gallery images
+            const mediaLightboxImages = document.querySelectorAll('.media-image-lightbox'); // NEW: Select media lightbox images
             const lightboxModal = document.getElementById('lightbox-modal');
             const lightboxImage = document.getElementById('lightbox-image');
             const lightboxClose = document.getElementById('lightbox-close');
@@ -1731,7 +1758,11 @@
             let currentImageIndex = 0;
             // Combine all potential image sources for the lightbox
             const imageSources = Array.from(performanceImages).map(img => img.getAttribute('data-full-src') || img.src)
-                               .concat(Array.from(galleryImages).map(img => img.getAttribute('data-full-src') || img.src));
+                               .concat(Array.from(galleryImages).map(img => img.getAttribute('data-full-src') || img.src))
+                               .concat(Array.from(mediaLightboxImages).map(img => {
+                                   console.log("Adding media image to lightbox sources:", img.getAttribute('data-full-src') || img.src); // Debugging
+                                   return img.getAttribute('data-full-src') || img.src;
+                               })); // NEW: Add media images to sources
 
             // Function to show a specific image in the lightbox
             const showImage = (index) => {
@@ -1780,6 +1811,15 @@
             // Add click listener to each gallery image
             galleryImages.forEach(image => {
                 image.addEventListener('click', () => {
+                    const fullSrc = image.getAttribute('data-full-src') || image.src;
+                    openLightbox(fullSrc);
+                });
+            });
+
+            // NEW: Add click listener to each media lightbox image
+            mediaLightboxImages.forEach(image => {
+                image.addEventListener('click', () => {
+                    console.log("Media image clicked:", image.src); // Debugging: check if click is registered
                     const fullSrc = image.getAttribute('data-full-src') || image.src;
                     openLightbox(fullSrc);
                 });
