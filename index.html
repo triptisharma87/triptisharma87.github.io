@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="scroll-padding-top: 5rem;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -175,7 +175,7 @@
             position: absolute;
             left: 50%; /* Center it */
             transform: translateX(-50%); /* Adjust for true centering */
-            width: 80px; /* Fixed width for the accent */
+            width: 60px; /* Fixed width for the accent - adjusted from 80px to 60px */
             bottom: -10px; /* Position below the line */
             z-index: 10; /* Ensure it's above the main line */
         }
@@ -558,26 +558,25 @@
 
     <!-- Header and Navigation -->
     <header id="mainHeader" class="bg-black text-white shadow-lg py-4 fixed w-full z-30">
-        <nav class="container mx-auto flex justify-between items-center px-4">
-            <img src="images/logos/aalapini-logo_v0.png" alt="Tripti Sharma Logo" class="h-12 w-12 mr-4">
-            <!-- Tripti Sharma name: caps, no bold, white -->
-            <a href="#" class="text-2xl uppercase font-normal text-white">Tripti Sharma</a>
+        <nav class="container mx-auto flex items-center px-4 relative">
+            <!-- Logo and Title container - for small screens this will be centered -->
+            <div class="flex-1 flex justify-center items-center md:justify-start">
+                <img src="images/logos/aalapini-logo_v0.png" alt="Tripti Sharma Logo" class="h-12 w-12 mr-2 md:mr-4">
+                <a href="#" class="text-2xl uppercase font-normal text-white text-center md:text-left">Tripti Sharma</a>
+            </div>
 
-            <!-- Hamburger Icon for Mobile -->
-            <button id="menuToggle" class="md:hidden text-white text-2xl focus:outline-none">
+            <!-- Hamburger Icon for Mobile - absolutely positioned on smaller screens -->
+            <button id="menuToggle" class="md:hidden text-white text-2xl focus:outline-none absolute right-4 top-1/2 -translate-y-1/2 z-40">
                 <i class="fas fa-bars"></i>
             </button>
 
-            <!-- Navigation Links -->
-            <!-- Initially hidden on small screens, flex on medium screens and up -->
+            <!-- Navigation Links - hidden on small screens, flex on medium screens and up, positioned to the right -->
             <ul id="mainNav" class="hidden md:flex flex-wrap md:justify-end md:space-x-8 text-lg">
                 <!-- Navigation links in uppercase -->
                 <li><a href="#home" class="nav-link text-white hover:text-amber-400 uppercase">Home</a></li>
                 <li><a href="#music" class="nav-link text-white hover:text-amber-400 uppercase">Music</a></li>
                 <li><a href="#about" class="nav-link text-white hover:text-amber-400 uppercase">Biography</a></li>
-                <li><a href="#media" class="nav-link text-white hover:text-amber-400 uppercase">Media</a></li>
                 <li><a href="#performances" class="nav-link text-white hover:text-amber-400 uppercase">Performances</a></li>
-                <li><a href="#accolades" class="nav-link text-white hover:text-amber-400 uppercase">Accolades</a></li>
                 <li><a href="#gallery" class="nav-link text-white hover:text-amber-400 uppercase">Gallery</a></li>
                 <li><a href="#contact" class="nav-link text-white hover:text-amber-400 uppercase">Contact</a></li>
             </ul>
@@ -591,14 +590,13 @@
             <!-- Full-width background image. object-right ensures the right side of the image is more prominent. -->
             <img src="images/profile//tripti-sharma-profile-hr1-2025.jpg" alt="Tripti Sharma performing" class="absolute inset-0 w-full h-full object-cover object-right z-0">
 
-            <!-- The blur overlay, positioned absolutely on the left, takes up 1/3 width on md and up -->
-            <!-- On mobile (non-md), it defaults to w-full. The content inside will also be centered. -->
-            <div class="absolute top-0 left-0 h-full w-full md:w-1/3 bg-black bg-opacity-20 backdrop-blur-sm z-10">
+            <!-- The blur overlay, positioned absolutely on the left, takes up full width on small screens and 1/3 width on md and up -->
+            <div class="absolute top-0 left-0 h-full w-full md:w-1/3 bg-black bg-opacity-50 md:bg-opacity-20 z-10">
                 <!-- Content inside the blur overlay, centered vertically and horizontally on small screens -->
                 <div class="h-full flex flex-col justify-center items-center text-center p-4 md:p-8 md:text-left">
-                    <h1 class="text-4xl md:text-4xl lg:text-5xl font-extrabold leading-tight mb-4 drop-shadow-lg">Tripti Sharma</h1>
-                    <p class="text-xl md:text-lg lg:text-xl font-light mb-6">Indian Classical and Semi-classical Vocalist</p>
-                    <p class="text-base md:text-sm lg:text-base mb-8 md:text-center">Deeply rooted in the rich traditions of the Banaras Gharana.</p>
+                    <h1 class="text-4xl md:text-4xl lg:text-5xl font-extrabold leading-tight mb-4 drop-shadow-lg text-white">Tripti Sharma</h1>
+                    <p class="text-xl md:text-lg lg:text-xl font-light mb-6 text-white">Indian Classical and Semi-classical Vocalist</p>
+                    <p class="text-base md:text-sm lg:text-base mb-8 md:text-center text-white">Deeply rooted in the rich traditions of the Banaras Gharana.</p>
                     <div class="flex flex-col sm:flex-row justify-center md:justify-start space-x-0 sm:space-x-4 space-y-4 sm:space-y-0 mb-6">
                         <a href="#music" class="btn-primary inline-block font-semibold bg-white text-orange-600 hover:bg-gray-100">Listen to me </a>
                         <a href="#contact" class="btn-primary inline-block font-semibold bg-white text-orange-600 hover:bg-gray-100">Contact me</a>
@@ -617,17 +615,22 @@
         </section>
 
         <!-- Music Section: Featured Videos and Discography -->
-        <section id="music" class="py-16 bg-black">
+        <section id="music" class="py-16 bg-black min-h-[calc(100vh-5rem)]">
         <div class="container mx-auto px-4 md:px-8 lg:px-16">
             <div class="section-heading-container">
-                <!-- Removed font-semibold -->
-                <h2 class="text-4xl text-center text-gray-100 section-heading">Listen to me</h2>
+                <!-- Changed text-4xl to text-3xl -->
+                <h2 class="text-3xl text-center text-gray-100 section-heading">Listen to me</h2>
                 <span class="section-heading-line"></span>
                 <span class="section-heading-accent-line"></span>
             </div>
             <!-- Featured Videos Carousel -->
-            <!-- Removed font-semibold -->
-            <h3 class="text-3xl text-center mb-6 text-gray-100">Featured videos</h3>
+            <!-- Changed text-3xl to text-2xl -->
+            <div class="section-heading-container">
+		<h3 class="text-2xl text-center text-gray-100 section-heading">Featured videos</h3>
+                 <!--span class="section-heading-line"></span-->
+                 <span class="section-heading-accent-line"></span>
+            </div>
+
             <div id="featured-videos-carousel" class="py-4 bg-black rounded-lg mb-8 shadow-md relative">
                 <!-- Carousel Navigation Buttons -->
                 <span id="carouselPrevBtn" class="carousel-nav-button carousel-prev-button">&lt;</span>
@@ -651,17 +654,23 @@
                 </div>
             </div>
 
+
             <!-- Discography Section -->
-            <!-- Removed font-bold -->
-            <h3 class="text-3xl text-center mb-6 text-gray-100">Discography</h3>
+            <!-- Changed text-3xl to text-2xl -->
+	    <div class="section-heading-container">
+		<h3 class="text-2xl text-center text-gray-100 section-heading">Discography</h3>
+                 <!--span class="section-heading-line"></span-->
+                 <span class="section-heading-accent-line"></span>
+            </div>
+
             <div id="discography-content">
                 <!-- Changed to lg:grid-cols-3 for 3 albums on large screens -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- NEW: Shiva Stuti 2025 -->
                     <!-- Flex container for album art and text/links -->
                     <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 flex items-center p-4 space-x-4">
-                        <div class="discography-item-image-wrapper w-1/4 flex-shrink-0">
-                            <!-- w-1/4 to make album art smaller, flex-shrink-0 to prevent it from shrinking further -->
+                        <div class="discography-item-image-wrapper w-[28%] flex-shrink-0">
+                            <!-- Adjusted width to w-[28%] -->
                             <img src="images/artwork/ShivaStuti_2025.jpg" alt="Shiva Stuti album art" class="w-full aspect-square object-contain rounded-lg">
                             <a href="#" class="play-button-overlay" aria-label="Play Shiva Stuti on YouTube" data-video-id="8RshT7Bwth8">
                                 <i class="fab fa-youtube"></i>
@@ -682,7 +691,7 @@
 
                     <!-- NEW: Batiyan -->
                     <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 flex items-center p-4 space-x-4">
-                        <div class="discography-item-image-wrapper w-1/4 flex-shrink-0">
+                        <div class="discography-item-image-wrapper w-[28%] flex-shrink-0">
                             <img src="images/artwork/Batiyan_2025.jpg" alt="Batiyan album art" class="w-full aspect-square object-contain rounded-lg">
                             <a href="#" class="play-button-overlay" aria-label="Play Batiyan on YouTube" data-video-id="ZsZk2zv7qcA">
                                 <i class="fab fa-youtube"></i>
@@ -702,7 +711,7 @@
 
                      <!-- UPDATED: Payar Karta Hai -->
                     <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 flex items-center p-4 space-x-4">
-                        <div class="discography-item-image-wrapper w-1/4 flex-shrink-0">
+                        <div class="discography-item-image-wrapper w-[28%] flex-shrink-0">
                             <img src="images/artwork/Pardesiya_2025.jpg" alt="Pyar Karta Hai album art" class="w-full aspect-square object-contain rounded-lg">
                             <a href="#" class="play-button-overlay" aria-label="Play Pyar Karta Hai on YouTube" data-video-id="l5tk5VeH90Y">
                                 <i class="fab fa-youtube"></i>
@@ -714,7 +723,7 @@
                             <p class="text-gray-400 text-xs mb-2">Tripti Sharma, Palace on Wheels</p>
                             <div class="flex space-x-2 text-2xl">
                                 <a href="https://youtu.be/l5tk5VeH90Y?si=tnF2i2OlvbX" target="_blank" class="icon-link youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                                <a href="https://music.apple.com/us/song/pyar-karta-hai/1810793491" class="icon-link apple-music" aria-label="Apple Music"><i class="fab fa-apple"></i></a>
+                                <a href="https://music.apple.com/us/song/pyar-karta-ai/1810793491" class="icon-link apple-music" aria-label="Apple Music"><i class="fab fa-apple"></i></a>
                                 <a href="https://open.spotify.com/track/5316FKDsc65dxTMWtoEvPm?si=26579c3e9b554d13" class="icon-link spotify" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
                             </div>
                         </div>
@@ -722,7 +731,7 @@
 
                     <!-- UPDATED: Pardesiya (added YouTube link) -->
                     <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 flex items-center p-4 space-x-4">
-                        <div class="discography-item-image-wrapper w-1/4 flex-shrink-0">
+                        <div class="discography-item-image-wrapper w-[28%] flex-shrink-0">
                             <img src="images/artwork/Pardesiya_2025.jpg" alt="Pardesiya album art" class="w-full aspect-square object-contain rounded-lg">
                             <a href="#" class="play-button-overlay" aria-label="Play Pardesiya on YouTube" data-video-id="OT2qIaU6NH8">
                                 <i class="fab fa-youtube"></i>
@@ -742,7 +751,7 @@
 
                      <!-- Mere Mehboob -->
                     <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 flex items-center p-4 space-x-4">
-                        <div class="discography-item-image-wrapper w-1/4 flex-shrink-0">
+                        <div class="discography-item-image-wrapper w-[28%] flex-shrink-0">
                             <img src="images/artwork/KariBadariya_2025.jpg" alt="Mere Mehboob album art" class="w-full aspect-square object-contain rounded-lg">
                             <a href="#" class="play-button-overlay" aria-label="Play Mere Mehboob on YouTube" data-video-id="C4HSywLPeg8">
                                 <i class="fab fa-youtube"></i>
@@ -763,7 +772,7 @@
 
                     <!-- Dhola ve Dhola -->
                     <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 flex items-center p-4 space-x-4">
-                        <div class="discography-item-image-wrapper w-1/4 flex-shrink-0">
+                        <div class="discography-item-image-wrapper w-[28%] flex-shrink-0">
                             <img src="images/artwork/KariBadariya_2025.jpg" alt="Dhola Ve Dhola album art" class="w-full aspect-square object-contain rounded-lg">
                             <a href="#" class="play-button-overlay" aria-label="Play Dhola Ve Dhola on YouTube" data-video-id="rGOM67gowxg">
                                 <i class="fab fa-youtube"></i>
@@ -784,7 +793,7 @@
 
                     <!-- Kari Badariya 2025-->
                     <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 flex items-center p-4 space-x-4">
-                        <div class="discography-item-image-wrapper w-1/4 flex-shrink-0">
+                        <div class="discography-item-image-wrapper w-[28%] flex-shrink-0">
                             <img src="images/artwork/KariBadariya_2025.jpg" alt="Kari Badariya album art" class="w-full aspect-square object-contain rounded-lg">
                             <a href="#" class="play-button-overlay" aria-label="Play Kari Badariya on YouTube" data-video-id="naGFb0Lw5oA">
                                 <i class="fab fa-youtube"></i>
@@ -805,8 +814,8 @@
 
                     <!-- UPDATED: Jhoom Jhoom 2024 -->
                     <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 flex items-center p-4 space-x-4">
-                        <div class="discography-item-image-wrapper w-1/4 flex-shrink-0">
-                            <!-- w-1/4 to make album art smaller -->
+                        <div class="discography-item-image-wrapper w-[28%] flex-shrink-0">
+                            <!-- Adjusted width to w-[28%] -->
                             <img src="images/artwork/JhoomJhoom_2024.jpg" alt="Jhoom Jhoom single art" class="w-full aspect-square object-contain rounded-lg">
                             <a href="#" class="play-button-overlay" aria-label="Play Jhoom Jhoom on YouTube" data-video-id="01XlZopwlA4">
                                 <i class="fab fa-youtube"></i>
@@ -826,7 +835,7 @@
 
                     <!-- Sawan He Sakhi 2023 -->
                     <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 flex items-center p-4 space-x-4">
-                        <div class="discography-item-image-wrapper w-1/4 flex-shrink-0">
+                        <div class="discography-item-image-wrapper w-[28%] flex-shrink-0">
                             <img src="images/artwork/SawanHeSakhi_2023_v.jpg" alt="Sawan He Sakhi single art" class="w-full  aspect-square object-contain rounded-lg">
                             <a href="#" class="play-button-overlay" aria-label="Play Sawan He Sakhi on YouTube" data-video-id="De0sI5pNW1E">
                                 <i class="fab fa-youtube"></i>
@@ -846,7 +855,7 @@
 
                      <!-- Koyaliya 2022 -->
                     <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 flex items-center p-4 space-x-4">
-                        <div class="discography-item-image-wrapper w-1/4 flex-shrink-0">
+                        <div class="discography-item-image-wrapper w-[28%] flex-shrink-0">
                             <img src="images/artwork/Koyaliya_2022.jpg" alt="Koyaliya single art" class="w-full  aspect-square object-contain rounded-lg">
                             <a href="#" class="play-button-overlay" aria-label="Play Koyaliya on YouTube" data-video-id="vN_Oqt7XApg">
                                 <i class="fab fa-youtube"></i>
@@ -870,15 +879,15 @@
 
 
         <!-- About Me Section -->
-        <section id="about" class="py-16 bg-black text-gray-200"> <!-- Dark background -->
+        <section id="about" class="py-16 bg-black text-gray-200 min-h-[calc(100vh-5rem)]"> <!-- Dark background -->
             <div class="container mx-auto px-4 md:px-8 lg:px-16">
                 <div class="section-heading-container">
-                    <!-- Removed font-semibold -->
-                    <h2 class="text-4xl text-center text-gray-100 section-heading">My musical journey</h2>
+                    <!-- Changed text-4xl to text-3xl -->
+                    <h2 class="text-3xl text-center text-gray-100 section-heading">My musical journey</h2>
                     <span class="section-heading-line"></span>
                     <span class="section-heading-accent-line"></span>
                 </div>
-                <div class="text-lg text-gray-300 space-y-6"> <!-- Removed grid for text and integrated images inline -->
+                <div class="text-lg text-gray-300 space-y-6 text-justify"> <!-- Removed grid for text and integrated images inline -->
                     <p>Tripti Sharma is a promising Indian classical and semi-classical vocalist, deeply rooted in the rich traditions of the <span class="font-semibold text-accent">Banaras Gharana</span>. This ancient and distinguished gharana of Indian classical music is renowned for its technicalities and profound expressions. Tripti's diverse repertoire includes <span class="font-semibold">Khayal, Thumri, Tappa, Dadra, Kajri, Holi, Jhoola, Chaiti, and Bhajan</span>. As a performer, her compositions revolve around themes of spirituality, peace, love, and devotion.</p>
                     <p>
                         <img src="images/profile/brij-gopal-vyas.jpg" alt="Pandit Brij Gopal Vyas Ji" class="rounded-lg shadow-md inline-image w-full md:max-w-[200px] lg:max-w-[250px] mx-auto sm:float-right sm:ml-4 sm:mb-2 sm:mx-0">
@@ -897,102 +906,252 @@
                         With extensive traditional training, Tripti performs solo in India and internationally, mesmerizing audiences with her soulful renditions. Currently based in Stockholm, Sweden, she passionately promotes traditional Indian music through her engaging performances and workshops, leaving a lasting impression on listeners. Tripti, whose concert durations can be tailored from 60 to 120 minutes, feels blessed to have graced numerous prestigious stages worldwide, leaving an indelible mark with her musical brilliance.
                     </p>
                 </div>
+
+                <!-- Media coverage subsection -->
+                <div id="media" class="mt-16"> <!-- Added margin-top to separate from main bio text -->
+                    <div class="section-heading-container">
+                        <h3 class="text-2xl text-center text-gray-100 section-heading">Media coverage</h3>
+                        <!--span class="section-heading-line"></span-->
+                        <span class="section-heading-accent-line"></span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-12">
+                        <!-- REPlay interview -->
+                        <div class="flex flex-col items-center">
+                            <h3 class="text-2xl mb-4 text-white flex items-center justify-center text-center leading-tight">
+                                Latvian public television performance coverage and interview
+                            </h3>
+                            <a href="https://www.lsm.lv/raksts/kultura/muzika/19.08.2024-iepazit-2000-gadus-senas-tradicijas-indijas-stasti-muzika-un-deja-atcelo-uz-latviju.a565596/" target="_blank"
+                                class="block w-full bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 group mx-auto">
+                                <div class="w-full aspect-video flex items-center justify-center bg-black">
+                                    <img src="https://ltv.lsm.lv/storage/media/4/a/large/2/4810a373.jpg"
+                                        alt="Indijas stāsti mūzikā un dejā thumbnail"
+                                        class="w-full h-full object-contain object-center"
+                                        onerror="this.onerror=null;this.src='https://placehold.co/400x400/374151/D1D5DB?text=Image+Not+Found';">
+                                </div>
+                                <p class="text-gray-300 text-sm text-center"><br>Indijas Stāsti Mūzikā Un Dejā Atcelo Uz Latviju | Latvijas Sabiedriskais Medijs</p>
+                            </a>
+                        </div>
+
+                        <!-- Deshvaani Interview 2024 -->
+                        <div class="flex flex-col items-center">
+                            <h3 class="text-2xl mb-4 text-white flex items-center justify-center text-center leading-tight">
+                                Exclusive interview with Deshvaani YouTube Channel
+                            </h3>
+                            <a href="https://www.youtube.com/watch?v=C2PIKfAsCAE" target="_blank"
+                                class="block w-full bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 group mx-auto relative">
+                                <div class="w-full aspect-video flex items-center justify-center bg-black">
+                                    <img src="https://img.youtube.com/vi/C2PIKfAsCAE/0.jpg"
+                                        alt="Deshvaani Interview thumbnail"
+                                        class="w-full h-full object-cover object-center"
+                                        onerror="this.onerror=null;this.src='https://placehold.co/400x400/374151/D1D5DB?text=Image+Not+Found';">
+                                </div>
+                                <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-10 rounded-lg">
+                                    <svg class="h-16 w-16 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M8 5v14l11-7z"/>
+                                    </svg>
+                                </div>
+                                <p class="text-gray-300 text-sm text-center"><br>Indian Classical Interview | Deshvaani (YouTube Podcast)</p>
+                            </a>
+                        </div>
+                        
+                        <!-- New Image Placeholder (same sizing as the first image) -->
+                        <div class="flex flex-col items-center">
+                            <h3 class="text-2xl mb-4 text-white flex items-center justify-center text-center leading-tight">
+                                Amar Ujala - Hindi Newspaper, India
+                            </h3>
+                            <a href="#" target="_blank"
+                                class="block w-full bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 group mx-auto">
+                                <div class="w-full aspect-video flex items-center justify-center bg-black">
+                                    <img src="images/media-coverage/newspapers/20140110-amar-ujala-moradabad-hindi_crop.png"
+                                        alt="Placeholder image for new media coverage"
+                                        class="w-full h-full object-contain object-center"
+                                        onerror="this.onerror=null;this.src='https://placehold.co/400x400/374151/D1D5DB?text=Image+Not+Found';">
+                                </div>
+                                <p class="text-gray-300 text-sm text-center"><br>🗓️ January 10, 2014.</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accolades subsection -->
+                <div id="accolades" class="mt-16 py-8"> <!-- Added margin-top and py to add spacing -->
+                    <div class="section-heading-container">
+                        <h3 class="text-2xl text-center text-gray-100 section-heading">Selected accolades</h3>
+                        <!--span class="section-heading-line"></span-->
+                        <span class="section-heading-accent-line"></span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 xl:gap-10">
+                        <!-- Accolade Card 1 -->
+                        <div class="
+                            bg-black bg-opacity-70 rounded-xl shadow-lg p-6
+                            flex flex-col items-center text-center
+                            transform transition-all duration-300 ease-in-out
+                            hover:scale-105 hover:shadow-2xl
+                            border-t-4 border-white-500
+                            hover:border-white-500
+                            accolade-card
+                        ">
+                            <i class="fas fa-trophy text-5xl text-white-400 mb-4 drop-shadow-lg accolade-icon"></i>
+                            <div class="text-sm font-light text-gray-400 mb-1 accolade-year">2019</div>
+                            <h3 class="text-xl text-white mb-2 leading-tight accolade-name">
+                                The Accolade of Excellence - UP Diva
+                            </h3>
+                            <p class="text-sm text-gray-300 accolade-org">
+                                Media Impression Ads India Pvt. Ltd. and Utthan Foundation, India
+                            </p>
+                        </div>
+
+                        <!-- Accolade Card 2 -->
+                        <div class="
+                            bg-black bg-opacity-70 rounded-xl shadow-lg p-6
+                            flex flex-col items-center text-center
+                            transform transition-all duration-300 ease-in-out
+                            hover:scale-105 hover:shadow-2xl
+                            border-t-4 border-white-500
+                            hover:border-white-500
+                            accolade-card
+                        ">
+                            <i class="fas fa-award text-5xl text-white-400 mb-4 drop-shadow-lg accolade-icon"></i>
+                            <div class="text-sm font-light text-gray-400 mb-1 accolade-year">2015</div>
+                            <h3 class="text-xl text-white mb-2 leading-tight accolade-name">
+                                Malhar Samman
+                            </h3>
+                            <p class="text-sm text-gray-300 accolade-org">
+                                Indian Northern Railway, Uttar Pradesh, India
+                            </p>
+                        </div>
+
+                        <!-- Accolade Card 3 -->
+                        <div class="
+                            bg-black bg-opacity-70 rounded-xl shadow-lg p-6
+                            flex flex-col items-center text-center
+                            transform transition-all duration-300 ease-in-out
+                            hover:scale-105 hover:shadow-2xl
+                            border-t-4 border-white-500
+                            hover:border-white-500
+                            accolade-card
+                        ">
+                            <i class="fas fa-graduation-cap text-5xl text-white-400 mb-4 drop-shadow-lg accolade-icon"></i>
+                            <div class="text-sm font-light text-gray-400 mb-1 accolade-year">2008</div>
+                            <h3 class="text-xl text-white mb-2 leading-tight accolade-name">
+                                Junior Research Fellowship Award
+                            </h3>
+                            <p class="text-sm text-gray-300 accolade-org">
+                                University Grants Commission, New Delhi, India
+                            </p>
+                        </div>
+
+                        <!-- Accolade Card 4 -->
+                        <div class="
+                            bg-black bg-opacity-70 rounded-xl shadow-lg p-6
+                            flex flex-col items-center text-center
+                            transform transition-all duration-300 ease-in-out
+                            hover:scale-105 hover:shadow-2xl
+                            border-t-4 border-white-500
+                            hover:border-white-500
+                            accolade-card
+                        ">
+                            <i class="fas fa-award text-5xl text-white-400 mb-4 drop-shadow-lg accolade-icon"></i>
+                            <div class="text-sm font-light text-gray-400 mb-1 accolade-year">2008</div>
+                            <h3 class="text-xl text-white mb-2 leading-tight accolade-name">
+                                Prerna Kala Manch Samajik Sansthan Samman
+                            </h3>
+                            <p class="text-sm text-gray-300 accolade-org">
+                                Moradabad, Uttar Pradesh, India
+                            </p>
+                        </div>
+
+                        <!-- Accolade Card 5 -->
+                        <div class="
+                            bg-black bg-opacity-70 rounded-xl shadow-lg p-6
+                            flex flex-col items-center text-center
+                            transform transition-all duration-300 ease-in-out
+                            hover:scale-105 hover:shadow-2xl
+                            border-t-4 border-white-500
+                            hover:border-white-500
+                            accolade-card
+                        ">
+                            <i class="fas fa-medal text-5xl text-white-400 mb-4 drop-shadow-lg accolade-icon"></i>
+                            <div class="text-sm font-light text-gray-400 mb-1 accolade-year">2006</div>
+                            <h3 class="text-xl text-white mb-2 leading-tight accolade-name">
+                                President Award
+                            </h3>
+                            <p class="text-sm text-gray-300 accolade-org">
+                                The Bharat Scouts and Guides by President of India, Dr. A. P. J. Abdul Kalam, New Delhi, India
+                            </p>
+                        </div>
+
+                        <!-- Accolade Card 6 -->
+                        <div class="
+                            bg-black bg-opacity-70 rounded-xl shadow-lg p-6
+                            flex flex-col items-center text-center
+                            transform transition-all duration-300 ease-in-out
+                            hover:scale-105 hover:shadow-2xl
+                            border-t-4 border-white-500
+                            hover:border-white-500
+                            accolade-card
+                        ">
+                            <i class="fas fa-trophy text-5xl text-white-400 mb-4 drop-shadow-lg accolade-icon"></i>
+                            <div class="text-sm font-light text-gray-400 mb-1 accolade-year">2005</div>
+                            <h3 class="text-xl text-white mb-2 leading-tight accolade-name">
+                                Aarohi Kala Sansthan Samman
+                            </h3>
+                            <p class="text-sm text-gray-300 accolade-org">
+                                Moradabad, Uttar Pradesh, India
+                            </p>
+                        </div>
+
+                        <!-- Accolade Card 7 -->
+                        <div class="
+                            bg-black bg-opacity-70 rounded-xl shadow-lg p-6
+                            flex flex-col items-center text-center
+                            transform transition-all duration-300 ease-in-out
+                            hover:scale-105 hover:shadow-2xl
+                            border-t-4 border-white-500
+                            hover:border-white-500
+                            accolade-card
+                        ">
+                            <i class="fas fa-star text-5xl text-white-400 mb-4 drop-shadow-lg accolade-icon"></i>
+                            <div class="text-sm font-light text-gray-400 mb-1 accolade-year">2005</div>
+                            <h3 class="text-xl text-white mb-2 leading-tight accolade-name">
+                                Moradabad Idol
+                            </h3>
+                            <p class="text-sm text-gray-300 accolade-org">
+                                Moradabad, Uttar Pradesh, India
+                            </p>
+                        </div>
+
+                        <!-- Accolade Card 8 -->
+                        <div class="
+                            bg-black bg-opacity-70 rounded-xl shadow-lg p-6
+                            flex flex-col items-center text-center
+                            transform transition-all duration-300 ease-in-out
+                            hover:scale-105 hover:shadow-2xl
+                            border-t-4 border-white-500
+                            hover:border-white-500
+                            accolade-card
+                        ">
+                            <i class="fas fa-medal text-5xl text-white-400 mb-4 drop-shadow-lg accolade-icon"></i>
+                            <div class="text-sm font-light text-gray-400 mb-1 accolade-year">2003</div>
+                            <h3 class="text-xl text-white mb-2 leading-tight accolade-name">
+                                Governor Award
+                            </h3>
+                            <p class="text-sm text-gray-300 accolade-org">
+                                The Bharat Scouts and Guides, Uttar Pradesh, India
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
 
-       <!--- Section Media coverage --->
-       <!--- Section Media coverage --->
-<section id="media" class="py-16 bg-black">
-    <div class="container mx-auto px-4 md:px-8 lg:px-16">
-        <div class="section-heading-container">
-            <!-- Removed font-semibold -->
-            <h2 class="text-4xl text-center text-gray-100 section-heading">Media coverage</h2>
-            <span class="section-heading-line"></span>
-            <span class="section-heading-accent-line"></span>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-12">
-
-
-            <!-- REPlay interview -->
-            <!-- Each flex-col div acts as one grid item, containing all elements for that media piece -->
-            <div class="flex flex-col items-center">
-                <!-- Removed font-bold -->
-                <h3 class="text-2xl mb-4 text-white flex items-center justify-center text-center leading-tight">
-                    Latvian public television performance coverage and interview
-                </h3>
-                <!-- Container for the clickable image and title preview -->
-                <a href="https://www.lsm.lv/raksts/kultura/muzika/19.08.2024-iepazit-2000-gadus-senas-tradicijas-indijas-stasti-muzika-un-deja-atcelo-uz-latviju.a565596/" target="_blank"
-                    class="block w-full bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 group mx-auto">
-                    <!-- Image representing the page content -->
-                    <div class="w-full aspect-video flex items-center justify-center bg-black">
-                        <img src="https://ltv.lsm.lv/storage/media/4/a/large/2/4810a373.jpg"
-                            alt="Indijas stāsti mūzikā un dejā thumbnail"
-                            class="w-full h-full object-contain object-center"
-                            onerror="this.onerror=null;this.src='https://placehold.co/400x400/374151/D1D5DB?text=Image+Not+Found';">
-                    </div>
-                    <!-- Title overlay for the image -->
-                    <p class="text-gray-300 text-sm text-center"><br>Indijas Stāsti Mūzikā Un Dejā Atcelo Uz Latviju | Latvijas Sabiedriskais Medijs</p>
-                </a>
-            </div>
-
-            <!-- Deshvaani Interview 2024 - NOW CLICKABLE WITH ALWAYS-VISIBLE PLAY ICON -->
-            <div class="flex flex-col items-center">
-                <!-- Removed font-bold -->
-                <h3 class="text-2xl mb-4 text-white flex items-center justify-center text-center leading-tight">
-                    Exclusive interview with Deshvaani YouTube Channel
-                </h3>
-                <!-- Wrapped in 'a' tag to make it clickable, like the first example -->
-                <a href="https://www.youtube.com/watch?v=C2PIKfAsCAE" target="_blank"
-                    class="block w-full bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 group mx-auto relative">
-                    <!-- Image representing the YouTube video thumbnail -->
-                    <div class="w-full aspect-video flex items-center justify-center bg-black">
-                        <!-- Using a YouTube thumbnail URL that is generally more reliable. -->
-                        <img src="https://img.youtube.com/vi/C2PIKfAsCAE/0.jpg"
-                            alt="Deshvaani Interview thumbnail"
-                            class="w-full h-full object-cover object-center"
-                            onerror="this.onerror=null;this.src='https://placehold.co/400x400/374151/D1D5DB?text=Image+Not+Found';">
-                    </div>
-                    <!-- YouTube Play Icon Overlay - now always visible with lower opacity -->
-                    <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-10 rounded-lg">
-                        <svg class="h-16 w-16 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M8 5v14l11-7z"/>
-                        </svg>
-                    </div>
-                    <p class="text-gray-300 text-sm text-center"><br>Indian Classical Interview | Deshvaani (YouTube Podcast)</p>
-                </a>
-            </div>
-            <!-- Add more standalone media items here if needed -->
-
-            <!-- New Image Placeholder (same sizing as the first image) -->
-            <div class="flex flex-col items-center">
-                <!-- Removed font-bold -->
-                <h3 class="text-2xl mb-4 text-white flex items-center justify-center text-center leading-tight">
-                    Amar Ujala - Hindi Newspaper, India
-                </h3>
-                <a href="#" target="_blank"
-                    class="block w-full bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 group mx-auto">
-                    <div class="w-full aspect-video flex items-center justify-center bg-black">
-                        <img src="images/media-coverage/newspapers/20140110-amar-ujala-moradabad-hindi_crop.png"
-                            alt="Placeholder image for new media coverage"
-                            class="w-full h-full object-contain object-center"
-                            onerror="this.onerror=null;this.src='https://placehold.co/400x400/374151/D1D5DB?text=Image+Not+Found';">
-                    </div>
-                    <p class="text-gray-300 text-sm text-center"><br>🗓️ January 10, 2014.</p>
-                </a>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-
         <!-- Performances Section -->
-    <section id="performances" class="py-16 bg-black">
+    <section id="performances" class="py-16 bg-black min-h-[calc(100vh-5rem)]">
         <div class="container mx-auto px-4 md:px-8 lg:px-16">
             <div class="section-heading-container">
-                <!-- Removed font-bold -->
-                <h2 class="text-4xl text-center text-gray-100 section-heading">Recent notable performances</h2>
+                <!-- Changed text-4xl to text-3xl -->
+                <h2 class="text-3xl text-center text-gray-100 section-heading">Recent notable performances</h2>
                 <span class="section-heading-line"></span>
                 <span class="section-heading-accent-line"></span>
             </div>
@@ -1006,8 +1165,8 @@
                          onerror="this.onerror=null;this.src='images/events/20240818-Riga-Lativa-Indijas-Stasti.jpg';"
                          data-full-src="images/events/20240818-Riga-Lativa-Indijas-Stasti.jpg">
                     <div class="p-6">
-                        <!-- Removed font-semibold -->
-                        <h3 class="text-xl mb-2 text-white">Indijas Stasti, Riga, Lativa</h3>
+                        <!-- Changed text-xl to text-lg -->
+                        <h3 class="text-lg mb-2 text-white">Indijas Stasti, Riga, Lativa</h3>
                         <p class="text-gray-300 mb-1">Indian Classical Music and Vocal Evening</p>
                         <p class="text-gray-300 mb-1">🗓️ August 18, 2024</p>
                     </div>
@@ -1021,8 +1180,8 @@
                          onerror="this.onerror=null;this.src='images/events/20240816-ILCC-Independence-Day-Celebration-Riga-Lativa.jpg';"
                          data-full-src="images/events/20240816-ILCC-Independence-Day-Celebration-Riga-Lativa.jpg"></a>
                     <div class="p-6">
-                        <!-- Removed font-semibold -->
-                        <h3 class="text-xl mb-2 text-white"><a href="https://fb.me/e/5hBDyazEp">78th Independence Day of India Celebration, Riga, Lativa</a></h3>
+                        <!-- Changed text-xl to text-lg -->
+                        <h3 class="text-lg mb-2 text-white"><a href="https://fb.me/e/5hBDyazEp">78th Independence Day of India Celebration, Riga, Lativa</a></h3>
                         <p class="text-gray-300 mb-1">Indo-Latvian Chamber of Commerce and Embassy of India to Sweden and Lativa</p>
                         <p class="text-gray-300 mb-1">🗓️ August 16, 2024</p>
                     </div>
@@ -1037,8 +1196,8 @@
                          onerror="this.onerror=null;this.src='images/events/20231206-Stockholm-Sangeet-Sabha-9.jpg';"
                          data-full-src="images/events/20231206-Stockholm-Sangeet-Sabha-9.jpg"> <!-- data-full-src also uses original path -->
                     <div class="p-6">
-                        <!-- Removed font-semibold -->
-                        <h3 class="text-xl mb-2">
+                        <!-- Changed text-xl to text-lg -->
+                        <h3 class="text-lg mb-2">
                             <a href="https://www.stockholmsangeet.se/" target="_blank" class="text-orange-400 hover:underline">Stockholm Sangeet Sabha, Stockholm, Sweden</a>
                         </h3>
                         <p class="text-gray-300 mb-1">Concert and Open Stage - 9th Session</p>
@@ -1054,8 +1213,8 @@
                          onerror="this.onerror=null;this.src='images/events/20230819-Riga-Lativa-Birthday.jpg';"
                          data-full-src="images/events/20230819-Riga-Lativa-Birthday.jpg">
                     <div class="p-6">
-                        <!-- Removed font-semibold -->
-                        <h3 class="text-xl mb-2 text-white">Riga Birthday Celebration, Riga, Lativa</h3>
+                        <!-- Changed text-xl to text-lg -->
+                        <h3 class="text-lg mb-2 text-white">Riga Birthday Celebration, Riga, Lativa</h3>
                         <p class="text-gray-300 mb-1">Indian Classical Music Group "Chaturveni" Performance</p>
                         <p class="text-gray-300 mb-1">🗓️ August 19, 2023</p>
                     </div>
@@ -1069,8 +1228,8 @@
                          onerror="this.onerror=null;this.src='images/events/20230818-ILCC-Independence-Day-Celebration-Riga-Lativa.jpg';"
                          data-full-src="images/events/20230818-ILCC-Independence-Day-Celebration-Riga-Lativa.jpg"></a>
                     <div class="p-6">
-                        <!-- Removed font-semibold -->
-                        <h3 class="text-xl mb-2 text-white"><a href="https://fb.me/e/bb1Bp4aXf">77th Independence Day of India Celebration, Riga, Lativa</a></h3>
+                        <!-- Changed text-xl to text-lg -->
+                        <h3 class="text-lg mb-2 text-white"><a href="https://fb.me/e/bb1Bp4aXf">77th Independence Day of India Celebration, Riga, Lativa</a></h3>
                         <p class="text-gray-300 mb-1">Indo-Latvian Chamber of Commerce and Embassy of India to Sweden and Lativa</p>
                         <p class="text-gray-300 mb-1">🗓️ August 18, 2023</p>
                     </div>
@@ -1083,8 +1242,8 @@
                          onerror="this.onerror=null;this.src='images/events/20230816-Riga-Lativa-Nakts-Raga.jpg';"
                          data-full-src="images/events/20230816-Riga-Lativa-Nakts-Raga.jpg">
                     <div class="p-6">
-                        <!-- Removed font-semibold -->
-                        <h3 class="text-xl mb-2 text-white">Nakts Raga, Riga, Lativa</h3>
+                        <!-- Changed text-xl to text-lg -->
+                        <h3 class="text-lg mb-2 text-white">Nakts Raga, Riga, Lativa</h3>
                         <p class="text-gray-300 mb-1">Indian Classical Music and Indian Classical Vocal Evening</p>
                         <p class="text-gray-300 mb-1">🗓️ August 16, 2023</p>
                     </div>
@@ -1098,8 +1257,8 @@
                          onerror="this.onerror=null;this.src='images/events/20221006-Sarang-Korea.jpg';"
                          data-full-src="images/events/20221006-Sarang-Korea.jpg">
                     <div class="p-6">
-                        <!-- Removed font-semibold -->
-                        <h3 class="text-xl mb-2 text-white">Sarang - The Festival of India (Tour), Republic of Korea</h3>
+                        <!-- Changed text-xl to text-lg -->
+                        <h3 class="text-lg mb-2 text-white">Sarang - The Festival of India (Tour), Republic of Korea</h3>
                          <p class="text-gray-300 mb-1">Embassy of India, Seoul, Repblic of Korea</p>
                          <p class="text-gray-300 mb-1">🗓️ Sep 31 - Oct 14, 2022</p>
                     </div>
@@ -1113,8 +1272,8 @@
                          onerror="this.onerror=null;this.src='images/events/20220828-Sangeet-Samaroh-Delhi.jpg';"
                          data-full-src="images/events/20220828-Sangeet-Samaroh-Delhi.jpg">
                     <div class="p-6">
-                        <!-- Removed font-semibold -->
-                        <h3 class="text-xl mb-2 text-white">Sangeet Samaroh, Delhi, India</h3>
+                        <!-- Changed text-xl to text-lg -->
+                        <h3 class="text-lg mb-2 text-white">Sangeet Samaroh, Delhi, India</h3>
                         <p class="text-gray-300 mb-1">Pt. Kapildeo Singh Memorial Trust</p>
                         <p class="text-300 mb-1">🗓️ August 28, 2022</p>
                     </div>
@@ -1128,8 +1287,8 @@
                          onerror="this.onerror=null;this.src='images/events/20220209-Vasantuassv-DU-India.jpg';"
                          data-full-src="images/events/20220209-Vasantuassv-DU-India.jpg">
                     <div class="p-6">
-                        <!-- Removed font-semibold -->
-                        <h3 class="text-xl mb-2 text-white">Vasantotsav, Delhi, India</h3>
+                        <!-- Changed text-xl to text-lg -->
+                        <h3 class="text-lg mb-2 text-white">Vasantotsav, Delhi, India</h3>
                         <p class="text-gray-300 mb-1">International Webinar - Hindustani Classical Vocal</p>
                         <p class="text-gray-300 mb-1">🗓️ Feb 7, 2022</p>
                     </div>
@@ -1143,8 +1302,8 @@
                          onerror="this.onerror=null;this.src='images/events/20200529-Sanskar-Bharti.jpg';"
                          data-full-src="images/events/20200529-Sanskar-Bharti.jpg"> <!-- data-full-src also uses original path -->
                     <div class="p-6">
-                        <!-- Removed font-semibold -->
-                        <h3 class="text-xl mb-2 text-white"> <a href="https://www.facebook.com/sanskarbhartimrtprant/" target="_blank"> Sanskar Bharati, Meerut, India</a></h3>
+                        <!-- Changed text-xl to text-lg -->
+                        <h3 class="text-lg mb-2 text-white"> <a href="https://www.facebook.com/sanskarbhartimrtprant/" target="_blank"> Sanskar Bharati, Meerut, India</a></h3>
                         <p class="text-gray-300 mb-1">Sangeet Suman - 18</p>
                         <p class="text-gray-300 mb-1">🗓️ May 29, 2020</p>
                     </div>
@@ -1154,238 +1313,54 @@
         </div>
     </section>
 
-            <!-- Accolades Section -->
-    <section id="accolades" class="py-16 bg-black min-h-screen flex items-center justify-center">
-        <div class="container mx-auto px-4 md:px-8 lg:px-16 py-8">
-            <div class="section-heading-container">
-                <!-- Removed font-bold -->
-                <h2 class="text-4xl text-center text-gray-100 section-heading">
-                    Selected accolades
-                </h2>
-                <span class="section-heading-line"></span>
-                <span class="section-heading-accent-line"></span>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 xl:gap-10">
-                <!-- Accolade Card 1 -->
-                <div class="
-                    bg-black bg-opacity-70 rounded-xl shadow-lg p-6
-                    flex flex-col items-center text-center
-                    transform transition-all duration-300 ease-in-out
-                    hover:scale-105 hover:shadow-2xl
-                    border-t-4 border-white-500
-                    hover:border-white-500
-                    accolade-card
-                ">
-                    <i class="fas fa-trophy text-5xl text-white-400 mb-4 drop-shadow-lg accolade-icon"></i>
-                    <div class="text-sm font-light text-gray-400 mb-1 accolade-year">2019</div>
-                    <!-- Removed font-bold -->
-                    <h3 class="text-xl md:text-2xl text-white mb-2 leading-tight accolade-name">
-                        The Accolade of Excellence - UP Diva
-                    </h3>
-                    <p class="text-sm text-gray-300 accolade-org">
-                        Media Impression Ads India Pvt. Ltd. and Utthan Foundation, India
-                    </p>
-                </div>
-
-                <!-- Accolade Card 2 -->
-                <div class="
-                    bg-black bg-opacity-70 rounded-xl shadow-lg p-6
-                    flex flex-col items-center text-center
-                    transform transition-all duration-300 ease-in-out
-                    hover:scale-105 hover:shadow-2xl
-                    border-t-4 border-white-500
-                    hover:border-white-500
-                    accolade-card
-                ">
-                    <i class="fas fa-award text-5xl text-white-400 mb-4 drop-shadow-lg accolade-icon"></i>
-                    <div class="text-sm font-light text-gray-400 mb-1 accolade-year">2015</div>
-                    <!-- Removed font-bold -->
-                    <h3 class="text-xl md:text-2xl text-white mb-2 leading-tight accolade-name">
-                        Malhar Samman
-                    </h3>
-                    <p class="text-sm text-gray-300 accolade-org">
-                        Indian Northern Railway, Uttar Pradesh, India
-                    </p>
-                </div>
-
-                <!-- Accolade Card 3 -->
-                <div class="
-                    bg-black bg-opacity-70 rounded-xl shadow-lg p-6
-                    flex flex-col items-center text-center
-                    transform transition-all duration-300 ease-in-out
-                    hover:scale-105 hover:shadow-2xl
-                    border-t-4 border-white-500
-                    hover:border-white-500
-                    accolade-card
-                ">
-                    <i class="fas fa-graduation-cap text-5xl text-white-400 mb-4 drop-shadow-lg accolade-icon"></i>
-                    <div class="text-sm font-light text-gray-400 mb-1 accolade-year">2008</div>
-                    <!-- Removed font-bold -->
-                    <h3 class="text-xl md:text-2xl text-white mb-2 leading-tight accolade-name">
-                        Junior Research Fellowship Award
-                    </h3>
-                    <p class="text-sm text-gray-300 accolade-org">
-                        University Grants Commission, New Delhi, India
-                    </p>
-                </div>
-
-                <!-- Accolade Card 4 -->
-                <div class="
-                    bg-black bg-opacity-70 rounded-xl shadow-lg p-6
-                    flex flex-col items-center text-center
-                    transform transition-all duration-300 ease-in-out
-                    hover:scale-105 hover:shadow-2xl
-                    border-t-4 border-white-500
-                    hover:border-white-500
-                    accolade-card
-                ">
-                    <i class="fas fa-award text-5xl text-white-400 mb-4 drop-shadow-lg accolade-icon"></i>
-                    <div class="text-sm font-light text-gray-400 mb-1 accolade-year">2008</div>
-                    <!-- Removed font-bold -->
-                    <h3 class="text-xl md:text-2xl text-white mb-2 leading-tight accolade-name">
-                        Prerna Kala Manch Samajik Sansthan Samman
-                    </h3>
-                    <p class="text-sm text-gray-300 accolade-org">
-                        Moradabad, Uttar Pradesh, India
-                    </p>
-                </div>
-
-                <!-- Accolade Card 5 -->
-                <div class="
-                    bg-black bg-opacity-70 rounded-xl shadow-lg p-6
-                    flex flex-col items-center text-center
-                    transform transition-all duration-300 ease-in-out
-                    hover:scale-105 hover:shadow-2xl
-                    border-t-4 border-white-500
-                    hover:border-white-500
-                    accolade-card
-                ">
-                    <i class="fas fa-medal text-5xl text-white-400 mb-4 drop-shadow-lg accolade-icon"></i>
-                    <div class="text-sm font-light text-gray-400 mb-1 accolade-year">2006</div>
-                    <!-- Removed font-bold -->
-                    <h3 class="text-xl md:text-2xl text-white mb-2 leading-tight accolade-name">
-                        President Award
-                    </h3>
-                    <p class="text-sm text-gray-300 accolade-org">
-                        The Bharat Scouts and Guides by President of India, Dr. A. P. J. Abdul Kalam, New Delhi, India
-                    </p>
-                </div>
-
-                <!-- Accolade Card 6 -->
-                <div class="
-                    bg-black bg-opacity-70 rounded-xl shadow-lg p-6
-                    flex flex-col items-center text-center
-                    transform transition-all duration-300 ease-in-out
-                    hover:scale-105 hover:shadow-2xl
-                    border-t-4 border-white-500
-                    hover:border-white-500
-                    accolade-card
-                ">
-                    <i class="fas fa-trophy text-5xl text-white-400 mb-4 drop-shadow-lg accolade-icon"></i>
-                    <div class="text-sm font-light text-gray-400 mb-1 accolade-year">2005</div>
-                    <!-- Removed font-bold -->
-                    <h3 class="text-xl md:text-2xl text-white mb-2 leading-tight accolade-name">
-                        Aarohi Kala Sansthan Samman
-                    </h3>
-                    <p class="text-sm text-gray-300 accolade-org">
-                        Moradabad, Uttar Pradesh, India
-                    </p>
-                </div>
-
-                <!-- Accolade Card 7 -->
-                <div class="
-                    bg-black bg-opacity-70 rounded-xl shadow-lg p-6
-                    flex flex-col items-center text-center
-                    transform transition-all duration-300 ease-in-out
-                    hover:scale-105 hover:shadow-2xl
-                    border-t-4 border-white-500
-                    hover:border-white-500
-                    accolade-card
-                ">
-                    <i class="fas fa-star text-5xl text-white-400 mb-4 drop-shadow-lg accolade-icon"></i>
-                    <div class="text-sm font-light text-gray-400 mb-1 accolade-year">2005</div>
-                    <!-- Removed font-bold -->
-                    <h3 class="text-xl md:text-2xl text-white mb-2 leading-tight accolade-name">
-                        Moradabad Idol
-                    </h3>
-                    <p class="text-sm text-gray-300 accolade-org">
-                        Moradabad, Uttar Pradesh, India
-                    </p>
-                </div>
-
-                <!-- Accolade Card 8 -->
-                <div class="
-                    bg-black bg-opacity-70 rounded-xl shadow-lg p-6
-                    flex flex-col items-center text-center
-                    transform transition-all duration-300 ease-in-out
-                    hover:scale-105 hover:shadow-2xl
-                    border-t-4 border-white-500
-                    hover:border-white-500
-                    accolade-card
-                ">
-                    <i class="fas fa-medal text-5xl text-white-400 mb-4 drop-shadow-lg accolade-icon"></i>
-                    <div class="text-sm font-light text-gray-400 mb-1 accolade-year">2003</div>
-                    <!-- Removed font-bold -->
-                    <h3 class="text-xl md:text-2xl text-white mb-2 leading-tight accolade-name">
-                        Governor Award
-                    </h3>
-                    <p class="text-sm text-gray-300 accolade-org">
-                        The Bharat Scouts and Guides, Uttar Pradesh, India
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
         <!-- Gallery Section -->
-        <section id="gallery" class="py-16 bg-black">
+        <section id="gallery" class="py-16 bg-black min-h-[calc(100vh-5rem)]">
             <div class="container mx-auto px-4 md:px-8 lg:px-16">
                 <div class="section-heading-container">
-                    <!-- Removed font-semibold -->
-                    <h2 class="text-4xl text-center text-gray-100 section-heading">Gallery</h2>
+                    <!-- Changed text-4xl to text-3xl -->
+                    <h2 class="text-3xl text-center text-gray-100 section-heading">Gallery</h2>
                     <span class="section-heading-line"></span>
                     <span class="section-heading-accent-line"></span>
                 </div>
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     <!-- Gallery Item -->
                     <div class="aspect-square rounded-lg overflow-hidden shadow-md transform hover:scale-105 transition-transform duration-300">
-                        <img src="images/gallary/gallary_8.jpg" alt="Gallery Image 8" class="w-full h-full object-cover">
+                        <img src="images/gallary/gallary_8.jpg" alt="Gallery Image 8" class="w-full h-full object-cover gallery-image-item" data-full-src="images/gallary/gallary_8.jpg">
                     </div>
                     <div class="aspect-square rounded-lg overflow-hidden shadow-md transform hover:scale-105 transition-transform duration-300">
-                        <img src="images/gallary/gallary_7.jpg" alt="Gallery Image 7" class="w-full h-full object-cover">
+                        <img src="images/gallary/gallary_7.jpg" alt="Gallery Image 7" class="w-full h-full object-cover gallery-image-item" data-full-src="images/gallary/gallary_7.jpg">
                     </div>
                     <div class="aspect-square rounded-lg overflow-hidden shadow-md transform hover:scale-105 transition-transform duration-300">
-                        <img src="images/gallary/gallary_6.jpg" alt="Gallery Image 6" class="w-full h-full object-cover">
+                        <img src="images/gallary/gallary_6.jpg" alt="Gallery Image 6" class="w-full h-full object-cover gallery-image-item" data-full-src="images/gallary/gallary_6.jpg">
                     </div>
                     <div class="aspect-square rounded-lg overflow-hidden shadow-md transform hover:scale-105 transition-transform duration-300">
-                        <img src="images/gallary/gallary_0.jpg" alt="Gallery Image 1" class="w-full h-full object-cover">
+                        <img src="images/gallary/gallary_0.jpg" alt="Gallery Image 1" class="w-full h-full object-cover gallery-image-item" data-full-src="images/gallary/gallary_0.jpg">
                     </div>
                     <div class="aspect-square rounded-lg overflow-hidden shadow-md transform hover:scale-105 transition-transform duration-300">
-                        <img src="images/gallary/gallary_1.jpg" alt="Gallery Image 2" class="w-full h-full object-cover">
+                        <img src="images/gallary/gallary_1.jpg" alt="Gallery Image 2" class="w-full h-full object-cover gallery-image-item" data-full-src="images/gallary/gallary_1.jpg">
                     </div>
                     <div class="aspect-square rounded-lg overflow-hidden shadow-md transform hover:scale-105 transition-transform duration-300">
-                        <img src="images/gallary/gallary_2.jpg" alt="Gallery Image 3" class="w-full h-full object-cover">
+                        <img src="images/gallary/gallary_2.jpg" alt="Gallery Image 3" class="w-full h-full object-cover gallery-image-item" data-full-src="images/gallary/gallary_2.jpg">
                     </div>
                     <div class="aspect-square rounded-lg overflow-hidden shadow-md transform hover:scale-105 transition-transform duration-300">
-                        <img src="images/gallary/gallary_3.jpg" alt="Gallery Image 4" class="w-full h-full object-cover">
+                        <img src="images/gallary/gallary_3.jpg" alt="Gallery Image 4" class="w-full h-full object-cover gallery-image-item" data-full-src="images/gallary/gallary_3.jpg">
                     </div>
                     <div class="aspect-square rounded-lg overflow-hidden shadow-md transform hover:scale-105 transition-transform duration-300">
-                        <img src="images/gallary/gallary_4.jpg" alt="Gallery Image 5" class="w-full h-full object-cover">
+                        <img src="images/gallary/gallary_4.jpg" alt="Gallery Image 5" class="w-full h-full object-cover gallery-image-item" data-full-src="images/gallary/gallary_4.jpg">
                     </div>
                      <div class="aspect-square rounded-lg overflow-hidden shadow-md transform hover:scale-105 transition-transform duration-300">
-                        <img src="images/gallary/gallary_5.jpg" alt="Gallery Image 5" class="w-full h-full object-cover">
+                        <img src="images/gallary/gallary_5.jpg" alt="Gallery Image 5" class="w-full h-full object-cover gallery-image-item" data-full-src="images/gallary/gallary_5.jpg">
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="py-16 bg-black">
+        <section id="contact" class="py-16 bg-black min-h-[calc(100vh-5rem)]">
             <div class="container mx-auto px-4 md:px-8 lg:px-16">
                 <div class="section-heading-container">
-                    <!-- Removed font-semibold -->
-                    <h2 class="text-4xl text-center text-gray-100 section-heading">Contact me</h2>
+                    <!-- Changed text-4xl to text-3xl -->
+                    <h2 class="text-3xl text-center text-gray-100 section-heading">Contact me</h2>
                     <span class="section-heading-line"></span>
                     <span class="section-heading-accent-line"></span>
                 </div>
@@ -1679,6 +1654,7 @@
 
             // --- Lightbox related variables and functions (for images) ---
             const performanceImages = document.querySelectorAll('.performance-image');
+            const galleryImages = document.querySelectorAll('.gallery-image-item'); // Select gallery images
             const lightboxModal = document.getElementById('lightbox-modal');
             const lightboxImage = document.getElementById('lightbox-image');
             const lightboxClose = document.getElementById('lightbox-close');
@@ -1686,7 +1662,9 @@
             const lightboxNext = document.getElementById('lightbox-next');
 
             let currentImageIndex = 0;
-            const imageSources = Array.from(performanceImages).map(img => img.getAttribute('data-full-src') || img.src);
+            // Combine all potential image sources for the lightbox
+            const imageSources = Array.from(performanceImages).map(img => img.getAttribute('data-full-src') || img.src)
+                               .concat(Array.from(galleryImages).map(img => img.getAttribute('data-full-src') || img.src));
 
             // Function to show a specific image in the lightbox
             const showImage = (index) => {
@@ -1726,6 +1704,14 @@
 
             // Add click listener to each performance image
             performanceImages.forEach(image => {
+                image.addEventListener('click', () => {
+                    const fullSrc = image.getAttribute('data-full-src') || image.src;
+                    openLightbox(fullSrc);
+                });
+            });
+
+            // Add click listener to each gallery image
+            galleryImages.forEach(image => {
                 image.addEventListener('click', () => {
                     const fullSrc = image.getAttribute('data-full-src') || image.src;
                     openLightbox(fullSrc);
