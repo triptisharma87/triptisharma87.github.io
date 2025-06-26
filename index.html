@@ -560,7 +560,8 @@
     <header id="mainHeader" class="bg-black text-white shadow-lg py-4 fixed w-full z-30">
         <nav class="container mx-auto flex justify-between items-center px-4">
             <img src="images/logos/aalapini-logo_v0.png" alt="Tripti Sharma Logo" class="h-12 w-12 mr-4">
-            <a href="#" class="text-2xl font-bold text-amber-400">Tripti Sharma</a>
+            <!-- Tripti Sharma name: caps, no bold, white -->
+            <a href="#" class="text-2xl uppercase font-normal text-white">Tripti Sharma</a>
 
             <!-- Hamburger Icon for Mobile -->
             <button id="menuToggle" class="md:hidden text-white text-2xl focus:outline-none">
@@ -569,15 +570,16 @@
 
             <!-- Navigation Links -->
             <!-- Initially hidden on small screens, flex on medium screens and up -->
-            <ul id="mainNav" class="hidden md:flex flex-wrap  md:justify-end md:space-x-8 text-lg">
-                <li><a href="#home" class="nav-link text-white hover:text-amber-400">Home</a></li>
-                <li><a href="#music" class="nav-link text-white hover:text-amber-400">Music</a></li>
-                <li><a href="#about" class="nav-link text-white hover:text-amber-400">Biography</a></li>
-                <li><a href="#media" class="nav-link text-white hover:text-amber-400">Media</a></li>
-                <li><a href="#performances" class="nav-link text-white hover:text-amber-400">Performances</a></li> <!-- Added Performances link -->
-                <li><a href="#accolades" class="nav-link text-white hover:text-amber-400">Accolades</a></li>
-                <li><a href="#gallery" class="nav-link text-white hover:text-amber-400">Gallery</a></li>
-                <li><a href="#contact" class="nav-link text-white hover:text-amber-400">Contact</a></li>
+            <ul id="mainNav" class="hidden md:flex flex-wrap md:justify-end md:space-x-8 text-lg">
+                <!-- Navigation links in uppercase -->
+                <li><a href="#home" class="nav-link text-white hover:text-amber-400 uppercase">Home</a></li>
+                <li><a href="#music" class="nav-link text-white hover:text-amber-400 uppercase">Music</a></li>
+                <li><a href="#about" class="nav-link text-white hover:text-amber-400 uppercase">Biography</a></li>
+                <li><a href="#media" class="nav-link text-white hover:text-amber-400 uppercase">Media</a></li>
+                <li><a href="#performances" class="nav-link text-white hover:text-amber-400 uppercase">Performances</a></li>
+                <li><a href="#accolades" class="nav-link text-white hover:text-amber-400 uppercase">Accolades</a></li>
+                <li><a href="#gallery" class="nav-link text-white hover:text-amber-400 uppercase">Gallery</a></li>
+                <li><a href="#contact" class="nav-link text-white hover:text-amber-400 uppercase">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -616,14 +618,16 @@
 
         <!-- Music Section: Featured Videos and Discography -->
         <section id="music" class="py-16 bg-black">
-        <div class="container mx-auto px-4">
+        <div class="container mx-auto px-4 md:px-8 lg:px-16">
             <div class="section-heading-container">
-                <h2 class="text-4xl font-semibold text-center text-gray-100 section-heading">Listen to me</h2>
+                <!-- Removed font-semibold -->
+                <h2 class="text-4xl text-center text-gray-100 section-heading">Listen to me</h2>
                 <span class="section-heading-line"></span>
                 <span class="section-heading-accent-line"></span>
             </div>
             <!-- Featured Videos Carousel -->
-            <h3 class="text-3xl font-semibold text-center mb-6 text-gray-100">Featured videos</h3>
+            <!-- Removed font-semibold -->
+            <h3 class="text-3xl text-center mb-6 text-gray-100">Featured videos</h3>
             <div id="featured-videos-carousel" class="py-4 bg-black rounded-lg mb-8 shadow-md relative">
                 <!-- Carousel Navigation Buttons -->
                 <span id="carouselPrevBtn" class="carousel-nav-button carousel-prev-button">&lt;</span>
@@ -648,19 +652,23 @@
             </div>
 
             <!-- Discography Section -->
-            <h3 class="text-3xl font-bold text-center mb-6 text-gray-100">Discography</h3>
+            <!-- Removed font-bold -->
+            <h3 class="text-3xl text-center mb-6 text-gray-100">Discography</h3>
             <div id="discography-content">
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-
+                <!-- Changed to lg:grid-cols-3 for 3 albums on large screens -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- NEW: Shiva Stuti 2025 -->
-                    <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                        <div class="discography-item-image-wrapper">
-                            <img src="images/artwork/ShivaStuti_2025.jpg" alt="Shiva Stuti album art" class="w-full aspect-square object-contain">
+                    <!-- Flex container for album art and text/links -->
+                    <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 flex items-center p-4 space-x-4">
+                        <div class="discography-item-image-wrapper w-1/4 flex-shrink-0">
+                            <!-- w-1/4 to make album art smaller, flex-shrink-0 to prevent it from shrinking further -->
+                            <img src="images/artwork/ShivaStuti_2025.jpg" alt="Shiva Stuti album art" class="w-full aspect-square object-contain rounded-lg">
                             <a href="#" class="play-button-overlay" aria-label="Play Shiva Stuti on YouTube" data-video-id="8RshT7Bwth8">
                                 <i class="fab fa-youtube"></i>
                             </a>
                         </div>
-                        <div class="p-4">
+                        <div class="flex-grow flex flex-col justify-center">
+                            <!-- flex-grow to take remaining space, flex-col for stacked text, justify-center for vertical alignment -->
                             <h3 class="text-lg font-semibold text-white"><a href="https://youtu.be/8RshT7Bwth8?si=QG48ubQQZ_AvtzIR0" target="_blank">Shiva Stuti</a></h3>
                             <p class="text-gray-300 text-sm">2025 </p>
                             <p class="text-gray-400 text-xs mb-2">Tripti Sharma, Palace on Wheels</p>
@@ -673,14 +681,14 @@
                     </div>
 
                     <!-- NEW: Batiyan -->
-                    <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                        <div class="discography-item-image-wrapper">
-                            <img src="images/artwork/Batiyan_2025.jpg" alt="Batiyan album art" class="w-full aspect-square object-contain">
+                    <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 flex items-center p-4 space-x-4">
+                        <div class="discography-item-image-wrapper w-1/4 flex-shrink-0">
+                            <img src="images/artwork/Batiyan_2025.jpg" alt="Batiyan album art" class="w-full aspect-square object-contain rounded-lg">
                             <a href="#" class="play-button-overlay" aria-label="Play Batiyan on YouTube" data-video-id="ZsZk2zv7qcA">
                                 <i class="fab fa-youtube"></i>
                             </a>
                         </div>
-                        <div class="p-4">
+                        <div class="flex-grow flex flex-col justify-center">
                             <h3 class="text-lg font-semibold text-white"><a href="https://youtu.be/ZsZk2zv7qcA?si=vU2XK3lRQAdD92Nd" target="_blank">Batiyan</a></h3>
                             <p class="text-gray-300 text-sm">2025 </p>
                             <p class="text-gray-400 text-xs mb-2">Tripti Sharma, Palace on Wheels</p>
@@ -693,14 +701,14 @@
                     </div>
 
                      <!-- UPDATED: Payar Karta Hai -->
-                    <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                        <div class="discography-item-image-wrapper">
-                            <img src="images/artwork/Pardesiya_2025.jpg" alt="Pyar Karta Hai album art" class="w-full aspect-square object-contain">
+                    <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 flex items-center p-4 space-x-4">
+                        <div class="discography-item-image-wrapper w-1/4 flex-shrink-0">
+                            <img src="images/artwork/Pardesiya_2025.jpg" alt="Pyar Karta Hai album art" class="w-full aspect-square object-contain rounded-lg">
                             <a href="#" class="play-button-overlay" aria-label="Play Pyar Karta Hai on YouTube" data-video-id="l5tk5VeH90Y">
                                 <i class="fab fa-youtube"></i>
                             </a>
                         </div>
-                        <div class="p-4">
+                        <div class="flex-grow flex flex-col justify-center">
                             <h3 class="text-lg font-semibold text-white"><a href="https://youtu.be/l5tk5VeH90Y?si=tnF2i2OlvbX" target="_blank">Pyar Karta Hai</a></h3>
                             <p class="text-gray-300 text-sm">2025</p>
                             <p class="text-gray-400 text-xs mb-2">Tripti Sharma, Palace on Wheels</p>
@@ -713,14 +721,14 @@
                     </div>
 
                     <!-- UPDATED: Pardesiya (added YouTube link) -->
-                    <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                        <div class="discography-item-image-wrapper">
-                            <img src="images/artwork/Pardesiya_2025.jpg" alt="Pardesiya album art" class="w-full aspect-square object-contain">
+                    <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 flex items-center p-4 space-x-4">
+                        <div class="discography-item-image-wrapper w-1/4 flex-shrink-0">
+                            <img src="images/artwork/Pardesiya_2025.jpg" alt="Pardesiya album art" class="w-full aspect-square object-contain rounded-lg">
                             <a href="#" class="play-button-overlay" aria-label="Play Pardesiya on YouTube" data-video-id="OT2qIaU6NH8">
                                 <i class="fab fa-youtube"></i>
                             </a>
                         </div>
-                        <div class="p-4">
+                        <div class="flex-grow flex flex-col justify-center">
                             <h3 class="text-lg font-semibold text-white"><a href="https://youtu.be/OT2qIaU6NH8?si=JsQVYgtxW90kPgFn" target="_blank">Pardesiya</a></h3>
                             <p class="text-gray-300 text-sm">2025 </p>
                             <p class="text-gray-400 text-xs mb-2">Tripti Sharma, Palace on Wheels</p>
@@ -733,14 +741,14 @@
                     </div>
 
                      <!-- Mere Mehboob -->
-                    <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                        <div class="discography-item-image-wrapper">
-                            <img src="images/artwork/KariBadariya_2025.jpg" alt="Mere Mehboob album art" class="w-full aspect-square object-contain">
+                    <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 flex items-center p-4 space-x-4">
+                        <div class="discography-item-image-wrapper w-1/4 flex-shrink-0">
+                            <img src="images/artwork/KariBadariya_2025.jpg" alt="Mere Mehboob album art" class="w-full aspect-square object-contain rounded-lg">
                             <a href="#" class="play-button-overlay" aria-label="Play Mere Mehboob on YouTube" data-video-id="C4HSywLPeg8">
                                 <i class="fab fa-youtube"></i>
                             </a>
                         </div>
-                        <div class="p-4">
+                        <div class="flex-grow flex flex-col justify-center">
                             <h3 class="text-lg font-semibold text-white"> <a href="https://youtu.be/C4HSywLPeg8?si=Vncey5zEDSVcsKik" target="_blank">Mere Mehboob</a></h3>
                             <p class="text-gray-300 text-sm">2025 </p>
                             <p class="text-gray-400 text-xs mb-2">Tripti Sharma, Palace on Wheels</p>
@@ -754,14 +762,14 @@
                     </div>
 
                     <!-- Dhola ve Dhola -->
-                    <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                        <div class="discography-item-image-wrapper">
-                            <img src="images/artwork/KariBadariya_2025.jpg" alt="Dhola Ve Dhola album art" class="w-full aspect-square object-contain">
+                    <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 flex items-center p-4 space-x-4">
+                        <div class="discography-item-image-wrapper w-1/4 flex-shrink-0">
+                            <img src="images/artwork/KariBadariya_2025.jpg" alt="Dhola Ve Dhola album art" class="w-full aspect-square object-contain rounded-lg">
                             <a href="#" class="play-button-overlay" aria-label="Play Dhola Ve Dhola on YouTube" data-video-id="rGOM67gowxg">
                                 <i class="fab fa-youtube"></i>
                             </a>
                         </div>
-                        <div class="p-4">
+                        <div class="flex-grow flex flex-col justify-center">
                             <h3 class="text-lg font-semibold text-white"> <a href="https://youtu.be/rGOM67gowxg?si=wxQrAf58QesZIehv" target="_blank">Dhola Ve Dhola</a></h3>
                             <p class="text-gray-300 text-sm">2025 </p>
                             <p class="text-gray-400 text-xs mb-2">Tripti Sharma, Palace on Wheels</p>
@@ -775,14 +783,14 @@
                     </div>
 
                     <!-- Kari Badariya 2025-->
-                    <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                        <div class="discography-item-image-wrapper">
-                            <img src="images/artwork/KariBadariya_2025.jpg" alt="Kari Badariya album art" class="w-full aspect-square object-contain">
+                    <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 flex items-center p-4 space-x-4">
+                        <div class="discography-item-image-wrapper w-1/4 flex-shrink-0">
+                            <img src="images/artwork/KariBadariya_2025.jpg" alt="Kari Badariya album art" class="w-full aspect-square object-contain rounded-lg">
                             <a href="#" class="play-button-overlay" aria-label="Play Kari Badariya on YouTube" data-video-id="naGFb0Lw5oA">
                                 <i class="fab fa-youtube"></i>
                             </a>
                         </div>
-                        <div class="p-4">
+                        <div class="flex-grow flex flex-col justify-center">
                             <h3 class="text-lg font-semibold text-white"> <a href="https://youtu.be/naGFb0Lw5oA?si=8dsdciELZNL3A" target="_blank">Kari Badariya</a></h3>
                             <p class="text-gray-300 text-sm">2025 </p>
                             <p class="text-gray-400 text-xs mb-2">Tripti Sharma, Palace on Wheels</p>
@@ -796,16 +804,15 @@
                     </div>
 
                     <!-- UPDATED: Jhoom Jhoom 2024 -->
-                    <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                        <div class="discography-item-image-wrapper">
-                            <!-- Changed h-48 to aspect-square to ensure a square ratio. -->
-                            <!-- Changed object-cover to object-contain so the whole image fits within the box. -->
-                            <img src="images/artwork/JhoomJhoom_2024.jpg" alt="Jhoom Jhoom single art" class="w-full aspect-square object-contain">
+                    <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 flex items-center p-4 space-x-4">
+                        <div class="discography-item-image-wrapper w-1/4 flex-shrink-0">
+                            <!-- w-1/4 to make album art smaller -->
+                            <img src="images/artwork/JhoomJhoom_2024.jpg" alt="Jhoom Jhoom single art" class="w-full aspect-square object-contain rounded-lg">
                             <a href="#" class="play-button-overlay" aria-label="Play Jhoom Jhoom on YouTube" data-video-id="01XlZopwlA4">
                                 <i class="fab fa-youtube"></i>
                             </a>
                         </div>
-                        <div class="p-4">
+                        <div class="flex-grow flex flex-col justify-center">
                             <h3 class="text-lg font-semibold text-white"><a href="https://www.youtube.com/watch?v=01XlZopwlA4" target="_blank">Jhoom Jhoom</a></h3>
                             <p class="text-gray-300 text-sm">2024 </p>
                             <p class="text-gray-400 text-xs mb-2">Tripti Sharma, Palace on Wheels</p>
@@ -818,19 +825,19 @@
                     </div>
 
                     <!-- Sawan He Sakhi 2023 -->
-                    <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                        <div class="discography-item-image-wrapper">
-                            <img src="images/artwork/SawanHeSakhi_2023_v.jpg" alt="Sawan He Sakhi single art" class="w-full  aspect-square object-contain">
+                    <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 flex items-center p-4 space-x-4">
+                        <div class="discography-item-image-wrapper w-1/4 flex-shrink-0">
+                            <img src="images/artwork/SawanHeSakhi_2023_v.jpg" alt="Sawan He Sakhi single art" class="w-full  aspect-square object-contain rounded-lg">
                             <a href="#" class="play-button-overlay" aria-label="Play Sawan He Sakhi on YouTube" data-video-id="De0sI5pNW1E">
                                 <i class="fab fa-youtube"></i>
                             </a>
                         </div>
-                        <div class="p-4">
+                        <div class="flex-grow flex flex-col justify-center">
                             <h3 class="text-lg font-semibold text-white"><a href="https://youtu.be/De0sI5pNW1E?si=tbCcWy7PN_qD9y58" target="_blank">Sawan He Sakhi</a></h3>
                             <p class="text-gray-300 text-sm">2023</p>
                             <p class="text-gray-400 text-xs mb-2">Tripti Sharma, Pravesh Mallick</p>
                             <div class="flex space-x-2 text-2xl">
-                                <a href="https://youtu.be/De0sI5pNW1E?si=tbCcWy7PN_qD9y58" class="icon-link youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                                <a href="https://youtu.be/De0sI5pNW1E?si=tbCcWy7PN_qD9y58" target="_blank" class="icon-link youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                                 <a href="https://music.apple.com/us/album/sawan-he-sakhi-feat-tripti-sharma-single/1701011851" class="icon-link apple-music" aria-label="Apple Music"><i class="fab fa-apple"></i></a>
                                 <a href="https://open.spotify.com/track/0DtPu7nENIMAGkq2rQgndY?si=ec5c5ef7364b4111" class="icon-link spotify" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
                             </div>
@@ -838,14 +845,14 @@
                     </div>
 
                      <!-- Koyaliya 2022 -->
-                    <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                        <div class="discography-item-image-wrapper">
-                            <img src="images/artwork/Koyaliya_2022.jpg" alt="Koyaliya single art" class="w-full  aspect-square object-contain">
+                    <div class="bg-black rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 flex items-center p-4 space-x-4">
+                        <div class="discography-item-image-wrapper w-1/4 flex-shrink-0">
+                            <img src="images/artwork/Koyaliya_2022.jpg" alt="Koyaliya single art" class="w-full  aspect-square object-contain rounded-lg">
                             <a href="#" class="play-button-overlay" aria-label="Play Koyaliya on YouTube" data-video-id="vN_Oqt7XApg">
                                 <i class="fab fa-youtube"></i>
                             </a>
                         </div>
-                        <div class="p-4">
+                        <div class="flex-grow flex flex-col justify-center">
                             <h3 class="text-lg font-semibold text-white"><a href="https://youtu.be/vN_Oqt7XApg?si=wVIy1wY6BV5pio1H" target="_blank">Koyaliya</a></h3>
                             <p class="text-gray-300 text-sm">2022 </p>
                             <p class="text-gray-400 text-xs mb-2">Tripti Sharma, Palace on Wheels</p>
@@ -864,9 +871,10 @@
 
         <!-- About Me Section -->
         <section id="about" class="py-16 bg-black text-gray-200"> <!-- Dark background -->
-            <div class="container mx-auto px-4">
+            <div class="container mx-auto px-4 md:px-8 lg:px-16">
                 <div class="section-heading-container">
-                    <h2 class="text-4xl font-semibold text-center text-gray-100 section-heading">My musical journey</h2>
+                    <!-- Removed font-semibold -->
+                    <h2 class="text-4xl text-center text-gray-100 section-heading">My musical journey</h2>
                     <span class="section-heading-line"></span>
                     <span class="section-heading-accent-line"></span>
                 </div>
@@ -880,7 +888,7 @@
                         In pursuit of academic excellence, Tripti moved to Delhi, where she earned her <span class="font-semibold">Doctor of Philosophy in Indian Classical Music</span> from Delhi University. Her doctoral research explored the profound contributions of the legendary musician and Bharat Ratna awardee, <span class="font-semibold text-accent">Pandit Bhimsen Joshi Ji</span>. Tripti also holds the <span class="font-semibold">Sangeet Prabhakar</span> from Prayagraj, India, in Music Vocal, Instrument (Tabla), and Kathak Dance.</p>
                     <p>
                         <img src="images/profile/sunanda-sharma.jpg" alt="Ms. Sunanda Sharma Ji" class="rounded-lg shadow-md inline-image sm:float-left sm:mr-4 sm:mb-2 w-full max-w-[150px] md:max-w-[200px] lg:max-w-[250px] mx-auto sm:mx-0">
-                        A significant turn in her musical journey came when she began delving into the intricate nuances of music with her esteemed guru, <a href="http://sunandasharma.com/" <span class="font-semibold text-accent">Ms. Sunanda Sharma Ji</span></a>, an illustrious representative of the Banaras Gharana. Embracing the age-old guru-shishya parampara, Tripti lived with her guru, accompanying her to countless performances across India and abroad, thereby imbibing the essence of this rich musical heritage.
+                        A significant turn in her musical journey came when she began delving into the intricate nuances of music with her esteemed guru, <a href="http://sunandasharma.com/"><span class="font-semibold text-accent">Ms. Sunanda Sharma Ji</span></a>, an illustrious representative of the Banaras Gharana. Embracing the age-old guru-shishya parampara, Tripti lived with her guru, accompanying her to countless performances across India and abroad, thereby imbibing the essence of this rich musical heritage.
                     </p>
                     <p>
                         Tripti's unwavering commitment to music extends beyond the stage. As a <span class="font-semibold">Guest Assistant Professor at Kalindi College, Delhi University</span>, she shares her vast knowledge and experience with aspiring musicians. She is also a <span class="font-semibold">graded artist on All India Radio (AIR)</span>. Her musical prowess has garnered widespread appreciation and numerous accolades.
@@ -896,9 +904,10 @@
        <!--- Section Media coverage --->
        <!--- Section Media coverage --->
 <section id="media" class="py-16 bg-black">
-    <div class="container mx-auto px-4">
+    <div class="container mx-auto px-4 md:px-8 lg:px-16">
         <div class="section-heading-container">
-            <h2 class="text-4xl font-semibold text-center text-gray-100 section-heading">Media coverage</h2>
+            <!-- Removed font-semibold -->
+            <h2 class="text-4xl text-center text-gray-100 section-heading">Media coverage</h2>
             <span class="section-heading-line"></span>
             <span class="section-heading-accent-line"></span>
         </div>
@@ -908,7 +917,8 @@
             <!-- REPlay interview -->
             <!-- Each flex-col div acts as one grid item, containing all elements for that media piece -->
             <div class="flex flex-col items-center">
-                <h3 class="text-2xl font-bold mb-4 text-white flex items-center justify-center text-center leading-tight">
+                <!-- Removed font-bold -->
+                <h3 class="text-2xl mb-4 text-white flex items-center justify-center text-center leading-tight">
                     Latvian public television performance coverage and interview
                 </h3>
                 <!-- Container for the clickable image and title preview -->
@@ -928,7 +938,8 @@
 
             <!-- Deshvaani Interview 2024 - NOW CLICKABLE WITH ALWAYS-VISIBLE PLAY ICON -->
             <div class="flex flex-col items-center">
-                <h3 class="text-2xl font-bold mb-4 text-white flex items-center justify-center text-center leading-tight">
+                <!-- Removed font-bold -->
+                <h3 class="text-2xl mb-4 text-white flex items-center justify-center text-center leading-tight">
                     Exclusive interview with Deshvaani YouTube Channel
                 </h3>
                 <!-- Wrapped in 'a' tag to make it clickable, like the first example -->
@@ -955,7 +966,8 @@
 
             <!-- New Image Placeholder (same sizing as the first image) -->
             <div class="flex flex-col items-center">
-                <h3 class="text-2xl font-bold mb-4 text-white flex items-center justify-center text-center leading-tight">
+                <!-- Removed font-bold -->
+                <h3 class="text-2xl mb-4 text-white flex items-center justify-center text-center leading-tight">
                     Amar Ujala - Hindi Newspaper, India
                 </h3>
                 <a href="#" target="_blank"
@@ -977,9 +989,10 @@
 
         <!-- Performances Section -->
     <section id="performances" class="py-16 bg-black">
-        <div class="container mx-auto px-4">
+        <div class="container mx-auto px-4 md:px-8 lg:px-16">
             <div class="section-heading-container">
-                <h2 class="text-4xl font-bold text-center text-gray-100 section-heading">Recent notable performances</h2>
+                <!-- Removed font-bold -->
+                <h2 class="text-4xl text-center text-gray-100 section-heading">Recent notable performances</h2>
                 <span class="section-heading-line"></span>
                 <span class="section-heading-accent-line"></span>
             </div>
@@ -993,7 +1006,8 @@
                          onerror="this.onerror=null;this.src='images/events/20240818-Riga-Lativa-Indijas-Stasti.jpg';"
                          data-full-src="images/events/20240818-Riga-Lativa-Indijas-Stasti.jpg">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2 text-white">Indijas Stasti, Riga, Lativa</h3>
+                        <!-- Removed font-semibold -->
+                        <h3 class="text-xl mb-2 text-white">Indijas Stasti, Riga, Lativa</h3>
                         <p class="text-gray-300 mb-1">Indian Classical Music and Vocal Evening</p>
                         <p class="text-gray-300 mb-1">🗓️ August 18, 2024</p>
                     </div>
@@ -1004,10 +1018,11 @@
                   <a href="https://fb.me/e/5hBDyazEp">  <img src="images/events/20240816-ILCC-Independence-Day-Celebration-Riga-Lativa.jpg"
                          alt="Lativa 2024 Independence Day poster"
                          class="performance-image"
-                         onerror="this.onerror=null;this.src='images/events/20240816-ILCC-Independence-Day-Celebration-Riga-Lativa.jpg"
+                         onerror="this.onerror=null;this.src='images/events/20240816-ILCC-Independence-Day-Celebration-Riga-Lativa.jpg';"
                          data-full-src="images/events/20240816-ILCC-Independence-Day-Celebration-Riga-Lativa.jpg"></a>
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2 text-white"><a href="https://fb.me/e/5hBDyazEp">78th Independence Day of India Celebration, Riga, Lativa</a></h3>
+                        <!-- Removed font-semibold -->
+                        <h3 class="text-xl mb-2 text-white"><a href="https://fb.me/e/5hBDyazEp">78th Independence Day of India Celebration, Riga, Lativa</a></h3>
                         <p class="text-gray-300 mb-1">Indo-Latvian Chamber of Commerce and Embassy of India to Sweden and Lativa</p>
                         <p class="text-gray-300 mb-1">🗓️ August 16, 2024</p>
                     </div>
@@ -1019,11 +1034,11 @@
                     <img src="images/events/20231206-Stockholm-Sangeet-Sabha-9.jpg"
                          alt="Stockholm Sangeet Sabha poster"
                          class="performance-image"
-                         onerror="this.onerror=null;this.src='20231206-Stockholm-Sangeet-Sabha-9.jpg';"
+                         onerror="this.onerror=null;this.src='images/events/20231206-Stockholm-Sangeet-Sabha-9.jpg';"
                          data-full-src="images/events/20231206-Stockholm-Sangeet-Sabha-9.jpg"> <!-- data-full-src also uses original path -->
                     <div class="p-6">
-                        <!-- The "Stockholm Sangeet Sabha" text links to the event website. -->
-                        <h3 class="text-xl font-semibold mb-2">
+                        <!-- Removed font-semibold -->
+                        <h3 class="text-xl mb-2">
                             <a href="https://www.stockholmsangeet.se/" target="_blank" class="text-orange-400 hover:underline">Stockholm Sangeet Sabha, Stockholm, Sweden</a>
                         </h3>
                         <p class="text-gray-300 mb-1">Concert and Open Stage - 9th Session</p>
@@ -1039,7 +1054,8 @@
                          onerror="this.onerror=null;this.src='images/events/20230819-Riga-Lativa-Birthday.jpg';"
                          data-full-src="images/events/20230819-Riga-Lativa-Birthday.jpg">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2 text-white">Riga Birthday Celebration, Riga, Lativa</h3>
+                        <!-- Removed font-semibold -->
+                        <h3 class="text-xl mb-2 text-white">Riga Birthday Celebration, Riga, Lativa</h3>
                         <p class="text-gray-300 mb-1">Indian Classical Music Group "Chaturveni" Performance</p>
                         <p class="text-gray-300 mb-1">🗓️ August 19, 2023</p>
                     </div>
@@ -1050,10 +1066,11 @@
                   <a href="https://fb.me/e/bb1Bp4aXf">  <img src="images/events/20230818-ILCC-Independence-Day-Celebration-Riga-Lativa.jpg"
                          alt="Lativa 2023 Independence Day poster"
                          class="performance-image"
-                         onerror="this.onerror=null;this.src='images/events/20230818-ILCC-Independence-Day-Celebration-Riga-Lativa.jpg"
+                         onerror="this.onerror=null;this.src='images/events/20230818-ILCC-Independence-Day-Celebration-Riga-Lativa.jpg';"
                          data-full-src="images/events/20230818-ILCC-Independence-Day-Celebration-Riga-Lativa.jpg"></a>
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2 text-white"><a href="https://fb.me/e/bb1Bp4aXf">77th Independence Day of India Celebration, Riga, Lativa</a></h3>
+                        <!-- Removed font-semibold -->
+                        <h3 class="text-xl mb-2 text-white"><a href="https://fb.me/e/bb1Bp4aXf">77th Independence Day of India Celebration, Riga, Lativa</a></h3>
                         <p class="text-gray-300 mb-1">Indo-Latvian Chamber of Commerce and Embassy of India to Sweden and Lativa</p>
                         <p class="text-gray-300 mb-1">🗓️ August 18, 2023</p>
                     </div>
@@ -1066,7 +1083,8 @@
                          onerror="this.onerror=null;this.src='images/events/20230816-Riga-Lativa-Nakts-Raga.jpg';"
                          data-full-src="images/events/20230816-Riga-Lativa-Nakts-Raga.jpg">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2 text-white">Nakts Raga, Riga, Lativa</h3>
+                        <!-- Removed font-semibold -->
+                        <h3 class="text-xl mb-2 text-white">Nakts Raga, Riga, Lativa</h3>
                         <p class="text-gray-300 mb-1">Indian Classical Music and Indian Classical Vocal Evening</p>
                         <p class="text-gray-300 mb-1">🗓️ August 16, 2023</p>
                     </div>
@@ -1080,7 +1098,8 @@
                          onerror="this.onerror=null;this.src='images/events/20221006-Sarang-Korea.jpg';"
                          data-full-src="images/events/20221006-Sarang-Korea.jpg">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2 text-white">Sarang - The Festival of India (Tour), Republic of Korea</h3>
+                        <!-- Removed font-semibold -->
+                        <h3 class="text-xl mb-2 text-white">Sarang - The Festival of India (Tour), Republic of Korea</h3>
                          <p class="text-gray-300 mb-1">Embassy of India, Seoul, Repblic of Korea</p>
                          <p class="text-gray-300 mb-1">🗓️ Sep 31 - Oct 14, 2022</p>
                     </div>
@@ -1094,7 +1113,8 @@
                          onerror="this.onerror=null;this.src='images/events/20220828-Sangeet-Samaroh-Delhi.jpg';"
                          data-full-src="images/events/20220828-Sangeet-Samaroh-Delhi.jpg">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2 text-white">Sangeet Samaroh, Delhi, India</h3>
+                        <!-- Removed font-semibold -->
+                        <h3 class="text-xl mb-2 text-white">Sangeet Samaroh, Delhi, India</h3>
                         <p class="text-gray-300 mb-1">Pt. Kapildeo Singh Memorial Trust</p>
                         <p class="text-300 mb-1">🗓️ August 28, 2022</p>
                     </div>
@@ -1108,7 +1128,8 @@
                          onerror="this.onerror=null;this.src='images/events/20220209-Vasantuassv-DU-India.jpg';"
                          data-full-src="images/events/20220209-Vasantuassv-DU-India.jpg">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2 text-white">Vasantotsav, Delhi, India</h3>
+                        <!-- Removed font-semibold -->
+                        <h3 class="text-xl mb-2 text-white">Vasantotsav, Delhi, India</h3>
                         <p class="text-gray-300 mb-1">International Webinar - Hindustani Classical Vocal</p>
                         <p class="text-gray-300 mb-1">🗓️ Feb 7, 2022</p>
                     </div>
@@ -1122,7 +1143,8 @@
                          onerror="this.onerror=null;this.src='images/events/20200529-Sanskar-Bharti.jpg';"
                          data-full-src="images/events/20200529-Sanskar-Bharti.jpg"> <!-- data-full-src also uses original path -->
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2 text-white"> <a href="https://www.facebook.com/sanskarbhartimrtprant/" target="_blank"> Sanskar Bharati, Meerut, India</a></h3>
+                        <!-- Removed font-semibold -->
+                        <h3 class="text-xl mb-2 text-white"> <a href="https://www.facebook.com/sanskarbhartimrtprant/" target="_blank"> Sanskar Bharati, Meerut, India</a></h3>
                         <p class="text-gray-300 mb-1">Sangeet Suman - 18</p>
                         <p class="text-gray-300 mb-1">🗓️ May 29, 2020</p>
                     </div>
@@ -1134,9 +1156,10 @@
 
             <!-- Accolades Section -->
     <section id="accolades" class="py-16 bg-black min-h-screen flex items-center justify-center">
-        <div class="container mx-auto px-4 py-8">
+        <div class="container mx-auto px-4 md:px-8 lg:px-16 py-8">
             <div class="section-heading-container">
-                <h2 class="text-4xl font-bold text-center text-gray-100 section-heading">
+                <!-- Removed font-bold -->
+                <h2 class="text-4xl text-center text-gray-100 section-heading">
                     Selected accolades
                 </h2>
                 <span class="section-heading-line"></span>
@@ -1156,7 +1179,8 @@
                 ">
                     <i class="fas fa-trophy text-5xl text-white-400 mb-4 drop-shadow-lg accolade-icon"></i>
                     <div class="text-sm font-light text-gray-400 mb-1 accolade-year">2019</div>
-                    <h3 class="text-xl md:text-2xl font-bold text-white mb-2 leading-tight accolade-name">
+                    <!-- Removed font-bold -->
+                    <h3 class="text-xl md:text-2xl text-white mb-2 leading-tight accolade-name">
                         The Accolade of Excellence - UP Diva
                     </h3>
                     <p class="text-sm text-gray-300 accolade-org">
@@ -1176,7 +1200,8 @@
                 ">
                     <i class="fas fa-award text-5xl text-white-400 mb-4 drop-shadow-lg accolade-icon"></i>
                     <div class="text-sm font-light text-gray-400 mb-1 accolade-year">2015</div>
-                    <h3 class="text-xl md:text-2xl font-bold text-white mb-2 leading-tight accolade-name">
+                    <!-- Removed font-bold -->
+                    <h3 class="text-xl md:text-2xl text-white mb-2 leading-tight accolade-name">
                         Malhar Samman
                     </h3>
                     <p class="text-sm text-gray-300 accolade-org">
@@ -1196,7 +1221,8 @@
                 ">
                     <i class="fas fa-graduation-cap text-5xl text-white-400 mb-4 drop-shadow-lg accolade-icon"></i>
                     <div class="text-sm font-light text-gray-400 mb-1 accolade-year">2008</div>
-                    <h3 class="text-xl md:text-2xl font-bold text-white mb-2 leading-tight accolade-name">
+                    <!-- Removed font-bold -->
+                    <h3 class="text-xl md:text-2xl text-white mb-2 leading-tight accolade-name">
                         Junior Research Fellowship Award
                     </h3>
                     <p class="text-sm text-gray-300 accolade-org">
@@ -1216,7 +1242,8 @@
                 ">
                     <i class="fas fa-award text-5xl text-white-400 mb-4 drop-shadow-lg accolade-icon"></i>
                     <div class="text-sm font-light text-gray-400 mb-1 accolade-year">2008</div>
-                    <h3 class="text-xl md:text-2xl font-bold text-white mb-2 leading-tight accolade-name">
+                    <!-- Removed font-bold -->
+                    <h3 class="text-xl md:text-2xl text-white mb-2 leading-tight accolade-name">
                         Prerna Kala Manch Samajik Sansthan Samman
                     </h3>
                     <p class="text-sm text-gray-300 accolade-org">
@@ -1236,7 +1263,8 @@
                 ">
                     <i class="fas fa-medal text-5xl text-white-400 mb-4 drop-shadow-lg accolade-icon"></i>
                     <div class="text-sm font-light text-gray-400 mb-1 accolade-year">2006</div>
-                    <h3 class="text-xl md:text-2xl font-bold text-white mb-2 leading-tight accolade-name">
+                    <!-- Removed font-bold -->
+                    <h3 class="text-xl md:text-2xl text-white mb-2 leading-tight accolade-name">
                         President Award
                     </h3>
                     <p class="text-sm text-gray-300 accolade-org">
@@ -1256,7 +1284,8 @@
                 ">
                     <i class="fas fa-trophy text-5xl text-white-400 mb-4 drop-shadow-lg accolade-icon"></i>
                     <div class="text-sm font-light text-gray-400 mb-1 accolade-year">2005</div>
-                    <h3 class="text-xl md:text-2xl font-bold text-white mb-2 leading-tight accolade-name">
+                    <!-- Removed font-bold -->
+                    <h3 class="text-xl md:text-2xl text-white mb-2 leading-tight accolade-name">
                         Aarohi Kala Sansthan Samman
                     </h3>
                     <p class="text-sm text-gray-300 accolade-org">
@@ -1276,7 +1305,8 @@
                 ">
                     <i class="fas fa-star text-5xl text-white-400 mb-4 drop-shadow-lg accolade-icon"></i>
                     <div class="text-sm font-light text-gray-400 mb-1 accolade-year">2005</div>
-                    <h3 class="text-xl md:text-2xl font-bold text-white mb-2 leading-tight accolade-name">
+                    <!-- Removed font-bold -->
+                    <h3 class="text-xl md:text-2xl text-white mb-2 leading-tight accolade-name">
                         Moradabad Idol
                     </h3>
                     <p class="text-sm text-gray-300 accolade-org">
@@ -1296,7 +1326,8 @@
                 ">
                     <i class="fas fa-medal text-5xl text-white-400 mb-4 drop-shadow-lg accolade-icon"></i>
                     <div class="text-sm font-light text-gray-400 mb-1 accolade-year">2003</div>
-                    <h3 class="text-xl md:text-2xl font-bold text-white mb-2 leading-tight accolade-name">
+                    <!-- Removed font-bold -->
+                    <h3 class="text-xl md:text-2xl text-white mb-2 leading-tight accolade-name">
                         Governor Award
                     </h3>
                     <p class="text-sm text-gray-300 accolade-org">
@@ -1309,9 +1340,10 @@
 
         <!-- Gallery Section -->
         <section id="gallery" class="py-16 bg-black">
-            <div class="container mx-auto px-4">
+            <div class="container mx-auto px-4 md:px-8 lg:px-16">
                 <div class="section-heading-container">
-                    <h2 class="text-4xl font-semibold text-center text-gray-100 section-heading">Gallery</h2>
+                    <!-- Removed font-semibold -->
+                    <h2 class="text-4xl text-center text-gray-100 section-heading">Gallery</h2>
                     <span class="section-heading-line"></span>
                     <span class="section-heading-accent-line"></span>
                 </div>
@@ -1350,9 +1382,10 @@
 
         <!-- Contact Section -->
         <section id="contact" class="py-16 bg-black">
-            <div class="container mx-auto px-4">
+            <div class="container mx-auto px-4 md:px-8 lg:px-16">
                 <div class="section-heading-container">
-                    <h2 class="text-4xl font-semibold text-center text-gray-100 section-heading">Contact me</h2>
+                    <!-- Removed font-semibold -->
+                    <h2 class="text-4xl text-center text-gray-100 section-heading">Contact me</h2>
                     <span class="section-heading-line"></span>
                     <span class="section-heading-accent-line"></span>
                 </div>
@@ -1404,7 +1437,7 @@
                             <a href="https://www.facebook.com/tripti.sharma.3382" target="_blank" class="icon-link facebook" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
                             <a href="https://www.youtube.com/@triptisharma4034" target="_blank" class="icon-link youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                             <a href="https://music.apple.com/bh/artist/tripti-sharma/1631222411" target="_blank" class="icon-link apple-music" aria-label="Apple Music"><i class="fab fa-apple"></i></a>
-                            <a href="https://open.spotify.com/artist/4I9AyBuHEprXXwgPLY8r2r" target="_blank" class="icon-link spotify" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
+                            <a href="https://open.spotify.com/artist/4I9AyBuHEpr2r" target="_blank" class="icon-link spotify" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
                             <a href="https://www.epidemicsound.com/artists/tripti-sharma-2/" target="_blank" class="icon-link epidemic-sound text-xs font-bold px-1.5 py-2.5" aria-label="Epidemic Sound">
                               <img src="images/logos/epidemic_black.png" alt="Epidemic Sound Logo" style="height: 20px; vertical-align: middle;"></a>
                         </div>
@@ -1605,7 +1638,7 @@
                         videoScrollContainer.scrollLeft = featuredCarouselItems[featuredCarouselItems.length - numUniqueVideosInCarousel].offsetLeft;
                         nextPhysicalIndex = featuredCarouselItems.length - numUniqueVideosInCarousel - 1; // Reset index to the last original item
                     }
-                }
+                } 
 
                 // Ensure the index is valid for `scrollIntoView`
                 if (nextPhysicalIndex >= 0 && nextPhysicalIndex < featuredCarouselItems.length) {
@@ -1649,7 +1682,7 @@
             const lightboxModal = document.getElementById('lightbox-modal');
             const lightboxImage = document.getElementById('lightbox-image');
             const lightboxClose = document.getElementById('lightbox-close');
-            const lightboxPrev = document = document.getElementById('lightbox-prev');
+            const lightboxPrev = document.getElementById('lightbox-prev');
             const lightboxNext = document.getElementById('lightbox-next');
 
             let currentImageIndex = 0;
