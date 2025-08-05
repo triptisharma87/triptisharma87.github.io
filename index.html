@@ -136,7 +136,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
 	
-	/* Custom styles for theme colors and shadow - replace with your actual theme classes */
+	
+        /*sharebale link start */
+	        /* Custom styles for theme colors and shadow - replace with your actual theme classes */
         .theme-shadow-hover:hover {
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
@@ -174,7 +176,8 @@
 
         /* Icon link specific styles */
         .icon-link {
-            transition: transform 0.2s ease-in-out;
+            transition: transform 0.2s ease-in-out, color 0.2s ease-in-out; /* Added color transition */
+            color: #6b7280; /* Default icon color */
         }
         .icon-link:hover {
             transform: scale(1.1);
@@ -188,18 +191,10 @@
         .icon-link.spotify:hover {
             color: #1db954; /* Spotify green */
         }
-        .share-button {
-            background-color: #4f46e5; /* Indigo */
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            font-size: 0.875rem;
-            font-weight: 600;
-            transition: background-color 0.2s ease-in-out;
+        .icon-link.share-icon:hover {
+            color: #4f46e5; /* Indigo for share, consistent with previous button color */
         }
-        .share-button:hover {
-            background-color: #4338ca; /* Darker indigo */
-        }
+
         .message-box {
             position: fixed;
             bottom: 1rem;
@@ -216,8 +211,10 @@
         .message-box.show {
             opacity: 1;
         }
+    </style>
     	/*shareable link*/
-        /* CSS Variables for Theme */
+        
+	/* CSS Variables for Theme */
         :root {
             /* Dark Theme (Default) */
             --bg-color-primary: #000000;
@@ -874,11 +871,10 @@
 					<a href="https://music.apple.com/se/album/durga-bhajan-single/1822565650" class="icon-link apple-music" aria-label="Apple Music"><i class="fab fa-apple"></i></a>
 					<a href="https://open.spotify.com/track/5uJXzeCWd364fTxDCbEkU7?si=4a00d802f45841bc" class="icon-link spotify" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
 
-					<!-- Share Button -->
-			                <!---button class="share-button flex items-center space-x-1" data-share-url="https://www.youtube.com/watch?v=x8AwSFibZpg">
-			                    <i class="fas fa-share-alt text-base"></i>
-			                    <span class="text-sm">Share</span>
-					</button-->
+					<!-- Share Link -->
+			                <a href="#" class="icon-link share-icon" aria-label="Share this page" data-share-url="CURRENT_PAGE_URL_PLACEHOLDER">
+			                    <i class="fas fa-share-alt"></i>
+			                </a>
 				</div>
 			</div>
 		</div> 
@@ -2026,8 +2022,8 @@
             });
         });
     </script>
-
-<script>
+     
+    <script>
         // Function to display a message to the user
         function showMessage(message) {
             const messageBox = document.getElementById('messageBox');
@@ -2038,17 +2034,20 @@
             }, 2000); // Message disappears after 2 seconds
         }
 
-        // Add event listener to all share buttons
+        // Add event listener to all share links
         document.addEventListener('DOMContentLoaded', () => {
-            const shareButtons = document.querySelectorAll('.share-button');
+            const shareLinks = document.querySelectorAll('.share-icon'); // Changed to target .share-icon
 
-            shareButtons.forEach(button => {
-                button.addEventListener('click', (event) => {
-                    // Prevent default button action
+            shareLinks.forEach(link => { // Changed to 'link'
+                // Set the data-share-url to the current page's URL
+                link.setAttribute('data-share-url', window.location.href);
+
+                link.addEventListener('click', (event) => { // Changed to 'link'
+                    // Prevent default link action
                     event.preventDefault();
 
                     // Get the URL to share from the data-share-url attribute
-                    const shareUrl = button.getAttribute('data-share-url');
+                    const shareUrl = link.getAttribute('data-share-url'); // Changed to 'link'
 
                     if (shareUrl) {
                         // Create a temporary input element to copy the text
